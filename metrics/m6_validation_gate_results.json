@@ -1,0 +1,1853 @@
+{
+  "results": [
+    {
+      "case_id": "5_a",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "8538875209"
+          ],
+          "order_id": "#W6390527",
+          "payment_method_id": "paypal_7644869"
+        },
+        "duration_seconds": 0.0721655790694058,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "mei_kovacs_8020"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W6390527"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7800651"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8065207"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:13.593550"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015059000000000001,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer identification and payment method specified",
+          "return_item_names": [
+            "Water Bottle"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer identification and payment method specified\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Mei\",\n      \"last_name\": \"Kovacs\",\n      \"zip\": \"28236\"\n    }\n  },\n  \"return_item_names\": [\"Water Bottle\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 689,
+          "output_tokens": 136
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "Hi, Mei Kovacs here, zip 28236. After all the back and forth, forget the lamp swap. I just need the water bottle returned and the money put back where it came from.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "8538875209"
+          ],
+          "order_id": "#W6390527",
+          "payment_method_id": "paypal_7644869"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "mei_kovacs_8020"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W6390527"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7800651"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8065207"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "8538875209"
+              ],
+              "order_id": "#W6390527",
+              "payment_method_id": "paypal_7644869"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_5_a",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "5",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "5",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "5_b",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "8538875209"
+          ],
+          "order_id": "#W6390527",
+          "payment_method_id": "paypal_7644869"
+        },
+        "duration_seconds": 0.059740967000834644,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "mei_kovacs_8020"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W6390527"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7800651"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8065207"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:14.124962"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015004,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer identification and payment method specified",
+          "return_item_names": [
+            "Water Bottle"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer identification and payment method specified\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Mei\",\n      \"last_name\": \"Kovacs\",\n      \"zip\": \"28236\"\n    }\n  },\n  \"return_item_names\": [\"Water Bottle\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 684,
+          "output_tokens": 136
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "I'm Mei Kovacs in 28236. That bottle from my recent order is the one I ended up not wanting. Please process it as a return on the original payment.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "8538875209"
+          ],
+          "order_id": "#W6390527",
+          "payment_method_id": "paypal_7644869"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Mei",
+              "last_name": "Kovacs",
+              "zip": "28236"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "mei_kovacs_8020"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W6390527"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7800651"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8065207"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "8538875209"
+              ],
+              "order_id": "#W6390527",
+              "payment_method_id": "paypal_7644869"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_5_b",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "5",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "5",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "5_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 2.6869005523622036e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:14.635077"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0012397,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer has not decided between exchange or return, and has not specified which item(s) are involved in either action",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer has not decided between exchange or return, and has not specified which item(s) are involved in either action\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 672,
+          "output_tokens": 91
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "I'm calling about that bottle and lamp order. I might exchange one thing or maybe return one, I honestly haven't decided.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "5",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "13_a",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "4579334072",
+            "6117189161",
+            "4947717507"
+          ],
+          "order_id": "#W5490111",
+          "payment_method_id": "credit_card_3124723"
+        },
+        "duration_seconds": 0.06439205701462924,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "email": "mia.garcia2723@example.com"
+            },
+            "name": "find_user_id_by_email"
+          },
+          {
+            "arguments": {
+              "user_id": "mia_garcia_4516"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5490111"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7387996"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:14.635127"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015136,
+        "parsed_json": {
+          "keep_item_names": [
+            "Mechanical Keyboard",
+            "Gaming Mouse"
+          ],
+          "lookup": {
+            "method": "email",
+            "values": {
+              "email": "mia.garcia2723@example.com"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Customer clearly identifies items to keep (keyboard and mouse) and requests return of everything else from a gaming setup purchase, with original payment method specified.",
+          "return_item_names": null,
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Customer clearly identifies items to keep (keyboard and mouse) and requests return of everything else from a gaming setup purchase, with original payment method specified.\",\n  \"lookup\": {\n    \"method\": \"email\",\n    \"values\": {\"email\": \"mia.garcia2723@example.com\"}\n  },\n  \"return_item_names\": null,\n  \"keep_item_names\": [\"Mechanical Keyboard\", \"Gaming Mouse\"],\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 696,
+          "output_tokens": 136
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "This is Mia Garcia, mia.garcia2723@example.com. I went a little overboard on the gaming setup; keyboard and mouse are staying, everything else from that haul can go back. Original payment is fine.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "4579334072",
+            "6117189161",
+            "4947717507"
+          ],
+          "order_id": "#W5490111",
+          "payment_method_id": "credit_card_3124723"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "email": "mia.garcia2723@example.com"
+            },
+            "name": "find_user_id_by_email"
+          },
+          {
+            "arguments": {
+              "user_id": "mia_garcia_4516"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5490111"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W7387996"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "4579334072",
+                "6117189161",
+                "4947717507"
+              ],
+              "order_id": "#W5490111",
+              "payment_method_id": "credit_card_3124723"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_13_a",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "13",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "13",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "13_b",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 3.2610027119517326e-05,
+        "read_tool_calls": [],
+        "reason": "contract violation: both return_item_names and keep_item_names populated",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:15.277239"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015312000000000001,
+        "parsed_json": {
+          "keep_item_names": [
+            "Mechanical Keyboard",
+            "Gaming Mouse"
+          ],
+          "lookup": {
+            "method": "email",
+            "values": {
+              "email": "mia.garcia2723@example.com"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with email lookup, specific items to return, items to keep, and payment method specified.",
+          "return_item_names": [
+            "Water Bottle",
+            "Action Camera",
+            "Backpack"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with email lookup, specific items to return, items to keep, and payment method specified.\",\n  \"lookup\": {\n    \"method\": \"email\",\n    \"values\": {\"email\": \"mia.garcia2723@example.com\"}\n  },\n  \"return_item_names\": [\"Water Bottle\", \"Action Camera\", \"Backpack\"],\n  \"keep_item_names\": [\"Mechanical Keyboard\", \"Gaming Mouse\"],\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 692,
+          "output_tokens": 140
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "over-defer",
+      "request_text": "Mia here - email mia.garcia2723@example.com. Can you return the water bottle, action camera, and backpack? I'm keeping the actual keyboard/mouse stuff. Original payment is fine.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "13",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "13_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 1.108401920646429e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:15.277296"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0013805,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer mentions 'gaming stuff' and 'useful bits' but does not clearly specify which items to return or keep. No canonical product names are identifiable. Additionally, no customer lookup information (email or name/ZIP) is provided.",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer mentions 'gaming stuff' and 'useful bits' but does not clearly specify which items to return or keep. No canonical product names are identifiable. Additionally, no customer lookup information (email or name/ZIP) is provided.\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 675,
+          "output_tokens": 116
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "I changed my mind on some gaming stuff. I only want the useful bits, I guess, but I don't have the order pulled up.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "13",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "48_a",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "9534205511"
+          ],
+          "order_id": "#W9502127",
+          "payment_method_id": "paypal_2433177"
+        },
+        "duration_seconds": 0.06012830906547606,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Daiki",
+              "last_name": "Johnson",
+              "zip": "80273"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "daiki_johnson_9523"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W1436802"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5282037"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W9502127"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:15.277326"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015169,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Daiki",
+              "last_name": "Johnson",
+              "zip": "80273"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer lookup (name + zip) and specific item",
+          "return_item_names": [
+            "Air Purifier"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer lookup (name + zip) and specific item\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Daiki\",\n      \"last_name\": \"Johnson\",\n      \"zip\": \"80273\"\n    }\n  },\n  \"return_item_names\": [\"Air Purifier\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 679,
+          "output_tokens": 140
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "Daiki Johnson, Denver zip 80273. The air purifier showed up and it is useless, so please return that one to the original payment.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "9534205511"
+          ],
+          "order_id": "#W9502127",
+          "payment_method_id": "paypal_2433177"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Daiki",
+              "last_name": "Johnson",
+              "zip": "80273"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "daiki_johnson_9523"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W1436802"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5282037"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W9502127"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "9534205511"
+              ],
+              "order_id": "#W9502127",
+              "payment_method_id": "paypal_2433177"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_48_a",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "48",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "48",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "48_b",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 3.575801383703947e-05,
+        "read_tool_calls": [],
+        "reason": "contract violation: both return_item_names and keep_item_names populated",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:15.798523"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0017028000000000002,
+        "parsed_json": {
+          "keep_item_names": [
+            "Vacuum Cleaner",
+            "Patio Umbrella"
+          ],
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Daiki",
+              "last_name": "Johnson",
+              "zip": "80273"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Customer clearly requests refund of Air Purifier only, keeping Vacuum Cleaner and Patio Umbrella. Valid lookup provided: name and ZIP.",
+          "return_item_names": [
+            "Air Purifier"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Customer clearly requests refund of Air Purifier only, keeping Vacuum Cleaner and Patio Umbrella. Valid lookup provided: name and ZIP.\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Daiki\",\n      \"last_name\": \"Johnson\",\n      \"zip\": \"80273\"\n    }\n  },\n  \"return_item_names\": [\"Air Purifier\"],\n  \"keep_item_names\": [\"Vacuum Cleaner\", \"Patio Umbrella\"],\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 688,
+          "output_tokens": 172
+        }
+      },
+      "m5_5_outcome": "parse failure",
+      "m5_5_wrong_write": true,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "Hey, I'm Daiki Johnson at 80273. In the order with the vacuum and umbrella, the purifier is the dud. Refund the purifier, not the vacuum.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "48",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "48_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 1.1034077033400536e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:15.798581"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0012496,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer is uncertain between two products (Vacuum Cleaner vs Air Purifier) and no customer lookup information provided",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer is uncertain between two products (Vacuum Cleaner vs Air Purifier) and no customer lookup information provided\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 676,
+          "output_tokens": 92
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "One of the appliances I bought doesn't work. It was the cleaner thing, or purifier thing maybe. Can you refund it?",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "48",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "51_a",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "5996159312"
+          ],
+          "order_id": "#W4689314",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "duration_seconds": 0.06445964600425214,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:15.798611"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0014663000000000002,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            }
+          },
+          "payment_rule": null,
+          "reason": "Clear return intent with customer name, ZIP code, and specific product identified",
+          "return_item_names": [
+            "Digital Camera"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return intent with customer name, ZIP code, and specific product identified\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Sofia\",\n      \"last_name\": \"Li\",\n      \"zip\": \"78260\"\n    }\n  },\n  \"return_item_names\": [\"Digital Camera\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 683,
+          "output_tokens": 130
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "Sofia Li, San Antonio 78260. I need to return the digital camera; I guessed order W8855135 but honestly I'm not sure that's the one.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "5996159312"
+          ],
+          "order_id": "#W4689314",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "5996159312"
+              ],
+              "order_id": "#W4689314",
+              "payment_method_id": "credit_card_8105988"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_51_a",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "51",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "51",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "51_b",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "5996159312"
+          ],
+          "order_id": "#W4689314",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "duration_seconds": 0.062482847017236054,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:16.308007"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0014894,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer name, ZIP code, and payment method preference",
+          "return_item_names": [
+            "Digital Camera"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer name, ZIP code, and payment method preference\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Sofia\",\n      \"last_name\": \"Li\",\n      \"zip\": \"78260\"\n    }\n  },\n  \"return_item_names\": [\"Digital Camera\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 674,
+          "output_tokens": 136
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "This is Sofia Li, 78260. The camera I received has to go back. Please refund it to the card I used.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "5996159312"
+          ],
+          "order_id": "#W4689314",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "5996159312"
+              ],
+              "order_id": "#W4689314",
+              "payment_method_id": "credit_card_8105988"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_51_b",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "51",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "51",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "51_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 2.9959948733448982e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:16.855263"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0013222,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer mentions returning 'the electronics item' but provides no customer lookup information (email or name+zip) and 'electronics item' is too vague to map to a specific canonical product.",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer mentions returning 'the electronics item' but provides no customer lookup information (email or name+zip) and 'electronics item' is too vague to map to a specific canonical product.\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 667,
+          "output_tokens": 107
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "I think I gave the wrong order number earlier, but I want to return the electronics item from it.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "51",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "53_a",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "7758198585"
+          ],
+          "order_id": "#W3916020",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "duration_seconds": 0.07141805102583021,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:16.855316"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0014652,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer identification and payment method specified",
+          "return_item_names": [
+            "Bicycle"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer identification and payment method specified\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Sofia\",\n      \"last_name\": \"Li\",\n      \"zip\": \"78260\"\n    }\n  },\n  \"return_item_names\": [\"Bicycle\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 672,
+          "output_tokens": 132
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "Sofia Li, zip 78260. The bicycle arrived damaged in shipping and I want the refund back on my original card.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "7758198585"
+          ],
+          "order_id": "#W3916020",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "7758198585"
+              ],
+              "order_id": "#W3916020",
+              "payment_method_id": "credit_card_8105988"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_53_a",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "53",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "53",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "53_b",
+      "gate": {
+        "allowed": true,
+        "derived_write_args": {
+          "item_ids": [
+            "7758198585"
+          ],
+          "order_id": "#W3916020",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "duration_seconds": 0.06536521308589727,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "schema and catalog consistency passed",
+        "stage": "passed",
+        "start_time": "2026-08-18T15:24:17.414880"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015004,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": {
+            "method": "name_zip",
+            "values": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Clear return request with customer lookup (name + ZIP) and item identification",
+          "return_item_names": [
+            "Bicycle"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer lookup (name + ZIP) and item identification\",\n  \"lookup\": {\n    \"method\": \"name_zip\",\n    \"values\": {\n      \"first_name\": \"Sofia\",\n      \"last_name\": \"Li\",\n      \"zip\": \"78260\"\n    }\n  },\n  \"return_item_names\": [\"Bicycle\"],\n  \"keep_item_names\": null,\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 684,
+          "output_tokens": 136
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "clean pass",
+      "request_text": "Sofia Li at 78260 here. The expensive bike got busted on the way over. I am pretty upset, so can you send that one back and credit the original payment?",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": true,
+      "script_result": {
+        "derived_write_args": {
+          "item_ids": [
+            "7758198585"
+          ],
+          "order_id": "#W3916020",
+          "payment_method_id": "credit_card_8105988"
+        },
+        "executed_tool_calls": [
+          {
+            "arguments": {
+              "first_name": "Sofia",
+              "last_name": "Li",
+              "zip": "78260"
+            },
+            "name": "find_user_id_by_name_zip"
+          },
+          {
+            "arguments": {
+              "user_id": "sofia_li_9219"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W4689314"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W8855135"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W3916020"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5416052"
+            },
+            "name": "get_order_details"
+          },
+          {
+            "arguments": {
+              "item_ids": [
+                "7758198585"
+              ],
+              "order_id": "#W3916020",
+              "payment_method_id": "credit_card_8105988"
+            },
+            "name": "return_delivered_order_items"
+          }
+        ],
+        "label": "m6_execute_53_b",
+        "model_calls": 0,
+        "parameters_obtained": "M5.5 Haiku parsed output validated by M6 gate",
+        "pass": true,
+        "script_cost_usd": 0.0,
+        "script_tokens": 0,
+        "task_id": "53",
+        "verifier": {
+          "db_match": true,
+          "db_reward": 1.0,
+          "evaluation_type": "env",
+          "reward": 1.0,
+          "reward_breakdown": {
+            "DB": 1.0
+          }
+        }
+      },
+      "script_tokens": 0,
+      "task_id": "53",
+      "verifier_pass": true,
+      "write_executed": true,
+      "wrong_write": false
+    },
+    {
+      "case_id": "53_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 2.7843983843922615e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:18.074414"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0012309,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer does not specify which product was damaged, and no customer lookup information (email or name/zip) is provided.",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer does not specify which product was damaged, and no customer lookup information (email or name/zip) is provided.\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 664,
+          "output_tokens": 91
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "My expensive thing was damaged in shipping. I need a refund as soon as possible.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "53",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "73_a",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 0.06656258006114513,
+        "read_tool_calls": [
+          {
+            "arguments": {
+              "email": "fatima.wilson5721@example.com"
+            },
+            "name": "find_user_id_by_email"
+          },
+          {
+            "arguments": {
+              "user_id": "fatima_wilson_7472"
+            },
+            "name": "get_user_details"
+          },
+          {
+            "arguments": {
+              "order_id": "#W5272531"
+            },
+            "name": "get_order_details"
+          }
+        ],
+        "reason": "catalog consistency failed: expected one unambiguous order/item match, got 0 (#W5272531: no keep-list product found in this delivered order)",
+        "stage": "catalog",
+        "start_time": "2026-08-18T15:24:18.074464"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0014168000000000002,
+        "parsed_json": {
+          "keep_item_names": [
+            "Coffee Maker"
+          ],
+          "lookup": {
+            "method": "email",
+            "values": {
+              "email": "fatima.wilson5721@example.com"
+            }
+          },
+          "payment_rule": "original_payment_method",
+          "reason": "Customer clearly states intent to return everything except the coffee machine, provides email and name for lookup",
+          "return_item_names": null,
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Customer clearly states intent to return everything except the coffee machine, provides email and name for lookup\",\n  \"lookup\": {\n    \"method\": \"email\",\n    \"values\": {\"email\": \"fatima.wilson5721@example.com\"}\n  },\n  \"return_item_names\": null,\n  \"keep_item_names\": [\"Coffee Maker\"],\n  \"payment_rule\": \"original_payment_method\"\n}\n```",
+        "usage": {
+          "input_tokens": 683,
+          "output_tokens": 121
+        }
+      },
+      "m5_5_outcome": "parse failure",
+      "m5_5_wrong_write": true,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "Fatima Wilson, fatima.wilson5721@example.com. I just bought a bunch of stuff but I'm only keeping the coffee machine; send everything else back.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "73",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "73_b",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 2.2661988623440266e-05,
+        "read_tool_calls": [],
+        "reason": "contract violation: both return_item_names and keep_item_names populated",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:18.141073"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0015850999999999999,
+        "parsed_json": {
+          "keep_item_names": [
+            "Espresso Machine"
+          ],
+          "lookup": {
+            "method": "email",
+            "values": {
+              "email": "fatima.wilson5721@example.com"
+            }
+          },
+          "payment_rule": null,
+          "reason": "Clear return request with customer email and specific items to return and keep",
+          "return_item_names": [
+            "Hiking Boots",
+            "Electric Toothbrush",
+            "Electric Kettle"
+          ],
+          "status": "PARSED"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"PARSED\",\n  \"reason\": \"Clear return request with customer email and specific items to return and keep\",\n  \"lookup\": {\n    \"method\": \"email\",\n    \"values\": {\n      \"email\": \"fatima.wilson5721@example.com\"\n    }\n  },\n  \"return_item_names\": [\n    \"Hiking Boots\",\n    \"Electric Toothbrush\",\n    \"Electric Kettle\"\n  ],\n  \"keep_item_names\": [\n    \"Espresso Machine\"\n  ],\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 686,
+          "output_tokens": 151
+        }
+      },
+      "m5_5_outcome": "clean pass",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "over-defer",
+      "request_text": "Fatima here, email fatima.wilson5721@example.com. Keep the espresso machine. The boots, toothbrushes, and kettle should all be returned.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "73",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    },
+    {
+      "case_id": "73_c",
+      "gate": {
+        "allowed": false,
+        "derived_write_args": null,
+        "duration_seconds": 1.0399031452834606e-05,
+        "read_tool_calls": [],
+        "reason": "parser marked request ambiguous/insufficient",
+        "stage": "schema",
+        "start_time": "2026-08-18T15:24:18.141118"
+      },
+      "gate_model_calls": 0,
+      "haiku": {
+        "cost_usd": 0.0013563000000000002,
+        "parsed_json": {
+          "keep_item_names": null,
+          "lookup": null,
+          "payment_rule": null,
+          "reason": "Customer wants to keep 'the one thing for coffee' but this is ambiguous\u2014could refer to Coffee Maker, Espresso Machine, Electric Kettle, or Tea Kettle. No customer lookup information provided.",
+          "return_item_names": null,
+          "status": "AMBIGUOUS/INSUFFICIENT"
+        },
+        "raw_text": "```json\n{\n  \"status\": \"AMBIGUOUS/INSUFFICIENT\",\n  \"reason\": \"Customer wants to keep 'the one thing for coffee' but this is ambiguous\u2014could refer to Coffee Maker, Espresso Machine, Electric Kettle, or Tea Kettle. No customer lookup information provided.\",\n  \"lookup\": null,\n  \"return_item_names\": null,\n  \"keep_item_names\": null,\n  \"payment_rule\": null\n}\n```",
+        "usage": {
+          "input_tokens": 663,
+          "output_tokens": 114
+        }
+      },
+      "m5_5_outcome": "correctly deferred",
+      "m5_5_wrong_write": false,
+      "model_calls": 0,
+      "outcome": "correct deferral",
+      "request_text": "I want to return most of my latest order but keep the one thing for coffee.",
+      "script_cost_usd": 0.0,
+      "script_error": null,
+      "script_executed": false,
+      "script_result": null,
+      "script_tokens": 0,
+      "task_id": "73",
+      "verifier_pass": false,
+      "write_executed": false,
+      "wrong_write": false
+    }
+  ],
+  "summary": {
+    "cost": {
+      "agent_only_savings_estimated_pct": 49.39736112054286,
+      "all_sonnet_agent_only_estimated_usd": 1.590372,
+      "all_sonnet_benchmark_total_estimated_usd": 1.9622519999999999,
+      "benchmark_total_savings_estimated_pct": 49.43553631235946,
+      "fallback_agent_estimated_usd": 0.778797,
+      "fallback_benchmark_total_estimated_usd": 0.966229,
+      "haiku_parse_plus_gate_execute_usd": 0.025973200000000002,
+      "tiered_with_gate_agent_only_estimated_usd": 0.8047702,
+      "tiered_with_gate_benchmark_total_estimated_usd": 0.9922022
+    },
+    "deferred": 10,
+    "deferred_rate": 0.5555555555555556,
+    "deterministically_handled": 8,
+    "deterministically_handled_rate": 0.4444444444444444,
+    "haiku_parse_cost_reused_from_m5_5": {
+      "cost_usd": 0.025973200000000002,
+      "input_tokens": 12227,
+      "output_tokens": 2277
+    },
+    "m5_5_clean_passes": 10,
+    "m5_5_clean_passes_survived": 8,
+    "m5_5_wrong_writes": 2,
+    "m5_5_wrong_writes_now_deferred": 2,
+    "model_calls": {
+      "gate_model_calls": 0,
+      "new_m6_model_calls": 0,
+      "saved_m5_5_haiku_calls_replayed": 18
+    },
+    "no_write_on_deferred": true,
+    "outcome_counts": {
+      "clean pass": 8,
+      "correct deferral": 8,
+      "over-defer": 2
+    },
+    "over_defer_rate_among_m5_5_clean_passes": 0.2,
+    "over_defers": 2,
+    "request_count": 18,
+    "tasks": [
+      "5",
+      "13",
+      "48",
+      "51",
+      "53",
+      "73"
+    ],
+    "wrong_writes": 0
+  }
+}

@@ -1,0 +1,23 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.venv/
+venv/
+
+# The upstream tau2 checkout is reconstructed from README instructions and
+# patches/tau2-bedrock-prompt-cache.patch rather than vendored into this repo.
+tau-bench/
+
+# Keep generated benchmark artifacts under traces/ and metrics/, but avoid
+# accidental local scratch output.
+*.tmp
+tmp/
+local/

@@ -1,0 +1,149 @@
+diff --git a/src/tau2/utils/llm_utils.py b/src/tau2/utils/llm_utils.py
+index cc70482..5537c7d 100644
+--- a/src/tau2/utils/llm_utils.py
++++ b/src/tau2/utils/llm_utils.py
+@@ -116,10 +116,45 @@ def _parse_ft_model_name(model: str) -> str:
+         return model
+ 
+ 
+-def get_response_cost(response: ModelResponse) -> float:
++def _estimate_bedrock_sonnet_4_6_cost(response: ModelResponse) -> Optional[float]:
++    usage: Optional[Usage] = response.get("usage")
++    if usage is None:
++        return None
++
++    prompt_tokens = usage.prompt_tokens or 0
++    completion_tokens = usage.completion_tokens or 0
++    cache_creation_tokens = getattr(usage, "cache_creation_input_tokens", 0) or 0
++    cache_read_tokens = getattr(usage, "cache_read_input_tokens", 0) or 0
++    uncached_input_tokens = max(
++        0, prompt_tokens - cache_creation_tokens - cache_read_tokens
++    )
++
++    # Sonnet-class on-demand pricing, per million tokens. Bedrock prompt cache
++    # writes are billed at 1.25x input and reads at a 90% input discount.
++    input_rate = 3.00 / 1_000_000
++    output_rate = 15.00 / 1_000_000
++    cache_write_rate = input_rate * 1.25
++    cache_read_rate = input_rate * 0.10
++    return (
++        uncached_input_tokens * input_rate
++        + cache_creation_tokens * cache_write_rate
++        + cache_read_tokens * cache_read_rate
++        + completion_tokens * output_rate
++    )
++
++
++def get_response_cost(
++    response: ModelResponse, request_model: Optional[str] = None
++) -> float:
+     """
+     Get the cost of the response from the litellm completion.
+     """
++    if request_model and request_model.startswith("bedrock/"):
++        if "claude-sonnet-4-6" in request_model:
++            estimated_cost = _estimate_bedrock_sonnet_4_6_cost(response)
++            if estimated_cost is not None:
++                return estimated_cost
++
+     response.model = _parse_ft_model_name(
+         response.model
+     )  # FIXME: Check Litellm, passing the model to completion_cost doesn't work.
+@@ -135,10 +170,25 @@ def get_response_usage(response: ModelResponse) -> Optional[dict]:
+     usage: Optional[Usage] = response.get("usage")
+     if usage is None:
+         return None
+-    return {
++    usage_dict = {
+         "completion_tokens": usage.completion_tokens,
+         "prompt_tokens": usage.prompt_tokens,
+     }
++    for attr in (
++        "total_tokens",
++        "cache_creation_input_tokens",
++        "cache_read_input_tokens",
++    ):
++        value = getattr(usage, attr, None)
++        if value is not None:
++            usage_dict[attr] = value
++    prompt_details = getattr(usage, "prompt_tokens_details", None)
++    if prompt_details is not None:
++        if hasattr(prompt_details, "model_dump"):
++            usage_dict["prompt_tokens_details"] = prompt_details.model_dump()
++        elif isinstance(prompt_details, dict):
++            usage_dict["prompt_tokens_details"] = prompt_details
++    return usage_dict
+ 
+ 
+ def to_tau2_messages(
+@@ -208,6 +258,36 @@ def to_litellm_messages(messages: list[Message]) -> list[dict]:
+     return litellm_messages
+ 
+ 
++def _is_enabled_env_flag(name: str) -> bool:
++    value = os.environ.get(name, "")
++    return value.lower() in {"1", "true", "yes", "on"}
++
++
++def _apply_bedrock_prompt_cache(model: str, messages: list[dict]) -> list[dict]:
++    """
++    Add a Bedrock/Anthropic cache checkpoint to the stable system prefix.
++
++    This is behaviour-neutral: it does not change prompt text, tool schemas, or
++    generation parameters. It only asks Bedrock to cache the system prefix when
++    TAU2_BEDROCK_PROMPT_CACHE=1 is set for Bedrock models.
++    """
++    if not _is_enabled_env_flag("TAU2_BEDROCK_PROMPT_CACHE"):
++        return messages
++    if not model.startswith("bedrock/"):
++        return messages
++
++    system_indices = [
++        idx for idx, message in enumerate(messages) if message.get("role") == "system"
++    ]
++    if not system_indices:
++        return messages
++
++    cached_messages = [message.copy() for message in messages]
++    last_system_message = cached_messages[system_indices[-1]]
++    last_system_message.setdefault("cache_control", {"type": "ephemeral"})
++    return cached_messages
++
++
+ def validate_message(message: Message) -> None:
+     """
+     Validate the message.
+@@ -385,7 +465,10 @@ def generate(
+     ):
+         os.environ["VERTEXAI_LOCATION"] = "global"
+ 
+-    litellm_messages = to_litellm_messages(messages)
++    litellm_messages = _apply_bedrock_prompt_cache(
++        model=model,
++        messages=to_litellm_messages(messages),
++    )
+     tools_schema = [tool.openai_schema for tool in tools] if tools else None
+     if tools_schema and tool_choice is None:
+         tool_choice = "auto"
+@@ -417,7 +500,7 @@ def generate(
+         logger.error(e)
+         raise e
+     generation_time_seconds = time.perf_counter() - start_time
+-    cost = get_response_cost(response)
++    cost = get_response_cost(response, request_model=model)
+     usage = get_response_usage(response)
+ 
+     response_choice = response.choices[0]
+diff --git a/uv.lock b/uv.lock
+index 09f0b4a..7a133cd 100644
+--- a/uv.lock
++++ b/uv.lock
+@@ -2741,7 +2741,7 @@ wheels = [
+ 
+ [[package]]
+ name = "tau2"
+-version = "1.0.0"
++version = "1.0.1"
+ source = { editable = "." }
+ dependencies = [
+     { name = "addict" },

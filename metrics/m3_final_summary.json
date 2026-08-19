@@ -1,0 +1,2636 @@
+{
+  "action_metrics": {
+    "generic": {
+      "passed": 19,
+      "rate": 0.31666666666666665,
+      "total": 60
+    },
+    "read": {
+      "passed": 2237,
+      "rate": 0.9768558951965065,
+      "total": 2290
+    },
+    "write": {
+      "passed": 1037,
+      "rate": 0.9096491228070176,
+      "total": 1140
+    }
+  },
+  "buckets": {
+    "flaky_or_unstable_count": 19,
+    "flaky_or_unstable_tasks": [
+      "0",
+      "1",
+      "12",
+      "18",
+      "30",
+      "41",
+      "49",
+      "74",
+      "78",
+      "79",
+      "82",
+      "87",
+      "94",
+      "96",
+      "97",
+      "98",
+      "99",
+      "100",
+      "112"
+    ],
+    "promotable_candidate_count": 54,
+    "promotable_candidate_tasks": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "13",
+      "14",
+      "15",
+      "17",
+      "20",
+      "22",
+      "23",
+      "25",
+      "26",
+      "27",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "42",
+      "48",
+      "50",
+      "51",
+      "52",
+      "53",
+      "55",
+      "56",
+      "57",
+      "58",
+      "61",
+      "64",
+      "65",
+      "66",
+      "69",
+      "71",
+      "72",
+      "73",
+      "75",
+      "77",
+      "80",
+      "81",
+      "83",
+      "84",
+      "85",
+      "86",
+      "88",
+      "90",
+      "92",
+      "93",
+      "101",
+      "102"
+    ],
+    "stable_fail_count": 1,
+    "stable_fail_definition": "<=2/10 DB passes; latest user instruction only set promotable bar, so this threshold is reported explicitly.",
+    "stable_fail_tasks": [
+      "91"
+    ]
+  },
+  "checkpoint": {
+    "infrastructure_errors": 0,
+    "n_counts": {
+      "10": 74
+    },
+    "rows": 740,
+    "valid_behavioral_simulations": 740
+  },
+  "costs_usd": {
+    "average_full_run_cost_per_sim_cached": 0.14468232162162176,
+    "cap": 500.0,
+    "cap_headroom": 384.8125189999999,
+    "full_run_valid_agent_cached": 88.24201499999997,
+    "full_run_valid_cached": 107.06491800000009,
+    "full_run_valid_user_cached": 18.822903,
+    "m2_full_baseline_cached": 11.030292000000001,
+    "m3_dry_run_cached": 8.122563,
+    "promotable_m2_baseline_cost_savings_usd": 7.4234100000000005,
+    "promotable_m2_baseline_cost_share": 0.673002129046085,
+    "total_m3_benchmark_spend_cached": 115.18748100000009
+  },
+  "date": "2026-08-19",
+  "outcomes": {
+    "pass_rate": 0.904054054054054,
+    "pass_rate_distribution": {
+      "0/10": [
+        "91"
+      ],
+      "10/10": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "13",
+        "14",
+        "15",
+        "17",
+        "22",
+        "23",
+        "25",
+        "26",
+        "27",
+        "30",
+        "31",
+        "35",
+        "42",
+        "48",
+        "50",
+        "51",
+        "52",
+        "53",
+        "55",
+        "56",
+        "57",
+        "58",
+        "61",
+        "65",
+        "66",
+        "69",
+        "72",
+        "73",
+        "75",
+        "77",
+        "78",
+        "80",
+        "81",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "90",
+        "92",
+        "93",
+        "97",
+        "100",
+        "101",
+        "102",
+        "112"
+      ],
+      "3/10": [
+        "41",
+        "74",
+        "82"
+      ],
+      "4/10": [
+        "18",
+        "49"
+      ],
+      "6/10": [
+        "79",
+        "99"
+      ],
+      "7/10": [
+        "0",
+        "96",
+        "98"
+      ],
+      "8/10": [
+        "1",
+        "94"
+      ],
+      "9/10": [
+        "12",
+        "20",
+        "32",
+        "33",
+        "34",
+        "64",
+        "71"
+      ]
+    },
+    "passes": 669,
+    "valid_rows": 740
+  },
+  "per_task": [
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 3,
+      "m2_baseline_cost_cached_usd": 0.14760420000000002,
+      "m3_full_run_cost_cached_usd": 1.265217,
+      "pass_count": 7,
+      "pass_over_n": "7/10",
+      "pass_rate": 0.7,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 4
+      },
+      "passing_skeleton_ids": "d3eaaebb01 x7",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "0"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 2,
+      "m2_baseline_cost_cached_usd": 0.14783220000000002,
+      "m3_full_run_cost_cached_usd": 1.1040480000000001,
+      "pass_count": 8,
+      "pass_over_n": "8/10",
+      "pass_rate": 0.8,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "2cb9f0230f x8",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "1"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1913814,
+      "m3_full_run_cost_cached_usd": 2.034168,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "cf26b69e11 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "5"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.18543240000000002,
+      "m3_full_run_cost_cached_usd": 1.7946689999999998,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "1994a974bc x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "6"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.17016960000000003,
+      "m3_full_run_cost_cached_usd": 1.6800030000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "bbbf6af87a x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "7"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1870074,
+      "m3_full_run_cost_cached_usd": 1.728927,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "aa58685971 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "8"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1888524,
+      "m3_full_run_cost_cached_usd": 1.718622,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "570eacec9a x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "9"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.07679820000000001,
+      "m3_full_run_cost_cached_usd": 0.768636,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "71f8e7976e x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "10"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.11116680000000001,
+      "m3_full_run_cost_cached_usd": 1.10853,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "5101b20653 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "11"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.112782,
+      "m3_full_run_cost_cached_usd": 0.984807,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "71f8e7976e x6, 009bf5de49 x3",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "12"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.10843379999999998,
+      "m3_full_run_cost_cached_usd": 0.9822660000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "9ac116803c x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "13"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.094683,
+      "m3_full_run_cost_cached_usd": 0.834105,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "cea0c22ccf x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "14"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1328838,
+      "m3_full_run_cost_cached_usd": 1.307985,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "f6ab6c97d2 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "15"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.049008600000000006,
+      "m3_full_run_cost_cached_usd": 0.491721,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "ed3a9a1052 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "17"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 6,
+      "m2_baseline_cost_cached_usd": 0.1379004,
+      "m3_full_run_cost_cached_usd": 1.3178640000000001,
+      "pass_count": 4,
+      "pass_over_n": "4/10",
+      "pass_rate": 0.4,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 2
+      },
+      "passing_skeleton_ids": "75d9bf6731 x4",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "18"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.21218640000000002,
+      "m3_full_run_cost_cached_usd": 2.279772,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "69ffe3ac49 x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "20"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1341396,
+      "m3_full_run_cost_cached_usd": 1.5731549999999999,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "8b5728f0ef x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "22"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.16547399999999998,
+      "m3_full_run_cost_cached_usd": 1.69899,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "c578995245 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "23"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.08288340000000001,
+      "m3_full_run_cost_cached_usd": 0.924591,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "71f8e7976e x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "25"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0833844,
+      "m3_full_run_cost_cached_usd": 0.817629,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "656b585fa6 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "26"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.13502999999999998,
+      "m3_full_run_cost_cached_usd": 1.250574,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "4262972cba x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "27"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.339687,
+      "m3_full_run_cost_cached_usd": 3.2965380000000004,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "f8d2d5a98d x5, 007229a75e x5",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "30"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2650494,
+      "m3_full_run_cost_cached_usd": 2.623944,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "6ae9a5ff72 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "31"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.29582220000000004,
+      "m3_full_run_cost_cached_usd": 2.954133,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "a8cc33d5b2 x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "32"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.1066362,
+      "m3_full_run_cost_cached_usd": 1.02099,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "4cbcab4929 x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "33"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.128565,
+      "m3_full_run_cost_cached_usd": 1.127715,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "17356aa27c x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "34"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.17161020000000002,
+      "m3_full_run_cost_cached_usd": 1.709133,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "8d61f7eb84 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "35"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 7,
+      "m2_baseline_cost_cached_usd": 0.2096574,
+      "m3_full_run_cost_cached_usd": 1.3574490000000001,
+      "pass_count": 3,
+      "pass_over_n": "3/10",
+      "pass_rate": 0.3,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 1,
+        "us.anthropic.claude-sonnet-4-6": 2
+      },
+      "passing_skeleton_ids": "191d3322ed x2, 4b3ba67e82 x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "41"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2267778,
+      "m3_full_run_cost_cached_usd": 2.158566,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "6492cdac6b x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "42"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.09354900000000001,
+      "m3_full_run_cost_cached_usd": 0.989931,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "a7346e09c5 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "48"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 6,
+      "m2_baseline_cost_cached_usd": 0.1679016,
+      "m3_full_run_cost_cached_usd": 1.3917059999999999,
+      "pass_count": 4,
+      "pass_over_n": "4/10",
+      "pass_rate": 0.4,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 2
+      },
+      "passing_skeleton_ids": "e1132d4be4 x4",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "49"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.07239240000000001,
+      "m3_full_run_cost_cached_usd": 0.530517,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "71f8e7976e x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "50"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.106521,
+      "m3_full_run_cost_cached_usd": 0.8888250000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "f2861ffd3b x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "51"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.11156220000000003,
+      "m3_full_run_cost_cached_usd": 1.269786,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "6e70eec977 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "52"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0991182,
+      "m3_full_run_cost_cached_usd": 0.905139,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "67e5c8eeac x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "53"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1600452,
+      "m3_full_run_cost_cached_usd": 1.70646,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "801331f820 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "55"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.113925,
+      "m3_full_run_cost_cached_usd": 1.155201,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "3f4edfd2a0 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "56"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0455928,
+      "m3_full_run_cost_cached_usd": 0.488352,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "71f8e7976e x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "57"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2137332,
+      "m3_full_run_cost_cached_usd": 1.851915,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "f89b110f4c x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "58"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0696018,
+      "m3_full_run_cost_cached_usd": 0.7405349999999999,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "7ec6aa31a3 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "61"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.0982632,
+      "m3_full_run_cost_cached_usd": 0.975618,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "ab899407e1 x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "64"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0559716,
+      "m3_full_run_cost_cached_usd": 0.6512640000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "71f8e7976e x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "65"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1059618,
+      "m3_full_run_cost_cached_usd": 0.9513389999999999,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "7549890e58 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "66"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0862692,
+      "m3_full_run_cost_cached_usd": 0.8661420000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "4c91d1d7ce x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "69"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 1,
+      "m2_baseline_cost_cached_usd": 0.2177142,
+      "m3_full_run_cost_cached_usd": 2.367639,
+      "pass_count": 9,
+      "pass_over_n": "9/10",
+      "pass_rate": 0.9,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "8521114d7f x9",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "71"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2039394,
+      "m3_full_run_cost_cached_usd": 1.846236,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "005818c558 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "72"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.05508060000000001,
+      "m3_full_run_cost_cached_usd": 0.5501820000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "897bfd03ed x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "73"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 7,
+      "m2_baseline_cost_cached_usd": 0.28973580000000004,
+      "m3_full_run_cost_cached_usd": 2.443998,
+      "pass_count": 3,
+      "pass_over_n": "3/10",
+      "pass_rate": 0.3,
+      "pass_route_counts": {
+        "us.anthropic.claude-sonnet-4-6": 3
+      },
+      "passing_skeleton_ids": "09ba6efa1c x3",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "74"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.08546519999999999,
+      "m3_full_run_cost_cached_usd": 0.878979,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "a7dc8020c1 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "75"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.0627564,
+      "m3_full_run_cost_cached_usd": 0.6600900000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "passing_skeleton_ids": "9e1df142fb x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 7
+      },
+      "status": "promotable-candidate",
+      "task_id": "77"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2181348,
+      "m3_full_run_cost_cached_usd": 2.102961,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "925e55585f x9, 87c47060c2 x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "78"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 4,
+      "m2_baseline_cost_cached_usd": 0.1479528,
+      "m3_full_run_cost_cached_usd": 1.382328,
+      "pass_count": 6,
+      "pass_over_n": "6/10",
+      "pass_rate": 0.6,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 3
+      },
+      "passing_skeleton_ids": "ac44399f90 x6",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "79"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.11786100000000001,
+      "m3_full_run_cost_cached_usd": 1.157352,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "d06319fc52 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "80"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.11646300000000001,
+      "m3_full_run_cost_cached_usd": 1.109766,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "0529aa35f1 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "81"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 7,
+      "m2_baseline_cost_cached_usd": 0.1652586,
+      "m3_full_run_cost_cached_usd": 1.437333,
+      "pass_count": 3,
+      "pass_over_n": "3/10",
+      "pass_rate": 0.3,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 1,
+        "us.anthropic.claude-sonnet-4-6": 2
+      },
+      "passing_skeleton_ids": "eafe7485df x3",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "82"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.11994900000000001,
+      "m3_full_run_cost_cached_usd": 1.135377,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "93942c9a6b x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "83"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.114957,
+      "m3_full_run_cost_cached_usd": 1.139217,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "93942c9a6b x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "84"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.09208319999999999,
+      "m3_full_run_cost_cached_usd": 1.109721,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "0a9dac2b02 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "85"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.205107,
+      "m3_full_run_cost_cached_usd": 1.60608,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "74f8125cc1 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "86"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.15092879999999997,
+      "m3_full_run_cost_cached_usd": 1.317711,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "7a9d6c6efd x9, e758b7fcf6 x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "87"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.102078,
+      "m3_full_run_cost_cached_usd": 1.004718,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "afb7cf1754 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "88"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1225938,
+      "m3_full_run_cost_cached_usd": 1.231755,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "ec4ea24eb8 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "90"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "stable-fail",
+      "distinct_passing_skeletons": 0,
+      "fail_count": 10,
+      "m2_baseline_cost_cached_usd": 0.2006592,
+      "m3_full_run_cost_cached_usd": 1.860306,
+      "pass_count": 0,
+      "pass_over_n": "0/10",
+      "pass_rate": 0.0,
+      "pass_route_counts": {},
+      "passing_skeleton_ids": "none",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "91"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.10846200000000002,
+      "m3_full_run_cost_cached_usd": 1.159074,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "446c57195b x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "92"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1154232,
+      "m3_full_run_cost_cached_usd": 1.1675280000000001,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "2d47c5f205 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "93"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 2,
+      "m2_baseline_cost_cached_usd": 0.1377408,
+      "m3_full_run_cost_cached_usd": 1.196172,
+      "pass_count": 8,
+      "pass_over_n": "8/10",
+      "pass_rate": 0.8,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 4
+      },
+      "passing_skeleton_ids": "ac7507c81a x8",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "94"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 3,
+      "m2_baseline_cost_cached_usd": 0.1588194,
+      "m3_full_run_cost_cached_usd": 1.39215,
+      "pass_count": 7,
+      "pass_over_n": "7/10",
+      "pass_rate": 0.7,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 1,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "75e615147e x7",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "96"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.1061712,
+      "m3_full_run_cost_cached_usd": 1.149651,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "75e615147e x7, 119ce89d96 x3",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "97"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 3,
+      "m2_baseline_cost_cached_usd": 0.181713,
+      "m3_full_run_cost_cached_usd": 2.034399,
+      "pass_count": 7,
+      "pass_over_n": "7/10",
+      "pass_rate": 0.7,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 2,
+        "us.anthropic.claude-sonnet-4-6": 5
+      },
+      "passing_skeleton_ids": "cc154184ac x6, 1eabb19edd x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "98"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 4,
+      "m2_baseline_cost_cached_usd": 0.17591700000000002,
+      "m3_full_run_cost_cached_usd": 1.8125580000000001,
+      "pass_count": 6,
+      "pass_over_n": "6/10",
+      "pass_rate": 0.6,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 3,
+        "us.anthropic.claude-sonnet-4-6": 3
+      },
+      "passing_skeleton_ids": "25596da9d9 x6",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-low-rate",
+      "task_id": "99"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 3,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.171306,
+      "m3_full_run_cost_cached_usd": 2.739621,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "761f4ff70d x5, c087c4bf97 x4, fa9b30f889 x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "100"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.26656019999999997,
+      "m3_full_run_cost_cached_usd": 2.836161,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "3641ab45b4 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "101"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "promotable-candidate",
+      "distinct_passing_skeletons": 1,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.3810342,
+      "m3_full_run_cost_cached_usd": 3.174642,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "00b7d3b904 x10",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "promotable-candidate",
+      "task_id": "102"
+    },
+    {
+      "actual_n": 10,
+      "bucket": "flaky-or-unstable",
+      "distinct_passing_skeletons": 2,
+      "fail_count": 0,
+      "m2_baseline_cost_cached_usd": 0.2391798,
+      "m3_full_run_cost_cached_usd": 2.783736,
+      "pass_count": 10,
+      "pass_over_n": "10/10",
+      "pass_rate": 1.0,
+      "pass_route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "passing_skeleton_ids": "00b70fe25d x9, 9f2914d273 x1",
+      "route_counts": {
+        "global.anthropic.claude-sonnet-4-6": 4,
+        "us.anthropic.claude-sonnet-4-6": 6
+      },
+      "status": "not-promotable-skeleton-divergence",
+      "task_id": "112"
+    }
+  ],
+  "provisional_57_retention": {
+    "confirmed_at_n10_count": 52,
+    "confirmed_at_n10_tasks": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "13",
+      "14",
+      "15",
+      "17",
+      "20",
+      "22",
+      "23",
+      "25",
+      "26",
+      "27",
+      "31",
+      "32",
+      "34",
+      "35",
+      "42",
+      "48",
+      "50",
+      "51",
+      "52",
+      "53",
+      "55",
+      "56",
+      "57",
+      "58",
+      "61",
+      "64",
+      "65",
+      "66",
+      "69",
+      "72",
+      "73",
+      "75",
+      "77",
+      "80",
+      "81",
+      "83",
+      "84",
+      "85",
+      "86",
+      "88",
+      "90",
+      "92",
+      "93",
+      "101",
+      "102"
+    ],
+    "dropped_below_high_rate_count": 3,
+    "dropped_below_high_rate_tasks": [
+      "1",
+      "94",
+      "96"
+    ],
+    "dropped_count": 5,
+    "dropped_tasks": [
+      "1",
+      "87",
+      "94",
+      "96",
+      "112"
+    ],
+    "held_high_rate_but_failed_skeleton_identity_count": 2,
+    "held_high_rate_but_failed_skeleton_identity_tasks": [
+      "87",
+      "112"
+    ],
+    "held_high_rate_count": 54,
+    "held_high_rate_tasks": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "13",
+      "14",
+      "15",
+      "17",
+      "20",
+      "22",
+      "23",
+      "25",
+      "26",
+      "27",
+      "31",
+      "32",
+      "34",
+      "35",
+      "42",
+      "48",
+      "50",
+      "51",
+      "52",
+      "53",
+      "55",
+      "56",
+      "57",
+      "58",
+      "61",
+      "64",
+      "65",
+      "66",
+      "69",
+      "72",
+      "73",
+      "75",
+      "77",
+      "80",
+      "81",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "90",
+      "92",
+      "93",
+      "101",
+      "102",
+      "112"
+    ],
+    "new_promotable_from_non_provisional_count": 2,
+    "new_promotable_from_non_provisional_tasks": [
+      "33",
+      "71"
+    ],
+    "provisional_count": 57
+  },
+  "role_costs_cached_usd": {
+    "assistant": 88.242015,
+    "user": 18.822903
+  },
+  "role_costs_counterfactual_uncached_usd": {
+    "assistant": 200.526159,
+    "user": 18.822903
+  },
+  "role_usage_valid_full_run": {
+    "assistant": {
+      "cache_creation_input_tokens": 30240,
+      "cache_read_input_tokens": 41595120,
+      "calls": 8259,
+      "completion_tokens": 1014936,
+      "noncached_input_tokens": 20142013,
+      "prompt_tokens": 61767373,
+      "total_tokens": 62782309
+    },
+    "user": {
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "calls": 5366,
+      "completion_tokens": 212304,
+      "noncached_input_tokens": 5212781,
+      "prompt_tokens": 5212781,
+      "total_tokens": 5425085
+    }
+  },
+  "route_audit": [
+    {
+      "cached_cost_usd": 36.31718099999998,
+      "db_pass_rate": 0.8987854251012146,
+      "db_passes": 222,
+      "route": "global.anthropic.claude-sonnet-4-6",
+      "usage": {
+        "cache_creation_input_tokens": 10080,
+        "cache_read_input_tokens": 14046480,
+        "calls": 4602,
+        "completion_tokens": 414944,
+        "noncached_input_tokens": 8613759,
+        "prompt_tokens": 22670319,
+        "total_tokens": 23085263
+      },
+      "valid_sims": 247
+    },
+    {
+      "cached_cost_usd": 70.74773700000001,
+      "db_pass_rate": 0.9066937119675457,
+      "db_passes": 447,
+      "route": "us.anthropic.claude-sonnet-4-6",
+      "usage": {
+        "cache_creation_input_tokens": 20160,
+        "cache_read_input_tokens": 27548640,
+        "calls": 9023,
+        "completion_tokens": 812296,
+        "noncached_input_tokens": 16741035,
+        "prompt_tokens": 44309835,
+        "total_tokens": 45122131
+      },
+      "valid_sims": 493
+    }
+  ],
+  "route_counts_by_trial": {
+    "0": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "1": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "2": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "3": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "4": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "5": {
+      "us.anthropic.claude-sonnet-4-6": 74
+    },
+    "6": {
+      "global.anthropic.claude-sonnet-4-6": 25,
+      "us.anthropic.claude-sonnet-4-6": 49
+    },
+    "7": {
+      "global.anthropic.claude-sonnet-4-6": 74
+    },
+    "8": {
+      "global.anthropic.claude-sonnet-4-6": 74
+    },
+    "9": {
+      "global.anthropic.claude-sonnet-4-6": 74
+    }
+  },
+  "run_name": "sosog_m3_retail_db_checkable_n10_cached",
+  "skeleton_details": {
+    "005818c558": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[2492465580], new_item_ids=[5917587651], order_id=#W5270061, payment_method_id=paypal_7729105) -> modify_pending_order_address(address1=159 Hickory Lane, address2=Suite 995, city=Charlotte, country=USA, order_id=#W5270061, state=NC, zip=28243)",
+      "tasks": [
+        "72"
+      ]
+    },
+    "007229a75e": {
+      "passing_runs": 5,
+      "skeleton_text": "return_delivered_order_items(item_ids=[3788616824], order_id=#W2692684, payment_method_id=gift_card_7711863) -> cancel_pending_order(order_id=#W9373487, reason=no longer needed) -> return_delivered_order_items(item_ids=[6477915553], order_id=#W7449508, payment_method_id=gift_card_7711863)",
+      "tasks": [
+        "30"
+      ]
+    },
+    "009bf5de49": {
+      "passing_runs": 3,
+      "skeleton_text": "return_delivered_order_items(item_ids=[4579334072,6117189161,4947717507], order_id=#W5490111, payment_method_id=paypal_9497703)",
+      "tasks": [
+        "12"
+      ]
+    },
+    "00b70fe25d": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_address(address1=555 Highland Drive, address2=Suite 872, city=New York, country=USA, order_id=#W3730488, state=NY, zip=10116) -> modify_pending_order_items(item_ids=[2913673670], new_item_ids=[9844888101], order_id=#W3730488, payment_method_id=gift_card_7252880) -> modify_pending_order_items(item_ids=[1355937109], new_item_ids=[9949163720], order_id=#W9810810, payment_method_id=gift_card_7252880)",
+      "tasks": [
+        "112"
+      ]
+    },
+    "00b7d3b904": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_address(address1=144 Lakeview Drive, address2=Suite 925, city=New York, country=USA, order_id=#W4219264, state=NY, zip=10228) -> modify_pending_order_items(item_ids=[8886009523], new_item_ids=[2407258246], order_id=#W4219264, payment_method_id=credit_card_1620755) -> exchange_delivered_order_items(item_ids=[6341716129], new_item_ids=[8302289002], order_id=#W3445693, payment_method_id=credit_card_1620755)",
+      "tasks": [
+        "102"
+      ]
+    },
+    "0529aa35f1": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W3289292, reason=no longer needed) -> cancel_pending_order(order_id=#W9722559, reason=no longer needed)",
+      "tasks": [
+        "81"
+      ]
+    },
+    "09ba6efa1c": {
+      "passing_runs": 3,
+      "skeleton_text": "modify_pending_order_items(item_ids=[3334537816], new_item_ids=[3265035808], order_id=#W5166363, payment_method_id=credit_card_4466831) -> cancel_pending_order(order_id=#W3189752, reason=no longer needed)",
+      "tasks": [
+        "74"
+      ]
+    },
+    "0a9dac2b02": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[9385662952], new_item_ids=[8733974883], order_id=#W2466703, payment_method_id=paypal_7529813)",
+      "tasks": [
+        "85"
+      ]
+    },
+    "119ce89d96": {
+      "passing_runs": 3,
+      "skeleton_text": "modify_pending_order_items(item_ids=[3254583681], new_item_ids=[9440686670], order_id=#W6750959, payment_method_id=paypal_8080730) -> modify_pending_order_address(address1=476 Maple Drive, address2=Suite 432, city=New York, country=USA, order_id=#W6750959, state=NY, zip=10093)",
+      "tasks": [
+        "97"
+      ]
+    },
+    "17356aa27c": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_address(address1=224 Elm Street, address2=Suite 491, city=New York, country=USA, order_id=#W1845024, state=NY, zip=10108)",
+      "tasks": [
+        "34"
+      ]
+    },
+    "191d3322ed": {
+      "passing_runs": 2,
+      "skeleton_text": "modify_pending_order_items(item_ids=[9779102705], new_item_ids=[1096508426], order_id=#W4082615, payment_method_id=paypal_4768213) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W9583042, state=TX, zip=76165) -> modify_user_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, state=TX, user_id=mei_patel_7272, zip=76165) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W4082615, state=TX, zip=76165)",
+      "tasks": [
+        "41"
+      ]
+    },
+    "1994a974bc": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8384507844], new_item_ids=[7453605304], order_id=#W6390527, payment_method_id=paypal_7644869)",
+      "tasks": [
+        "6"
+      ]
+    },
+    "1eabb19edd": {
+      "passing_runs": 1,
+      "skeleton_text": "cancel_pending_order(order_id=#W8855135, reason=no longer needed) -> exchange_delivered_order_items(item_ids=[7758198585,4068787148], new_item_ids=[5606522780,6245746168], order_id=#W3916020, payment_method_id=credit_card_8105988) -> exchange_delivered_order_items(item_ids=[5996159312], new_item_ids=[8363011723], order_id=#W4689314, payment_method_id=credit_card_8105988)",
+      "tasks": [
+        "98"
+      ]
+    },
+    "25596da9d9": {
+      "passing_runs": 6,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[7758198585,4068787148], new_item_ids=[5606522780,5546244844], order_id=#W3916020, payment_method_id=credit_card_3951670) -> exchange_delivered_order_items(item_ids=[5996159312], new_item_ids=[8363011723], order_id=#W4689314, payment_method_id=credit_card_3951670)",
+      "tasks": [
+        "99"
+      ]
+    },
+    "2cb9f0230f": {
+      "passing_runs": 8,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[4983901480], new_item_ids=[7747408585], order_id=#W2378156, payment_method_id=credit_card_9513926)",
+      "tasks": [
+        "1"
+      ]
+    },
+    "2d47c5f205": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[2216662955], new_item_ids=[9844888101], order_id=#W4073673, payment_method_id=credit_card_3677959)",
+      "tasks": [
+        "93"
+      ]
+    },
+    "3641ab45b4": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_address(address1=144 Lakeview Drive, address2=Suite 925, city=New York, country=USA, order_id=#W4219264, state=NY, zip=10228) -> modify_pending_order_items(item_ids=[8886009523], new_item_ids=[2407258246], order_id=#W4219264, payment_method_id=credit_card_1620755) -> modify_pending_order_items(item_ids=[3076708684], new_item_ids=[8302289002], order_id=#W6729841, payment_method_id=credit_card_1620755)",
+      "tasks": [
+        "101"
+      ]
+    },
+    "3f4edfd2a0": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[8302289002], new_item_ids=[9534205511], order_id=#W4284542, payment_method_id=gift_card_9368765)",
+      "tasks": [
+        "56"
+      ]
+    },
+    "4262972cba": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8118291112], new_item_ids=[8277474082], order_id=#W7181492, payment_method_id=paypal_3024827)",
+      "tasks": [
+        "27"
+      ]
+    },
+    "446c57195b": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[4545791457,3098764622,1631806422], order_id=#W7553978, payment_method_id=credit_card_5902940) -> return_delivered_order_items(item_ids=[9494281769], order_id=#W3239882, payment_method_id=credit_card_5902940)",
+      "tasks": [
+        "92"
+      ]
+    },
+    "4b3ba67e82": {
+      "passing_runs": 1,
+      "skeleton_text": "modify_user_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, state=TX, user_id=mei_patel_7272, zip=76165) -> modify_pending_order_items(item_ids=[9779102705], new_item_ids=[1096508426], order_id=#W4082615, payment_method_id=paypal_4768213) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W4082615, state=TX, zip=76165) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W9583042, state=TX, zip=76165)",
+      "tasks": [
+        "41"
+      ]
+    },
+    "4c91d1d7ce": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W2417020, reason=no longer needed)",
+      "tasks": [
+        "69"
+      ]
+    },
+    "4cbcab4929": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_user_address(address1=517 Lakeview Drive, address2=Suite 183, city=Seattle, country=USA, state=WA, user_id=noah_patel_6952, zip=98195)",
+      "tasks": [
+        "33"
+      ]
+    },
+    "5101b20653": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[4579334072,1421289881,6117189161,4947717507], order_id=#W5490111, payment_method_id=credit_card_3124723) -> return_delivered_order_items(item_ids=[5796612084], order_id=#W7387996, payment_method_id=paypal_9497703)",
+      "tasks": [
+        "11"
+      ]
+    },
+    "570eacec9a": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8384507844], new_item_ids=[7624783998], order_id=#W6390527, payment_method_id=paypal_7644869)",
+      "tasks": [
+        "9"
+      ]
+    },
+    "6492cdac6b": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_user_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, state=TX, user_id=mei_patel_7272, zip=76165) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W9583042, state=TX, zip=76165) -> modify_pending_order_address(address1=445 Maple Drive, address2=Suite 394, city=Fort Worth, country=USA, order_id=#W4082615, state=TX, zip=76165) -> modify_pending_order_items(item_ids=[9779102705], new_item_ids=[1096508426], order_id=#W4082615, payment_method_id=paypal_4768213)",
+      "tasks": [
+        "42"
+      ]
+    },
+    "656b585fa6": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[7602931732,9570044148], order_id=#W5565470, payment_method_id=paypal_3024827)",
+      "tasks": [
+        "26"
+      ]
+    },
+    "67e5c8eeac": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[7758198585], order_id=#W3916020, payment_method_id=credit_card_8105988)",
+      "tasks": [
+        "53"
+      ]
+    },
+    "69ffe3ac49": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_items(item_ids=[2366567022,1340995114,9791469541,1763705424], new_item_ids=[4579334072,1151293680,4107812777,2882812427], order_id=#W9911714, payment_method_id=gift_card_4332117)",
+      "tasks": [
+        "20"
+      ]
+    },
+    "6ae9a5ff72": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W9373487, reason=no longer needed) -> return_delivered_order_items(item_ids=[6477915553], order_id=#W7449508, payment_method_id=gift_card_7711863)",
+      "tasks": [
+        "31"
+      ]
+    },
+    "6e70eec977": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[5996159312], new_item_ids=[9228757377], order_id=#W4689314, payment_method_id=paypal_8194385)",
+      "tasks": [
+        "52"
+      ]
+    },
+    "71f8e7976e": {
+      "passing_runs": 56,
+      "skeleton_text": "none",
+      "tasks": [
+        "10",
+        "12",
+        "25",
+        "50",
+        "57",
+        "65"
+      ]
+    },
+    "74f8125cc1": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[9385662952], new_item_ids=[8733974883], order_id=#W2466703, payment_method_id=paypal_7529813) -> modify_user_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, state=DC, user_id=yusuf_hernandez_6785, zip=20307)",
+      "tasks": [
+        "86"
+      ]
+    },
+    "7549890e58": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W3361211, reason=no longer needed)",
+      "tasks": [
+        "66"
+      ]
+    },
+    "75d9bf6731": {
+      "passing_runs": 4,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8069050545], new_item_ids=[1071497737], order_id=#W2890441, payment_method_id=credit_card_1061405)",
+      "tasks": [
+        "18"
+      ]
+    },
+    "75e615147e": {
+      "passing_runs": 14,
+      "skeleton_text": "modify_pending_order_address(address1=476 Maple Drive, address2=Suite 432, city=New York, country=USA, order_id=#W6750959, state=NY, zip=10093) -> modify_pending_order_items(item_ids=[3254583681], new_item_ids=[9440686670], order_id=#W6750959, payment_method_id=paypal_8080730)",
+      "tasks": [
+        "96",
+        "97"
+      ]
+    },
+    "761f4ff70d": {
+      "passing_runs": 5,
+      "skeleton_text": "modify_pending_order_items(item_ids=[8926329222,5312063289], new_item_ids=[7160999700,6956751343], order_id=#W3295833, payment_method_id=credit_card_3261838) -> return_delivered_order_items(item_ids=[5676696062], order_id=#W8488728, payment_method_id=credit_card_3261838) -> return_delivered_order_items(item_ids=[5676696062], order_id=#W8488728, payment_method_id=paypal_3650980)",
+      "tasks": [
+        "100"
+      ]
+    },
+    "7a9d6c6efd": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W2166301, state=DC, zip=20307) -> modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W2466703, state=DC, zip=20307) -> modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W6832752, state=DC, zip=20307) -> modify_user_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, state=DC, user_id=yusuf_hernandez_6785, zip=20307)",
+      "tasks": [
+        "87"
+      ]
+    },
+    "7ec6aa31a3": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[3694871183], new_item_ids=[8555936349], order_id=#W5061109, payment_method_id=paypal_3742148)",
+      "tasks": [
+        "61"
+      ]
+    },
+    "801331f820": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W4836353, reason=no longer needed) -> cancel_pending_order(order_id=#W7342738, reason=no longer needed) -> return_delivered_order_items(item_ids=[5669664287,4900990404,9862136885,6777246137], order_id=#W4597054, payment_method_id=gift_card_3491931) -> return_delivered_order_items(item_ids=[8277474082], order_id=#W7773202, payment_method_id=gift_card_3491931)",
+      "tasks": [
+        "55"
+      ]
+    },
+    "8521114d7f": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_address(address1=159 Hickory Lane, address2=Suite 995, city=Charlotte, country=USA, order_id=#W5270061, state=NC, zip=28243) -> modify_pending_order_items(item_ids=[2492465580], new_item_ids=[5917587651], order_id=#W5270061, payment_method_id=paypal_7729105)",
+      "tasks": [
+        "71"
+      ]
+    },
+    "87c47060c2": {
+      "passing_runs": 1,
+      "skeleton_text": "modify_pending_order_address(address1=380 Maple Drive, address2=Suite 960, city=San Diego, country=USA, order_id=#W5056519, state=CA, zip=92101) -> cancel_pending_order(order_id=#W5995614, reason=ordered by mistake) -> modify_pending_order_items(item_ids=[7902309762], new_item_ids=[1573035764], order_id=#W5056519, payment_method_id=credit_card_3095586)",
+      "tasks": [
+        "78"
+      ]
+    },
+    "897bfd03ed": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[3320557165,2698416822,8098621301,7228247242], order_id=#W5272531, payment_method_id=credit_card_6824399)",
+      "tasks": [
+        "73"
+      ]
+    },
+    "8b5728f0ef": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_user_address(address1=101 Highway, address2=, city=New York, country=USA, state=NY, user_id=ethan_garcia_1261, zip=10001) -> modify_pending_order_address(address1=101 Highway, address2=, city=New York, country=USA, order_id=#W9911714, state=NY, zip=10001) -> modify_user_address(address1=667 Highland Drive, address2=Suite 865, city=Denver, country=USA, state=CO, user_id=ethan_garcia_1261, zip=80280)",
+      "tasks": [
+        "22"
+      ]
+    },
+    "8d61f7eb84": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[6704763132], order_id=#W8528674, payment_method_id=paypal_7664977) -> modify_pending_order_items(item_ids=[1684786391], new_item_ids=[5052031638], order_id=#W9672333, payment_method_id=paypal_7664977)",
+      "tasks": [
+        "35"
+      ]
+    },
+    "925e55585f": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_address(address1=380 Maple Drive, address2=Suite 960, city=San Diego, country=USA, order_id=#W5056519, state=CA, zip=92101) -> modify_pending_order_items(item_ids=[7902309762], new_item_ids=[1573035764], order_id=#W5056519, payment_method_id=credit_card_3095586) -> cancel_pending_order(order_id=#W5995614, reason=ordered by mistake)",
+      "tasks": [
+        "78"
+      ]
+    },
+    "93942c9a6b": {
+      "passing_runs": 20,
+      "skeleton_text": "return_delivered_order_items(item_ids=[6065192424], order_id=#W9571698, payment_method_id=gift_card_7250692)",
+      "tasks": [
+        "83",
+        "84"
+      ]
+    },
+    "9ac116803c": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[4579334072,6117189161,4947717507], order_id=#W5490111, payment_method_id=credit_card_3124723)",
+      "tasks": [
+        "13"
+      ]
+    },
+    "9e1df142fb": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[5081446110], new_item_ids=[3399869890], order_id=#W1671835, payment_method_id=paypal_6918118)",
+      "tasks": [
+        "77"
+      ]
+    },
+    "9f2914d273": {
+      "passing_runs": 1,
+      "skeleton_text": "modify_pending_order_address(address1=555 Highland Drive, address2=Suite 872, city=New York, country=USA, order_id=#W3730488, state=NY, zip=10116) -> modify_pending_order_items(item_ids=[1355937109], new_item_ids=[9949163720], order_id=#W9810810, payment_method_id=gift_card_7252880) -> modify_pending_order_items(item_ids=[2913673670], new_item_ids=[9844888101], order_id=#W3730488, payment_method_id=gift_card_7252880)",
+      "tasks": [
+        "112"
+      ]
+    },
+    "a7346e09c5": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[9534205511], order_id=#W9502127, payment_method_id=paypal_2433177)",
+      "tasks": [
+        "48"
+      ]
+    },
+    "a7dc8020c1": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8555936349], new_item_ids=[4063058357], order_id=#W6908222, payment_method_id=paypal_4518393)",
+      "tasks": [
+        "75"
+      ]
+    },
+    "a8cc33d5b2": {
+      "passing_runs": 9,
+      "skeleton_text": "cancel_pending_order(order_id=#W9373487, reason=no longer needed) -> cancel_pending_order(order_id=#W5481803, reason=no longer needed) -> return_delivered_order_items(item_ids=[6477915553], order_id=#W7449508, payment_method_id=gift_card_7711863)",
+      "tasks": [
+        "32"
+      ]
+    },
+    "aa58685971": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8384507844], new_item_ids=[9083642334], order_id=#W6390527, payment_method_id=paypal_7644869)",
+      "tasks": [
+        "8"
+      ]
+    },
+    "ab899407e1": {
+      "passing_runs": 9,
+      "skeleton_text": "modify_pending_order_items(item_ids=[1810466394], new_item_ids=[6700049080], order_id=#W7464385, payment_method_id=paypal_1261484)",
+      "tasks": [
+        "64"
+      ]
+    },
+    "ac44399f90": {
+      "passing_runs": 6,
+      "skeleton_text": "modify_pending_order_items(item_ids=[3453331371], new_item_ids=[2439754078], order_id=#W8661412, payment_method_id=credit_card_7239357)",
+      "tasks": [
+        "79"
+      ]
+    },
+    "ac7507c81a": {
+      "passing_runs": 8,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[3478699712], new_item_ids=[9844888101], order_id=#W2905754, payment_method_id=credit_card_3677959)",
+      "tasks": [
+        "94"
+      ]
+    },
+    "afb7cf1754": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W8835847, reason=ordered by mistake)",
+      "tasks": [
+        "88"
+      ]
+    },
+    "bbbf6af87a": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[8384507844], new_item_ids=[1569765161], order_id=#W6390527, payment_method_id=paypal_7644869)",
+      "tasks": [
+        "7"
+      ]
+    },
+    "c087c4bf97": {
+      "passing_runs": 4,
+      "skeleton_text": "modify_pending_order_items(item_ids=[8926329222,5312063289], new_item_ids=[7160999700,6956751343], order_id=#W3295833, payment_method_id=credit_card_3261838) -> return_delivered_order_items(item_ids=[5676696062], order_id=#W8488728, payment_method_id=paypal_3650980)",
+      "tasks": [
+        "100"
+      ]
+    },
+    "c578995245": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[3358616356], new_item_ids=[8573379326], order_id=#W3947049, payment_method_id=credit_card_7901829) -> exchange_delivered_order_items(item_ids=[6301799585], new_item_ids=[8926329222], order_id=#W6876713, payment_method_id=credit_card_7901829) -> modify_pending_order_items(item_ids=[5946177616], new_item_ids=[7082455361], order_id=#W3561391, payment_method_id=credit_card_7901829)",
+      "tasks": [
+        "23"
+      ]
+    },
+    "cc154184ac": {
+      "passing_runs": 6,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[7758198585,4068787148], new_item_ids=[5606522780,6245746168], order_id=#W3916020, payment_method_id=credit_card_8105988) -> exchange_delivered_order_items(item_ids=[5996159312], new_item_ids=[8363011723], order_id=#W4689314, payment_method_id=credit_card_8105988) -> cancel_pending_order(order_id=#W8855135, reason=no longer needed)",
+      "tasks": [
+        "98"
+      ]
+    },
+    "cea0c22ccf": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[5796612084], order_id=#W7387996, payment_method_id=paypal_9497703) -> return_delivered_order_items(item_ids=[1421289881], order_id=#W5490111, payment_method_id=credit_card_3124723)",
+      "tasks": [
+        "14"
+      ]
+    },
+    "cf26b69e11": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[8538875209], order_id=#W6390527, payment_method_id=paypal_7644869)",
+      "tasks": [
+        "5"
+      ]
+    },
+    "d06319fc52": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[5047954489], new_item_ids=[9354168549], order_id=#W7209932, payment_method_id=gift_card_2611937)",
+      "tasks": [
+        "80"
+      ]
+    },
+    "d3eaaebb01": {
+      "passing_runs": 7,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[1151293680,4983901480], new_item_ids=[7706410293,7747408585], order_id=#W2378156, payment_method_id=credit_card_9513926)",
+      "tasks": [
+        "0"
+      ]
+    },
+    "e1132d4be4": {
+      "passing_runs": 4,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[2757705742], new_item_ids=[1646531091], order_id=#W3470184, payment_method_id=gift_card_7245904)",
+      "tasks": [
+        "49"
+      ]
+    },
+    "e758b7fcf6": {
+      "passing_runs": 1,
+      "skeleton_text": "modify_user_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, state=DC, user_id=yusuf_hernandez_6785, zip=20307) -> modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W2166301, state=DC, zip=20307) -> modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W2466703, state=DC, zip=20307) -> modify_pending_order_address(address1=565 Maple Drive, address2=Suite 501, city=Washington, country=USA, order_id=#W6832752, state=DC, zip=20307)",
+      "tasks": [
+        "87"
+      ]
+    },
+    "eafe7485df": {
+      "passing_runs": 3,
+      "skeleton_text": "return_delivered_order_items(item_ids=[9973034634,5952720925,7381052709,6065192424], order_id=#W9571698, payment_method_id=gift_card_7250692)",
+      "tasks": [
+        "82"
+      ]
+    },
+    "ec4ea24eb8": {
+      "passing_runs": 10,
+      "skeleton_text": "cancel_pending_order(order_id=#W9284598, reason=ordered by mistake)",
+      "tasks": [
+        "90"
+      ]
+    },
+    "ed3a9a1052": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_address(address1=123 Elm Street, address2=Suite 641, city=Austin, country=USA, order_id=#W8665881, state=TX, zip=78712)",
+      "tasks": [
+        "17"
+      ]
+    },
+    "f2861ffd3b": {
+      "passing_runs": 10,
+      "skeleton_text": "return_delivered_order_items(item_ids=[5996159312], order_id=#W4689314, payment_method_id=credit_card_8105988)",
+      "tasks": [
+        "51"
+      ]
+    },
+    "f6ab6c97d2": {
+      "passing_runs": 10,
+      "skeleton_text": "modify_pending_order_items(item_ids=[1615379700], new_item_ids=[3613716226], order_id=#W5199551, payment_method_id=paypal_5364164)",
+      "tasks": [
+        "15"
+      ]
+    },
+    "f89b110f4c": {
+      "passing_runs": 10,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[7441167885,3478699712], new_item_ids=[3815173328,6017636844], order_id=#W5838674, payment_method_id=gift_card_9368765)",
+      "tasks": [
+        "58"
+      ]
+    },
+    "f8d2d5a98d": {
+      "passing_runs": 5,
+      "skeleton_text": "exchange_delivered_order_items(item_ids=[3788616824], new_item_ids=[3788616824], order_id=#W2692684, payment_method_id=gift_card_7711863) -> return_delivered_order_items(item_ids=[3788616824], order_id=#W2692684, payment_method_id=gift_card_7711863) -> cancel_pending_order(order_id=#W9373487, reason=no longer needed) -> return_delivered_order_items(item_ids=[6477915553], order_id=#W7449508, payment_method_id=gift_card_7711863)",
+      "tasks": [
+        "30"
+      ]
+    },
+    "fa9b30f889": {
+      "passing_runs": 1,
+      "skeleton_text": "modify_pending_order_items(item_ids=[8926329222,5312063289], new_item_ids=[7160999700,6956751343], order_id=#W3295833, payment_method_id=credit_card_3261838) -> modify_pending_order_payment(order_id=#W1654931, payment_method_id=credit_card_3261838) -> return_delivered_order_items(item_ids=[5676696062], order_id=#W8488728, payment_method_id=paypal_3650980)",
+      "tasks": [
+        "100"
+      ]
+    }
+  },
+  "status": "complete_n10",
+  "usage_valid_full_run": {
+    "cache_creation_input_tokens": 30240,
+    "cache_read_input_tokens": 41595120,
+    "calls": 13625,
+    "completion_tokens": 1227240,
+    "noncached_input_tokens": 25354794,
+    "prompt_tokens": 66980154,
+    "total_tokens": 68207394
+  }
+}

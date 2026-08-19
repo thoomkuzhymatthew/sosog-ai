@@ -1,0 +1,656 @@
+{
+  "assisted_summary": {
+    "agent_cost_cached_usd": 1.4611644000000001,
+    "avg_agent_cost_cached_usd": 0.12176370000000002,
+    "avg_total_cost_cached_usd": 0.1488662,
+    "by_task": {
+      "41": {
+        "avg_agent_cost_cached_usd": 0.1357371,
+        "avg_total_cost_cached_usd": 0.1596611,
+        "distinct_write_skeletons": [
+          "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"}) -> modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+          "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"}) -> modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"})",
+          "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"}) -> modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"credit_card_9503061\"})"
+        ],
+        "pass_rate": 0.6666666666666666,
+        "passes": 2,
+        "runs": 3
+      },
+      "71": {
+        "avg_agent_cost_cached_usd": 0.15053555000000002,
+        "avg_total_cost_cached_usd": 0.19158555000000002,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"}) -> modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})",
+          "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+        ],
+        "pass_rate": 0.6666666666666666,
+        "passes": 2,
+        "runs": 3
+      },
+      "78": {
+        "avg_agent_cost_cached_usd": 0.10633115,
+        "avg_total_cost_cached_usd": 0.13199815,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"}) -> cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"}) -> modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})"
+        ],
+        "pass_rate": 1.0,
+        "passes": 3,
+        "runs": 3
+      },
+      "97": {
+        "avg_agent_cost_cached_usd": 0.09445100000000001,
+        "avg_total_cost_cached_usd": 0.11222,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"}) -> modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})"
+        ],
+        "pass_rate": 1.0,
+        "passes": 3,
+        "runs": 3
+      }
+    },
+    "fail_count": 2,
+    "pass_count": 10,
+    "pass_rate": 0.8333333333333334,
+    "recomputed_agent_cost_cached_usd": 1.4611644,
+    "recomputed_total_cost_cached_usd": 1.7863943999999998,
+    "recomputed_user_cost_cached_usd": 0.32523,
+    "runs": 12,
+    "total_cost_cached_usd": 1.7863944,
+    "usage_agent": {
+      "cache_creation_input_tokens": 31994,
+      "cache_read_input_tokens": 979373,
+      "calls": 125,
+      "completion_tokens": 19159,
+      "noncached_input_tokens": 253330,
+      "prompt_tokens": 1264697,
+      "total_tokens": 1283856
+    },
+    "usage_total": {
+      "cache_creation_input_tokens": 31994,
+      "cache_read_input_tokens": 979373,
+      "calls": 203,
+      "completion_tokens": 23638,
+      "noncached_input_tokens": 339345,
+      "prompt_tokens": 1350712,
+      "total_tokens": 1374350
+    },
+    "usage_user": {
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "calls": 78,
+      "completion_tokens": 4479,
+      "noncached_input_tokens": 86015,
+      "prompt_tokens": 86015,
+      "total_tokens": 90494
+    },
+    "user_cost_cached_usd": 0.32523
+  },
+  "bias_test_result": {
+    "assisted_passes": 2,
+    "assisted_runs": 3,
+    "assisted_write_skeletons": [
+      "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})",
+      "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"}) -> modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})",
+      "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"}) -> modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+    ],
+    "deviated_correctly": false,
+    "raw_same_seed_passes": 2,
+    "raw_same_seed_runs": 3,
+    "task_id": "71"
+  },
+  "comparison": {
+    "accuracy_delta_pp": 8.333333333333337,
+    "agent_call_reduction_pct": 0.08759124087591241,
+    "agent_cost_reduction_pct": 0.09459943785970275,
+    "agent_token_reduction_pct": -0.18980434605318763,
+    "assisted_pass_rate": 0.8333333333333334,
+    "raw_pass_rate": 0.75,
+    "total_cost_reduction_pct": 0.07897922283214774,
+    "total_token_reduction_pct": -0.1736038823245102
+  },
+  "infrastructure_errors": [],
+  "milestone": "M10",
+  "model": "bedrock/us.anthropic.claude-sonnet-4-6",
+  "per_case": [
+    {
+      "assisted_agent_calls": 11,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.1957755,
+      "assisted_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})",
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"})"
+      ],
+      "raw_agent_calls": 9,
+      "raw_pass": false,
+      "raw_total_cost_cached_usd": 0.100443,
+      "raw_writes": [
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})"
+      ],
+      "seed": 626729,
+      "task_id": "41",
+      "trial": 0
+    },
+    {
+      "assisted_agent_calls": 10,
+      "assisted_pass": false,
+      "assisted_total_cost_cached_usd": 0.112638,
+      "assisted_writes": [
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"})",
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"credit_card_9503061\"})"
+      ],
+      "raw_agent_calls": 10,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.145032,
+      "raw_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"})",
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"})"
+      ],
+      "seed": 373753,
+      "task_id": "41",
+      "trial": 1
+    },
+    {
+      "assisted_agent_calls": 13,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.17056980000000002,
+      "assisted_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"})",
+        "modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"})",
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})"
+      ],
+      "raw_agent_calls": 9,
+      "raw_pass": false,
+      "raw_total_cost_cached_usd": 0.11158499999999999,
+      "raw_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})",
+        "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})"
+      ],
+      "seed": 361454,
+      "task_id": "41",
+      "trial": 2
+    },
+    {
+      "assisted_agent_calls": 12,
+      "assisted_pass": false,
+      "assisted_total_cost_cached_usd": 0.20555145000000002,
+      "assisted_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "raw_agent_calls": 14,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.21730500000000003,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"})",
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "seed": 626729,
+      "task_id": "71",
+      "trial": 0
+    },
+    {
+      "assisted_agent_calls": 14,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.18420780000000003,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"})",
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "raw_agent_calls": 14,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.252684,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"})",
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "seed": 373753,
+      "task_id": "71",
+      "trial": 1
+    },
+    {
+      "assisted_agent_calls": 12,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.18499740000000003,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"})",
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "raw_agent_calls": 13,
+      "raw_pass": false,
+      "raw_total_cost_cached_usd": 0.224808,
+      "raw_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+      ],
+      "seed": 361454,
+      "task_id": "71",
+      "trial": 2
+    },
+    {
+      "assisted_agent_calls": 9,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.14923185,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})"
+      ],
+      "raw_agent_calls": 16,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.22159800000000002,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})"
+      ],
+      "seed": 626729,
+      "task_id": "78",
+      "trial": 0
+    },
+    {
+      "assisted_agent_calls": 9,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.12217830000000002,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})"
+      ],
+      "raw_agent_calls": 9,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.11546100000000001,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})"
+      ],
+      "seed": 373753,
+      "task_id": "78",
+      "trial": 1
+    },
+    {
+      "assisted_agent_calls": 9,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.12458430000000001,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})"
+      ],
+      "raw_agent_calls": 16,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.21935700000000002,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"})",
+        "modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})",
+        "cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})"
+      ],
+      "seed": 361454,
+      "task_id": "78",
+      "trial": 2
+    },
+    {
+      "assisted_agent_calls": 9,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.1391706,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})",
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})"
+      ],
+      "raw_agent_calls": 8,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.09093899999999999,
+      "raw_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})",
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})"
+      ],
+      "seed": 626729,
+      "task_id": "97",
+      "trial": 0
+    },
+    {
+      "assisted_agent_calls": 9,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.1099788,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})",
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})"
+      ],
+      "raw_agent_calls": 10,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.128961,
+      "raw_writes": [
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})",
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})"
+      ],
+      "seed": 373753,
+      "task_id": "97",
+      "trial": 1
+    },
+    {
+      "assisted_agent_calls": 8,
+      "assisted_pass": true,
+      "assisted_total_cost_cached_usd": 0.08751060000000001,
+      "assisted_writes": [
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})",
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})"
+      ],
+      "raw_agent_calls": 9,
+      "raw_pass": true,
+      "raw_total_cost_cached_usd": 0.11140800000000001,
+      "raw_writes": [
+        "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})",
+        "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})"
+      ],
+      "seed": 361454,
+      "task_id": "97",
+      "trial": 2
+    }
+  ],
+  "plan_scaffold": "This is trace-derived assistance for tasks that combine pending-order address\nchanges, item changes, and sometimes cancellation/default-address updates.\n\nTypical read shape observed in successful derivation traces:\nfind_user_id_by_name_zip -> get_user_details -> get_order_details -> get_order_details -> get_product_details\n\nWrite tools seen in the family evidence:\nmodify_pending_order_address, modify_pending_order_items, cancel_pending_order\n\nSuggested procedure, not a rule:\n1. Identify the customer and inspect the relevant orders.\n2. Inspect product variants only when an item change or exchange is actually requested.\n3. Explain the proposed changes and ask for explicit yes/no confirmation before any write.\n4. Make only the writes supported by the current conversation and retail policy.\n5. Deviate from this scaffold whenever the user changes their mind, asks for an\n   extra action, omits confirmation, or the read-only context contradicts the usual path.\n\nThe scaffold is advisory. You remain responsible for every decision and every\nwrite-tool argument. You may call any read tool again if this packet is\ninsufficient or suspicious. Never execute a write just because it appears in\nthe usual procedure.",
+  "prefetch_calls_by_task": {
+    "41": [
+      {
+        "arguments": {
+          "first_name": "Mei",
+          "last_name": "Patel",
+          "zip": "76165"
+        },
+        "name": "find_user_id_by_name_zip",
+        "signature": "find_user_id_by_name_zip({\"first_name\":\"Mei\",\"last_name\":\"Patel\",\"zip\":\"76165\"})"
+      },
+      {
+        "arguments": {
+          "user_id": "mei_patel_7272"
+        },
+        "name": "get_user_details",
+        "signature": "get_user_details({\"user_id\":\"mei_patel_7272\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W9583042"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W9583042\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W4082615"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W4082615\"})"
+      },
+      {
+        "arguments": {
+          "product_id": "1808611083"
+        },
+        "name": "get_product_details",
+        "signature": "get_product_details({\"product_id\":\"1808611083\"})"
+      }
+    ],
+    "71": [
+      {
+        "arguments": {
+          "first_name": "Ivan",
+          "last_name": "Khan",
+          "zip": "28243"
+        },
+        "name": "find_user_id_by_name_zip",
+        "signature": "find_user_id_by_name_zip({\"first_name\":\"Ivan\",\"last_name\":\"Khan\",\"zip\":\"28243\"})"
+      },
+      {
+        "arguments": {
+          "user_id": "ivan_khan_7475"
+        },
+        "name": "get_user_details",
+        "signature": "get_user_details({\"user_id\":\"ivan_khan_7475\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W5270061"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W5270061\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W7032009"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W7032009\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W1519594"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W1519594\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W5782623"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W5782623\"})"
+      },
+      {
+        "arguments": {
+          "product_id": "6817146515"
+        },
+        "name": "get_product_details",
+        "signature": "get_product_details({\"product_id\":\"6817146515\"})"
+      },
+      {
+        "arguments": {
+          "product_id": "2524789262"
+        },
+        "name": "get_product_details",
+        "signature": "get_product_details({\"product_id\":\"2524789262\"})"
+      }
+    ],
+    "78": [
+      {
+        "arguments": {
+          "email": "yara.muller9246@example.com"
+        },
+        "name": "find_user_id_by_email",
+        "signature": "find_user_id_by_email({\"email\":\"yara.muller9246@example.com\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W5056519"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W5056519\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W8277957"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W8277957\"})"
+      },
+      {
+        "arguments": {
+          "product_id": "5149340237"
+        },
+        "name": "get_product_details",
+        "signature": "get_product_details({\"product_id\":\"5149340237\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W5995614"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W5995614\"})"
+      }
+    ],
+    "97": [
+      {
+        "arguments": {
+          "first_name": "Yusuf",
+          "last_name": "Li",
+          "zip": "91148"
+        },
+        "name": "find_user_id_by_name_zip",
+        "signature": "find_user_id_by_name_zip({\"first_name\":\"Yusuf\",\"last_name\":\"Li\",\"zip\":\"91148\"})"
+      },
+      {
+        "arguments": {
+          "user_id": "yusuf_li_7255"
+        },
+        "name": "get_user_details",
+        "signature": "get_user_details({\"user_id\":\"yusuf_li_7255\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W6750959"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W6750959\"})"
+      },
+      {
+        "arguments": {
+          "order_id": "#W3407479"
+        },
+        "name": "get_order_details",
+        "signature": "get_order_details({\"order_id\":\"#W3407479\"})"
+      },
+      {
+        "arguments": {
+          "product_id": "4768869376"
+        },
+        "name": "get_product_details",
+        "signature": "get_product_details({\"product_id\":\"4768869376\"})"
+      }
+    ]
+  },
+  "prompt_cache_enabled": true,
+  "raw_baseline_source": "traces/m3/retail_db_checkable_n10_partial_valid_before_daily_quota.jsonl",
+  "raw_summary_same_seed_m3_partial": {
+    "agent_cost_cached_usd": 1.613832,
+    "avg_agent_cost_cached_usd": 0.134486,
+    "avg_total_cost_cached_usd": 0.16163175,
+    "by_task": {
+      "41": {
+        "avg_agent_cost_cached_usd": 0.102237,
+        "avg_total_cost_cached_usd": 0.11902,
+        "distinct_write_skeletons": [
+          "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W9583042\",\"state\":\"TX\",\"zip\":\"76165\"}) -> modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"}) -> modify_pending_order_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"order_id\":\"#W4082615\",\"state\":\"TX\",\"zip\":\"76165\"})",
+          "modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"}) -> modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"})",
+          "modify_user_address({\"address1\":\"445 Maple Drive\",\"address2\":\"Suite 394\",\"city\":\"Fort Worth\",\"country\":\"USA\",\"state\":\"TX\",\"user_id\":\"mei_patel_7272\",\"zip\":\"76165\"}) -> modify_pending_order_items({\"item_ids\":[\"9779102705\"],\"new_item_ids\":[\"1096508426\"],\"order_id\":\"#W4082615\",\"payment_method_id\":\"paypal_4768213\"})"
+        ],
+        "pass_rate": 0.3333333333333333,
+        "passes": 1,
+        "runs": 3
+      },
+      "71": {
+        "avg_agent_cost_cached_usd": 0.189106,
+        "avg_total_cost_cached_usd": 0.23159900000000003,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"159 Hickory Lane\",\"address2\":\"Suite 995\",\"city\":\"Charlotte\",\"country\":\"USA\",\"order_id\":\"#W5270061\",\"state\":\"NC\",\"zip\":\"28243\"}) -> modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})",
+          "modify_pending_order_items({\"item_ids\":[\"2492465580\"],\"new_item_ids\":[\"5917587651\"],\"order_id\":\"#W5270061\",\"payment_method_id\":\"paypal_7729105\"})"
+        ],
+        "pass_rate": 0.6666666666666666,
+        "passes": 2,
+        "runs": 3
+      },
+      "78": {
+        "avg_agent_cost_cached_usd": 0.152406,
+        "avg_total_cost_cached_usd": 0.18547200000000003,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"}) -> cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"}) -> modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"})",
+          "modify_pending_order_address({\"address1\":\"380 Maple Drive\",\"address2\":\"Suite 960\",\"city\":\"San Diego\",\"country\":\"USA\",\"order_id\":\"#W5056519\",\"state\":\"CA\",\"zip\":\"92101\"}) -> modify_pending_order_items({\"item_ids\":[\"7902309762\"],\"new_item_ids\":[\"1573035764\"],\"order_id\":\"#W5056519\",\"payment_method_id\":\"credit_card_3095586\"}) -> cancel_pending_order({\"order_id\":\"#W5995614\",\"reason\":\"ordered by mistake\"})"
+        ],
+        "pass_rate": 1.0,
+        "passes": 3,
+        "runs": 3
+      },
+      "97": {
+        "avg_agent_cost_cached_usd": 0.094195,
+        "avg_total_cost_cached_usd": 0.11043599999999999,
+        "distinct_write_skeletons": [
+          "modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"}) -> modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"})",
+          "modify_pending_order_items({\"item_ids\":[\"3254583681\"],\"new_item_ids\":[\"9440686670\"],\"order_id\":\"#W6750959\",\"payment_method_id\":\"paypal_8080730\"}) -> modify_pending_order_address({\"address1\":\"476 Maple Drive\",\"address2\":\"Suite 432\",\"city\":\"New York\",\"country\":\"USA\",\"order_id\":\"#W6750959\",\"state\":\"NY\",\"zip\":\"10093\"})"
+        ],
+        "pass_rate": 1.0,
+        "passes": 3,
+        "runs": 3
+      }
+    },
+    "fail_count": 3,
+    "pass_count": 9,
+    "pass_rate": 0.75,
+    "recomputed_agent_cost_cached_usd": 1.613832,
+    "recomputed_total_cost_cached_usd": 1.939581,
+    "recomputed_user_cost_cached_usd": 0.325749,
+    "runs": 12,
+    "total_cost_cached_usd": 1.939581,
+    "usage_agent": {
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 690480,
+      "calls": 137,
+      "completion_tokens": 20082,
+      "noncached_input_tokens": 368486,
+      "prompt_tokens": 1058966,
+      "total_tokens": 1079048
+    },
+    "usage_total": {
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 690480,
+      "calls": 218,
+      "completion_tokens": 24227,
+      "noncached_input_tokens": 456344,
+      "prompt_tokens": 1146824,
+      "total_tokens": 1171051
+    },
+    "usage_user": {
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "calls": 81,
+      "completion_tokens": 4145,
+      "noncached_input_tokens": 87858,
+      "prompt_tokens": 87858,
+      "total_tokens": 92003
+    },
+    "user_cost_cached_usd": 0.325749
+  },
+  "safety_sanity": {
+    "agent_made_every_trajectory_write": true,
+    "all_prefetch_calls_read_only": true,
+    "deterministic_write_scripts_used": false,
+    "prefetch_write_call_count": 0,
+    "promotion_gate_used": false
+  },
+  "seeds": [
+    626729,
+    373753,
+    361454
+  ],
+  "status": "complete",
+  "target": {
+    "bias_test": "Task 71 is the explicit scaffold-bias test: the user's initial request includes address plus multiple item changes, but the user changes payment choice and decides to modify only the backpack. The assisted agent must deviate from any frozen item-change plan.",
+    "bias_test_task_id": "71",
+    "derivation_task_ids": [
+      "78",
+      "97"
+    ],
+    "family": "compound_pending_order_modification",
+    "held_out_task_ids": [
+      "41",
+      "71"
+    ],
+    "task_ids": [
+      "41",
+      "71",
+      "78",
+      "97"
+    ],
+    "why_unpromoted": "M3 partial marked tasks 41, 71, 78, and 97 as flaky-looking or unpromoted: 41/71 had DB failures, while 78/97 passed but had multiple passing write skeletons. There is no single stable family write skeleton safe enough for promotion."
+  }
+}

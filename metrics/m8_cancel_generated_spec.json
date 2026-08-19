@@ -1,0 +1,117 @@
+{
+  "component_classification": {
+    "consistency_safety_gate": {
+      "classification": "Derived + human-reviewed",
+      "reason": "Ownership, pending-status, and exactly-one-candidate checks were generated from write tool name/docs and observed pre-write trace state, then human-reviewed as the safety boundary."
+    },
+    "executor": {
+      "classification": "Fully derived",
+      "reason": "Single write skeleton and write arguments were inferred from aligned passing traces."
+    },
+    "schema_gate": {
+      "classification": "Derived + human-reviewed",
+      "reason": "Required lookup/reason fields were derived from trace dataflow and tool docs; the target_item_names selector contract was mechanically inferred from task text/product anchors and then human-reviewed."
+    }
+  },
+  "consistency_gate": {
+    "candidate_count": "exactly_one",
+    "ownership": "candidate_order.user_id == resolved_user.user_id",
+    "selector": "if target_item_names are used, all names must appear in exactly one eligible candidate order",
+    "status": "candidate_order.status == 'pending'"
+  },
+  "family": "cancel",
+  "holdout_task_ids": [
+    "69",
+    "90"
+  ],
+  "lookup_methods_seen_in_training": [
+    "email",
+    "name_zip"
+  ],
+  "reason_enum": [
+    "no longer needed",
+    "ordered by mistake"
+  ],
+  "record_type": "order",
+  "required_status": "pending",
+  "resolver": {
+    "candidate_records": "get_order_details for either provided order_id or all user.orders",
+    "lookup": "find_user_id_by_<method>",
+    "user": "get_user_details"
+  },
+  "schema_gate": {
+    "lookup_methods": [
+      "email",
+      "name_zip"
+    ],
+    "reason_enum": [
+      "no longer needed",
+      "ordered by mistake"
+    ],
+    "required": [
+      "lookup",
+      "reason"
+    ],
+    "requires_exactly_one_selector": [
+      "order_id",
+      "target_item_names"
+    ]
+  },
+  "self_resolve_selector": {
+    "field": "target_item_names",
+    "training_anchors": {
+      "66": [
+        "Luggage Set"
+      ],
+      "88": [
+        "Bookshelf"
+      ]
+    },
+    "type": "order_contains_all_named_items"
+  },
+  "target_id_arg": "order_id",
+  "target_task_ids": [
+    "66",
+    "69",
+    "88",
+    "90"
+  ],
+  "trace_sources": [
+    "/Users/joshuajooste/Documents/matthew/StartupSpotter/sosog-ai/tau-bench/data/simulations/sosog_m2_retail_db_checkable_cached_baseline/results.json",
+    "/Users/joshuajooste/Documents/matthew/StartupSpotter/sosog-ai/tau-bench/data/simulations/sosog_m3_retail_db_checkable_n10_cached/results.json"
+  ],
+  "train_task_ids": [
+    "66",
+    "88"
+  ],
+  "training_target_statuses": [
+    "pending",
+    "pending",
+    "pending",
+    "pending",
+    "pending",
+    "pending",
+    "pending",
+    "pending"
+  ],
+  "write_arg_keys": [
+    "order_id",
+    "reason"
+  ],
+  "write_arg_values_seen_in_training": {
+    "order_id": [
+      "#W3361211",
+      "#W8835847"
+    ],
+    "reason": [
+      "no longer needed",
+      "ordered by mistake"
+    ]
+  },
+  "write_skeleton": [
+    "cancel_pending_order"
+  ],
+  "write_tool": "cancel_pending_order",
+  "write_tool_doc_excerpt": "Cancel a pending order. If the order is already processed or delivered, it cannot be cancelled. The agent needs to explain the cancellation detail and ask for explicit user confirmation (yes/no) to proceed. If the user confirms, the order status will be changed to 'cancelled' and the payment will be refunded. The refund will be added to the user's gift card balance immediately if the payment was made using a gift card, otherwise the refund would take 5-7 business days",
+  "write_tool_signature": "(self, order_id: str, reason: str) -> tau2.domains.retail.data_model.Order"
+}
