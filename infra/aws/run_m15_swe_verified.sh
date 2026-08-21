@@ -148,3 +148,4 @@ if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 650)}'; then
 fi
 printf 'complete cost_usd=%s\n' "$total_cost" >"$artifact_dir/status.txt"
 sync_artifacts
+/usr/sbin/shutdown -h +1 || true

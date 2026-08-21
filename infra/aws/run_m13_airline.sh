@@ -122,3 +122,4 @@ run_phase baseline 1 task_ids
 run_phase corpus 10 task_ids
 printf 'complete\n' >"$artifact_dir/status.txt"
 sync_artifacts
+/usr/sbin/shutdown -h +1 || true

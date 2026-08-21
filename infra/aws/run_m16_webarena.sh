@@ -90,6 +90,7 @@ if [[ ! -f $paid_gate ]]; then
   printf 'paused-before-paid-inference\n' >"$artifact_dir/status.txt"
   sync_artifacts
   echo "WebArena sites are ready; paid inference is paused pending explicit approval."
+  /usr/sbin/shutdown -h +1 || true
   exit 0
 fi
 
@@ -107,3 +108,4 @@ bash "$repo_dir/infra/aws/reset_webarena_sites.sh"
 run_phase haiku 0 '.smoke_task_ids[]' "$haiku_model"
 printf 'complete\n' >"$artifact_dir/status.txt"
 sync_artifacts
+/usr/sbin/shutdown -h +1 || true
