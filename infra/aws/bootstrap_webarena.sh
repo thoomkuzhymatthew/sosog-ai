@@ -14,11 +14,13 @@ if [[ ! -d "$source_dir/.git" ]]; then
 fi
 git -C "$source_dir" checkout "$commit"
 
-python3 -m venv "$venv"
-"$venv/bin/pip" install --upgrade pip wheel
+/opt/sosog/runtime/bin/pip install --upgrade uv
+/opt/sosog/runtime/bin/uv python install 3.11
+/opt/sosog/runtime/bin/uv venv --python 3.11 "$venv"
+"$venv/bin/pip" install --upgrade pip wheel setuptools
 "$venv/bin/pip" install -r "$source_dir/requirements.txt"
 "$venv/bin/pip" install -e "$source_dir"
-"$venv/bin/playwright" install chromium --with-deps
+"$venv/bin/python" -m playwright install chromium --with-deps
 docker info >/dev/null
 df -BG / | awk 'NR==2 {if (($4+0) < 800) exit 1}'
 

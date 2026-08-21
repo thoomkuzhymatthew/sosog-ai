@@ -15,6 +15,8 @@ if [[ ! -d "$source_dir/.git" ]]; then
     https://github.com/StonyBrookNLP/appworld.git "$source_dir"
 fi
 git -C "$source_dir" checkout "$commit"
+git -C "$source_dir" lfs install --local
+git -C "$source_dir" lfs pull
 
 python3 -m venv "$venv"
 "$venv/bin/pip" install --upgrade pip wheel
