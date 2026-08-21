@@ -26,6 +26,8 @@ python3 -m venv "$venv"
 # Recoma 0.0.4 pins a yanked LiteLLM 1.37.19 build. Its next patch release is
 # API-compatible, so install Recoma without that now-unresolvable exact pin.
 "$venv/bin/pip" install --no-deps 'recoma==0.0.4'
+"$venv/bin/pip" install treelib 'openai==1.55.3' tenacity registrable sympy \
+  'gradio==3.50.2'
 "$venv/bin/appworld" install
 
 install -d -o ubuntu -g ubuntu "$root_dir"
