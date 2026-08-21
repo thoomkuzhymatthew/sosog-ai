@@ -1,0 +1,26 @@
+{
+  "audit_date": "2026-08-21",
+  "scope": "All 19 M3 flaky tasks plus the one stable-fail task; evidence is documented in docs/M3_flaky_analysis.md, docs/M11.md, and docs/M12.md.",
+  "tasks": {
+    "0": {"route": "LEAVE", "oracle_route": "LEAVE", "failure_pattern": "artifact", "artifact_flag": true, "ambiguity_signal": true, "rationale": "Google Home versus Google Assistant compatibility is under-specified."},
+    "1": {"route": "LEAVE", "oracle_route": "LEAVE", "failure_pattern": "artifact", "artifact_flag": true, "ambiguity_signal": true, "rationale": "Google Home versus Google Assistant compatibility is under-specified."},
+    "12": {"route": "LEAVE", "oracle_route": "LEAVE", "failure_pattern": "artifact", "artifact_flag": true, "ambiguity_signal": false, "rationale": "Simulator can accept a refund branch that conflicts with the fixed verifier target."},
+    "18": {"route": "LEAVE", "oracle_route": "LEAVE", "failure_pattern": "artifact", "artifact_flag": true, "ambiguity_signal": true, "rationale": "Simulator can reasonably confirm an alternate available-chair branch."},
+    "30": {"route": "DECOMPOSE", "oracle_route": "DECOMPOSE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 preserved correctness and reduced measured cost."},
+    "41": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Single target; missed address writes are genuine inconsistency."},
+    "49": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M12 raised pass rate from 6/20 to 20/20 on the validated target."},
+    "74": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Wrong payment and missed writes are genuine inconsistency."},
+    "78": {"route": "DECOMPOSE", "oracle_route": "DECOMPOSE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 preserved correctness and reduced measured cost."},
+    "79": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Wrong replacement SKU is genuine inconsistency."},
+    "82": {"route": "LEAVE", "oracle_route": "LEAVE", "failure_pattern": "artifact", "artifact_flag": true, "ambiguity_signal": true, "rationale": "Simulator can request a reasonable branch outside the fixed verifier target."},
+    "87": {"route": "DECOMPOSE", "oracle_route": "LEAVE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 preserved correctness but decomposition cost more; cost-optimal oracle remains LEAVE."},
+    "91": {"route": "DROP", "oracle_route": "DROP", "failure_pattern": "n/a", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M3 stable fail at 0/10."},
+    "94": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Wrong laptop variant is genuine inconsistency."},
+    "96": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Missed pending-item modification is genuine inconsistency."},
+    "97": {"route": "DECOMPOSE", "oracle_route": "DECOMPOSE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 preserved correctness and reduced measured cost."},
+    "98": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Wrong payment and missed writes are genuine inconsistency."},
+    "99": {"route": "LIFT", "oracle_route": "LIFT", "failure_pattern": "agent-wandered", "artifact_flag": false, "ambiguity_signal": false, "rationale": "Wrong card and unwanted cancel are genuine inconsistency."},
+    "100": {"route": "DECOMPOSE", "oracle_route": "LEAVE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 reduced pass rate from 20/20 to 14/20; safety-optimal oracle is LEAVE."},
+    "112": {"route": "DECOMPOSE", "oracle_route": "LEAVE", "failure_pattern": "volatile-tail", "artifact_flag": false, "ambiguity_signal": false, "rationale": "M11 was within correctness noise but cost-negative; cost-optimal oracle remains LEAVE."}
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "artifact_bucket": "sosog-bedrock-batch-769377363988",
+  "artifact_prefix": "vertical-expansion",
+  "global_budget_usd": 5500,
+  "reserve_usd": 200,
+  "subject_routes": [
+    "bedrock/us.anthropic.claude-sonnet-4-6",
+    "bedrock/global.anthropic.claude-sonnet-4-6"
+  ],
+  "cross_agent_model": "bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "tracks": {
+    "airline": {
+      "milestone": "M13",
+      "baseline_n": 1,
+      "corpus_n": 10,
+      "task_count": 50,
+      "local_concurrency": 2,
+      "budget_usd": 150
+    },
+    "appworld": {
+      "milestone": "M14",
+      "baseline_n": 1,
+      "corpus_n": 10,
+      "task_count": 60,
+      "local_concurrency": 2,
+      "budget_usd": 1200
+    },
+    "swe_verified": {
+      "milestone": "M15",
+      "baseline_n": 1,
+      "baseline_task_count": 500,
+      "corpus_n": 5,
+      "corpus_task_count": 60,
+      "local_concurrency": 4,
+      "budget_usd": 3000
+    },
+    "webarena": {
+      "milestone": "M16",
+      "baseline_n": 1,
+      "corpus_n": 5,
+      "task_count": 40,
+      "local_concurrency": 2,
+      "initial_concurrency": 1,
+      "budget_usd": 800
+    },
+    "haiku_probe": {
+      "task_count_per_vertical": 5,
+      "budget_usd": 150
+    }
+  },
+  "bedrock_governor": {
+    "initial_total_concurrency": 4,
+    "ramp_total_concurrency": 6,
+    "clean_rows_before_ramp": 20,
+    "retryable_errors": [
+      "ThrottlingException",
+      "RateLimitError",
+      "Too many tokens per minute",
+      "Too many tokens per day",
+      "ServiceUnavailableException"
+    ]
+  }
+}

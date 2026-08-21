@@ -1,0 +1,598 @@
+{
+  "predictions": [
+    {
+      "confidence": 0.94,
+      "expected_savings": 0.0,
+      "reason": "artifact or ambiguity signal",
+      "route": "LEAVE",
+      "task_id": "0",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.94,
+      "expected_savings": 0.0,
+      "reason": "artifact or ambiguity signal",
+      "route": "LEAVE",
+      "task_id": "1",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.187553772,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "5",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.181723752,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "6",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.166766208,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "7",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.183267252,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "8",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.185075352,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "9",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.075262236,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "10",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.108943464,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "11",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.94,
+      "expected_savings": 0.0,
+      "reason": "artifact or ambiguity signal",
+      "route": "LEAVE",
+      "task_id": "12",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.106265124,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "13",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.09278934,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "14",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.130226124,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "15",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.048028428,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "17",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.94,
+      "expected_savings": 0.0,
+      "reason": "artifact or ambiguity signal",
+      "route": "LEAVE",
+      "task_id": "18",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.207942672,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "20",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.131456808,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "22",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.16216452,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "23",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.081225732,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "25",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.081716712,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "26",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.1323294,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "27",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.08492175,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "30",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.259748412,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "31",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.289905756,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "32",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.104503476,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "33",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.1259937,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "34",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.168177996,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "35",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "41",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.222242244,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "42",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.09167802,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "48",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "49",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.070944552,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "50",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.10439058,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "51",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.109330956,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "52",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.097135836,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "53",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.156844296,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "55",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.1116465,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "56",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.044680944,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "57",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.209458536,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "58",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.068209764,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "61",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.096297936,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "64",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.054852168,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "65",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.103842564,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "66",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.084543816,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "69",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.92,
+      "expected_savings": 0.213359916,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "71",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.199860612,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "72",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.053978988,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "73",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "74",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.083755896,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "75",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.061501272,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "77",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.0545337,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "78",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "79",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.11550378,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "80",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.11413374,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "81",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.94,
+      "expected_savings": 0.0,
+      "reason": "artifact or ambiguity signal",
+      "route": "LEAVE",
+      "task_id": "82",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.11755002,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "83",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.11265786,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "84",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.090241536,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "85",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.20100486,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "86",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.0377322,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "87",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.10003644,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "88",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.120141924,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "90",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.95,
+      "expected_savings": 0.2006592,
+      "reason": "pass rate is at or below 2/10",
+      "route": "DROP",
+      "task_id": "91",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.10629276,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "92",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.113114736,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "93",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "94",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "96",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.0265428,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "97",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "98",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.78,
+      "expected_savings": 0.0,
+      "reason": "mid-rate genuine inconsistency without artifact flag",
+      "route": "LIFT",
+      "task_id": "99",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.0428265,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "100",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.261228996,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "101",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.97,
+      "expected_savings": 0.373413516,
+      "reason": ">=9/10 passes with one passing write skeleton",
+      "route": "PROMOTE",
+      "task_id": "102",
+      "vertical": "retail"
+    },
+    {
+      "confidence": 0.82,
+      "expected_savings": 0.05979495,
+      "reason": ">=9/10 passes, divergent skeletons, stable prefix ends before write",
+      "route": "DECOMPOSE",
+      "task_id": "112",
+      "vertical": "retail"
+    }
+  ],
+  "router": "v0",
+  "schema_version": 1
+}
