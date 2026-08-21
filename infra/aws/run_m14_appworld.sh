@@ -44,12 +44,14 @@ trap sync_artifacts EXIT
 sync_artifacts
 
 write_config() {
-  local dataset=$1 model=$2 path=$3
+  local dataset=$1 model=$2 path=$3 tasks_per_gen=$4
   jq --arg dataset "$dataset" --arg model "$model" \
     --arg prompt "$root_dir/experiments/prompts/react.txt" \
+    --argjson tasks_per_gen "$tasks_per_gen" \
     '.config.reader.dataset_name=$dataset
      | .config.models.action.generator_params.model=$model
-     | .config.models.action.prompt_file=$prompt' \
+     | .config.models.action.prompt_file=$prompt
+     | .config.reader.tasks_per_gen=$tasks_per_gen' \
     "$repo_dir/config/appworld_sonnet46.jsonnet" >"$path"
 }
 
@@ -61,7 +63,9 @@ run_phase() {
   local log="$artifact_dir/${phase}_t${trial}_us.log"
   local route_map="$artifact_dir/${phase}_t${trial}_model_routes.json"
   local marker_dir="$output_dir/recoma_output"
-  write_config "$dataset" "$model" "$config_path"
+  local tasks_per_gen=3
+  [[ $dataset == sosog_m14_smoke ]] && tasks_per_gen=1
+  write_config "$dataset" "$model" "$config_path" "$tasks_per_gen"
 
   set +e
   "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 | tee "$log"
@@ -99,7 +103,7 @@ target.write_text("\n".join(missing) + ("\n" if missing else ""))
 print(len(missing))
 PY
     if [[ -s $fallback_dataset_path ]]; then
-      write_config "$fallback_dataset" "$fallback_model" "$config_path"
+      write_config "$fallback_dataset" "$fallback_model" "$config_path" "$tasks_per_gen"
       "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 \
         | tee "$artifact_dir/${phase}_t${trial}_global.log"
     fi
@@ -116,7 +120,7 @@ target.write_text(json.dumps(routes, indent=2, sort_keys=True) + "\n")
 PY
   fi
 
-  write_config "$dataset" "$model" "$config_path"
+  write_config "$dataset" "$model" "$config_path" "$tasks_per_gen"
   "$venv/bin/appworld" evaluate "$experiment" "$dataset" --root "$root_dir"
 
   local run_id="m14-appworld-${phase}-t${trial}-${run_stamp}"

@@ -43,7 +43,12 @@ def main() -> None:
     dataset_dir = args.root / "data" / "datasets"
     dataset_dir.mkdir(parents=True, exist_ok=True)
     (dataset_dir / "sosog_m14_dev.txt").write_text("\n".join(selected) + "\n")
-    smoke = [selected[index] for index in (0, 1, 2, 3, 4)]
+    # AppWorld's reader requires a consistent variant count per scenario. A
+    # five-row smoke therefore uses variant 1 from five distinct scenarios and
+    # is run with num_tasks_per_scenario=1.
+    smoke = sorted(
+        (task_id for task_id in selected if task_id.endswith("_1")), key=stable_rank
+    )[:5]
     (dataset_dir / "sosog_m14_smoke.txt").write_text("\n".join(smoke) + "\n")
     payload = {
         "schema_version": 1,
