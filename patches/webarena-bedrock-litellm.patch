@@ -1,0 +1,96 @@
+diff --git a/llms/providers/openai_utils.py b/llms/providers/openai_utils.py
+index 4dcdad2..4ca8fd1 100644
+--- a/llms/providers/openai_utils.py
++++ b/llms/providers/openai_utils.py
+@@ -2,10 +2,12 @@
+ Adopted from https://github.com/zeno-ml/zeno-build/"""
+ 
+ import asyncio
++import json
+ import logging
+ import os
+ import random
+ import time
++from pathlib import Path
+ from typing import Any
+ 
+ import aiolimiter
+@@ -246,6 +248,62 @@ def generate_from_openai_chat_completion(
+     context_length: int,
+     stop_token: str | None = None,
+ ) -> str:
++    if model.startswith("bedrock/"):
++        import litellm
++
++        routes = [model]
++        fallback = os.environ.get("SOSOG_BEDROCK_FALLBACK_MODEL", "")
++        if fallback and fallback != model:
++            routes.append(fallback)
++        last_error = None
++        for index, route in enumerate(routes):
++            try:
++                response = litellm.completion(
++                    model=route,
++                    messages=messages,
++                    temperature=temperature,
++                    max_tokens=max_tokens,
++                    top_p=top_p,
++                    stop=[stop_token] if stop_token else None,
++                    caching=True,
++                )
++                try:
++                    cost = litellm.completion_cost(response, model=route)
++                except Exception:
++                    cost = 0.0
++                usage = getattr(response, "usage", None)
++                record = {
++                    "task_id": os.environ.get("SOSOG_WEB_TASK_ID", "unknown"),
++                    "model": route,
++                    "fallback_depth": index,
++                    "cost_usd": cost,
++                    "usage": usage.model_dump()
++                    if hasattr(usage, "model_dump")
++                    else dict(usage or {}),
++                    "timestamp": time.time(),
++                }
++                usage_log = os.environ.get("SOSOG_LLM_USAGE_LOG")
++                if usage_log:
++                    path = Path(usage_log)
++                    path.parent.mkdir(parents=True, exist_ok=True)
++                    with path.open("a", encoding="utf-8") as file:
++                        file.write(json.dumps(record, sort_keys=True) + "\n")
++                return response.choices[0].message.content
++            except Exception as error:
++                last_error = error
++                retryable = any(
++                    text.lower() in str(error).lower()
++                    for text in (
++                        "RateLimitError",
++                        "ThrottlingException",
++                        "Too many tokens",
++                        "ServiceUnavailable",
++                    )
++                )
++                if not retryable or index == len(routes) - 1:
++                    raise
++        assert last_error is not None
++        raise last_error
+     if "OPENAI_API_KEY" not in os.environ:
+         raise ValueError(
+             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
+diff --git a/llms/tokenizers.py b/llms/tokenizers.py
+index 1f6f338..b75af69 100644
+--- a/llms/tokenizers.py
++++ b/llms/tokenizers.py
+@@ -7,7 +7,10 @@ from transformers import LlamaTokenizer
+ class Tokenizer(object):
+     def __init__(self, provider: str, model_name: str) -> None:
+         if provider == "openai":
+-            self.tokenizer = tiktoken.encoding_for_model(model_name)
++            if model_name.startswith("bedrock/"):
++                self.tokenizer = tiktoken.get_encoding("cl100k_base")
++            else:
++                self.tokenizer = tiktoken.encoding_for_model(model_name)
+         elif provider == "huggingface":
+             self.tokenizer = LlamaTokenizer.from_pretrained(model_name)
+             # turn off adding special tokens automatically

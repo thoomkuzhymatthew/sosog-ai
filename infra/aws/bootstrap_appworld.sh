@@ -21,9 +21,13 @@ python3 -m venv "$venv"
 # The source repository's Git LFS quota is not a reliable installation path.
 # The official wheel contains the same encrypted runtime bundle and unpacks it
 # with `appworld install`, while the pinned checkout supplies experiment code.
-"$venv/bin/pip" install 'appworld==0.1.3.post1' 'click<8.3.0'
+"$venv/bin/pip" install 'appworld==0.1.3.post1' 'click<8.3.0' 'pydantic<2'
 "$venv/bin/appworld" install
 "$venv/bin/pip" install -e "$source_dir/experiments[simplified]"
+# The experiments extra does not cap Pydantic, while its pinned sqlmodel still
+# imports v1-only symbols. Re-assert the compatibility cap after dependency
+# resolution so a fresh bootstrap cannot silently upgrade to Pydantic v2.
+"$venv/bin/pip" install 'pydantic<2'
 
 install -d -o ubuntu -g ubuntu "$root_dir"
 "$venv/bin/appworld" download data --root "$root_dir" --with-setup

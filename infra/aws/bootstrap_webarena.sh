@@ -20,7 +20,21 @@ git -C "$source_dir" checkout "$commit"
 "$venv/bin/pip" install --upgrade pip wheel setuptools
 "$venv/bin/pip" install -r "$source_dir/requirements.txt"
 "$venv/bin/pip" install -e "$source_dir"
-"$venv/bin/python" -m playwright install chromium --with-deps
+# WebArena pins Playwright 1.37, whose Ubuntu dependency helper requests the
+# obsolete `libasound2` package name on Ubuntu 24.04. The AMI already carries
+# browser runtime libraries; install the pinned Chromium payload directly and
+# prove it launches instead of relying on that stale helper.
+"$venv/bin/python" -m playwright install chromium
+"$venv/bin/python" - <<'PY'
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as playwright:
+    browser = playwright.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.set_content("<title>webarena preflight</title>")
+    assert page.title() == "webarena preflight"
+    browser.close()
+PY
 docker info >/dev/null
 df -BG / | awk 'NR==2 {if (($4+0) < 800) exit 1}'
 
@@ -28,3 +42,5 @@ df -BG / | awk 'NR==2 {if (($4+0) < 800) exit 1}'
 # this preflight proves the official browser/evaluator stack before the large
 # downloads begin.
 printf '%s\n' "$commit" >"$status"
+bash /opt/sosog/sosog-ai/infra/aws/install_track_service.sh \
+  m16-webarena-sites /opt/sosog/sosog-ai/infra/aws/setup_webarena_sites.sh

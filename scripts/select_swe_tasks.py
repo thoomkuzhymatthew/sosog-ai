@@ -22,7 +22,7 @@ def main() -> None:
 
     from datasets import load_dataset
 
-    rows = list(load_dataset("princeton-nlp/SWE-Bench_Verified", split="test"))
+    rows = list(load_dataset("SWE-bench/SWE-bench_Verified", split="test"))
     lengths = sorted(len(row["problem_statement"]) for row in rows)
     low, high = lengths[len(lengths) // 3], lengths[(2 * len(lengths)) // 3]
 
@@ -53,7 +53,7 @@ def main() -> None:
     selected_ids = [row["instance_id"] for row in selected]
     payload = {
         "schema_version": 1,
-        "source_dataset": "princeton-nlp/SWE-Bench_Verified:test",
+        "source_dataset": "SWE-bench/SWE-bench_Verified:test",
         "selection": "round-robin over repository and problem-length tercile, SHA-256 ranked",
         "baseline_task_ids": all_ids,
         "task_ids": selected_ids,

@@ -33,7 +33,7 @@ mapfile -t golden_ids < <(jq -r '.golden_task_ids[]' "$selection")
 golden_id="m15-golden-${run_stamp}"
 cd "$swe_dir"
 "$venv/bin/python" -m swebench.harness.run_evaluation \
-  --dataset_name princeton-nlp/SWE-Bench_Verified --split test \
+  --dataset_name SWE-bench/SWE-bench_Verified --split test \
   --instance_ids "${golden_ids[@]}" --predictions_path gold --max_workers 3 \
   --run_id "$golden_id" --report_dir "$artifact_dir"
 golden_report=$(find "$artifact_dir" -maxdepth 1 -name "*.$golden_id.json" -print -quit)
@@ -86,7 +86,7 @@ evaluate_and_export() {
   mapfile -t eval_ids < <(jq -r '.[]' "$ids_json")
   local eval_id="m15-${phase}-t${trial}-${suffix}-${run_stamp}"
   "$venv/bin/python" -m swebench.harness.run_evaluation \
-    --dataset_name princeton-nlp/SWE-Bench_Verified --split test \
+    --dataset_name SWE-bench/SWE-bench_Verified --split test \
     --instance_ids "${eval_ids[@]}" --predictions_path "$output_dir/preds.json" \
     --max_workers 4 --run_id "$eval_id" --report_dir "$artifact_dir"
   local report
