@@ -84,6 +84,21 @@ def main() -> None:
     statuses: Counter[str] = Counter()
     store = None if args.no_remote else ResearchStore(StoreConfig.from_env())
 
+    if store is not None:
+        store.record_run(
+            {
+                "run_id": args.run_id,
+                "milestone": args.milestone,
+                "vertical": args.vertical,
+                "status": "RUNNING",
+                "subject_model": "bedrock/anthropic.claude-sonnet-4-6",
+                "harness_name": "tau2",
+                "harness_commit": args.harness_commit,
+                "config": {"phase": args.phase},
+                "cost_usd": 0,
+            }
+        )
+
     for simulation in data.get("simulations", []):
         task_id = str(simulation["task_id"])
         messages = simulation.get("messages") or []
@@ -168,7 +183,30 @@ def main() -> None:
         "models_seen": sorted({item["actual_model_route"] for item in traces}),
         "results_path": str(args.results),
         "trace_path": str(args.output_jsonl),
+        "database_indexed": bool(
+            store is not None
+            and store.config.database_configured
+            and store.last_db_error is None
+        ),
     }
+    if store is not None:
+        store.record_run(
+            {
+                "run_id": args.run_id,
+                "milestone": args.milestone,
+                "vertical": args.vertical,
+                "status": "COMPLETE" if not statuses.get("ERROR") else "PAUSED",
+                "subject_model": "bedrock/anthropic.claude-sonnet-4-6",
+                "harness_name": "tau2",
+                "harness_commit": args.harness_commit,
+                "config": {"phase": args.phase},
+                "cost_usd": round(sum(costs), 6),
+                "completed_at": max(
+                    (item.get("end_time") for item in data.get("simulations", []) if item.get("end_time")),
+                    default=None,
+                ),
+            }
+        )
     args.summary.parent.mkdir(parents=True, exist_ok=True)
     args.summary.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
     if summary["cost_usd"] > float(os.environ.get("SOSOG_TRACK_BUDGET_USD", "inf")):

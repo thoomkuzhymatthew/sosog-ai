@@ -1,0 +1,19 @@
+[Unit]
+Description=SOSOG benchmark track %i
+After=network-online.target docker.service amazon-ssm-agent.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/sosog
+ExecStart=/bin/bash /opt/sosog/track-commands/%i
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=no
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sosog-%i
+
+[Install]
+WantedBy=multi-user.target

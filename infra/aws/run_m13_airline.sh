@@ -25,11 +25,12 @@ sync_artifacts() {
 }
 trap sync_artifacts EXIT
 
-if [[ ! -d "$repo_dir/.git" ]]; then
-  git clone https://github.com/thoomkuzhymatthew/sosog-ai.git "$repo_dir"
-else
-  git -C "$repo_dir" pull --ff-only
+if [[ ! -f "$repo_dir/config/vertical_expansion.json" ]]; then
+  echo "pinned SOSOG release is not deployed at $repo_dir" >&2
+  exit 1
 fi
+
+source "$repo_dir/infra/aws/load_research_env.sh"
 
 if [[ ! -d "$tau2_dir/.git" ]]; then
   git clone --filter=blob:none https://github.com/sierra-research/tau2-bench "$tau2_dir"

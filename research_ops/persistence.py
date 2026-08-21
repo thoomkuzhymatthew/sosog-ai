@@ -25,6 +25,7 @@ class StoreConfig:
     db_name: str | None = None
     db_user: str | None = None
     db_password: str | None = None
+    db_required: bool = False
 
     @classmethod
     def from_env(cls) -> "StoreConfig":
@@ -42,6 +43,7 @@ class StoreConfig:
             db_name=os.environ.get("DB_NAME"),
             db_user=os.environ.get("DB_USER"),
             db_password=os.environ.get("DB_PASSWORD"),
+            db_required=os.environ.get("SOSOG_DB_REQUIRED") == "1",
         )
 
     @property
@@ -52,6 +54,8 @@ class StoreConfig:
 class ResearchStore:
     def __init__(self, config: StoreConfig):
         self.config = config
+        self.last_db_error: str | None = None
+        self._database_disabled = False
 
     @staticmethod
     def _render(value: dict[str, Any]) -> bytes:
@@ -77,18 +81,25 @@ class ResearchStore:
         return f"s3://{self.config.bucket}/{key}"
 
     def _connect(self):
-        if not self.config.database_configured:
+        if not self.config.database_configured or self._database_disabled:
             return None
-        import psycopg
+        try:
+            import psycopg
 
-        return psycopg.connect(
-            host=self.config.db_host,
-            port=self.config.db_port,
-            dbname=self.config.db_name,
-            user=self.config.db_user,
-            password=self.config.db_password,
-            connect_timeout=5,
-        )
+            return psycopg.connect(
+                host=self.config.db_host,
+                port=self.config.db_port,
+                dbname=self.config.db_name,
+                user=self.config.db_user,
+                password=self.config.db_password,
+                connect_timeout=5,
+            )
+        except Exception as exc:
+            self.last_db_error = f"{type(exc).__name__}: {exc}"
+            self._database_disabled = True
+            if self.config.db_required:
+                raise
+            return None
 
     def record_run(self, value: dict[str, Any]) -> None:
         required = {"run_id", "milestone", "vertical", "status", "subject_model", "harness_name", "harness_commit"}
