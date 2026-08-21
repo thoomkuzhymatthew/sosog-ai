@@ -16,7 +16,7 @@ git -C "$source_dir" checkout "$commit"
 
 /opt/sosog/runtime/bin/pip install --upgrade uv
 /opt/sosog/runtime/bin/uv python install 3.11
-/opt/sosog/runtime/bin/uv venv --clear --python 3.11 "$venv"
+/opt/sosog/runtime/bin/uv venv --clear --seed --python 3.11 "$venv"
 "$venv/bin/pip" install --upgrade pip wheel setuptools
 "$venv/bin/pip" install -r "$source_dir/requirements.txt"
 "$venv/bin/pip" install -e "$source_dir"

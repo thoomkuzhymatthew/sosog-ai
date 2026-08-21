@@ -21,7 +21,7 @@ python3 -m venv "$venv"
 # The source repository's Git LFS quota is not a reliable installation path.
 # The official wheel contains the same encrypted runtime bundle and unpacks it
 # with `appworld install`, while the pinned checkout supplies experiment code.
-"$venv/bin/pip" install 'appworld==0.1.3'
+"$venv/bin/pip" install 'appworld==0.1.3.post1' 'click<8.3.0'
 "$venv/bin/appworld" install
 "$venv/bin/pip" install -e "$source_dir/experiments[simplified]"
 
@@ -31,3 +31,5 @@ install -d -o ubuntu -g ubuntu "$root_dir"
   --include-only-first-n-tasks 5 --num-processes 2
 
 printf '%s\n' "$commit" >"$status"
+bash /opt/sosog/sosog-ai/infra/aws/install_track_service.sh \
+  m14-appworld /opt/sosog/sosog-ai/infra/aws/run_m14_appworld.sh

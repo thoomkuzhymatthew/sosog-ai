@@ -28,3 +28,5 @@ python3 -m venv "$venv"
 docker info >/dev/null
 
 printf 'swebench=%s mini=%s\n' "$swebench_commit" "$mini_commit" >"$status"
+bash /opt/sosog/sosog-ai/infra/aws/install_track_service.sh \
+  m15-swe-verified /opt/sosog/sosog-ai/infra/aws/run_m15_swe_verified.sh
