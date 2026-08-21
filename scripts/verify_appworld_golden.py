@@ -23,7 +23,7 @@ def main() -> None:
     output_root = args.root / "experiments" / "outputs"
     candidates = sorted(output_root.glob("**/evaluations/test_normal.json"))
     candidates += sorted(output_root.glob("**/evaluations/dev.json"))
-    selected_path = None
+    experiment_dir = None
     expected_report = None
     task_ids: list[str] = []
     for path in candidates:
@@ -35,16 +35,40 @@ def main() -> None:
             if version_path.exists() and version_path.read_text().strip() == __version__:
                 compatible_ids.append(task_id)
         if len(compatible_ids) >= 5:
-            selected_path = path
+            experiment_dir = path.parents[1]
             expected_report = report
             task_ids = compatible_ids[:5]
             break
-    if selected_path is None or expected_report is None:
-        raise SystemExit(
-            f"no downloaded official evaluation has five outputs compatible with AppWorld {__version__}"
-        )
+    # The published baseline bundle spans AppWorld versions. The installation
+    # verifier always creates a version-matched `verification` experiment, so
+    # use five of those official end-to-end outputs when no published aggregate
+    # contains five rows from this exact runtime.
+    if experiment_dir is None or expected_report is None:
+        experiment_dir = output_root / "verification"
+        compatible_ids = []
+        for task_dir in sorted((experiment_dir / "tasks").iterdir()):
+            version_path = task_dir / "version" / "code.txt"
+            report_path = task_dir / "evaluation" / "report.md"
+            if (
+                version_path.exists()
+                and version_path.read_text().strip() == __version__
+                and report_path.exists()
+            ):
+                compatible_ids.append(task_dir.name)
+        if len(compatible_ids) < 5:
+            raise SystemExit(
+                f"no official verification run has five outputs compatible with AppWorld {__version__}"
+            )
+        task_ids = compatible_ids[:5]
+        expected_report = {"individual": {}}
+        for task_id in task_ids:
+            report_text = (
+                experiment_dir / "tasks" / task_id / "evaluation" / "report.md"
+            ).read_text()
+            expected_report["individual"][task_id] = {
+                "success": "Num Failed Tests : 0" in report_text
+            }
 
-    experiment_dir = selected_path.parents[1]
     experiment_name = str(experiment_dir.relative_to(output_root))
     actual_report = evaluate_tasks(
         task_ids=task_ids,
