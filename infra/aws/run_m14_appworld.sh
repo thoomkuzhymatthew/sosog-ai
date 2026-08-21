@@ -18,6 +18,16 @@ export SOSOG_ARTIFACT_BUCKET=${SOSOG_ARTIFACT_BUCKET:-sosog-bedrock-batch-769377
 export SOSOG_ARTIFACT_PREFIX=${SOSOG_ARTIFACT_PREFIX:-vertical-expansion}
 mkdir -p "$artifact_dir" "$source_dir/experiments/configs/sosog_m14"
 source "$repo_dir/infra/aws/load_research_env.sh"
+export SOSOG_BEDROCK_FALLBACK_MODEL=$fallback_model
+site_packages=$("$venv/bin/python" -c 'import site; print(site.getsitepackages()[0])')
+patch_file="$repo_dir/patches/recoma-bedrock-converse.patch"
+if patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
+  patch -s -p1 -d "$site_packages" <"$patch_file"
+elif ! grep -q 'SOSOG: call modern Bedrock' \
+  "$site_packages/recoma/models/impl/lite_llm_generator.py"; then
+  echo "Recoma Bedrock patch does not apply cleanly" >&2
+  exit 1
+fi
 mkdir -p "$root_dir/experiments"
 # `appworld verify tasks` creates experiments/outputs under the data root before
 # the baseline runner starts. Add the three source-only trees individually so

@@ -29,6 +29,15 @@ python3 -m venv "$venv"
 "$venv/bin/pip" install treelib 'openai==1.55.3' tenacity registrable sympy \
   'gradio==3.50.2'
 "$venv/bin/pip" uninstall -y appworld-agents || true
+site_packages=$("$venv/bin/python" -c 'import site; print(site.getsitepackages()[0])')
+patch_file=/opt/sosog/sosog-ai/patches/recoma-bedrock-converse.patch
+if patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
+  patch -s -p1 -d "$site_packages" <"$patch_file"
+elif ! grep -q 'SOSOG: call modern Bedrock' \
+  "$site_packages/recoma/models/impl/lite_llm_generator.py"; then
+  echo "Recoma Bedrock patch does not apply cleanly" >&2
+  exit 1
+fi
 "$venv/bin/appworld" install
 
 install -d -o ubuntu -g ubuntu "$root_dir"

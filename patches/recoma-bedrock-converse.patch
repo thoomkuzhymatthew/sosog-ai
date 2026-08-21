@@ -1,0 +1,113 @@
+diff --git a/recoma/models/impl/lite_llm_generator.py b/recoma/models/impl/lite_llm_generator.py
+index 2d13903..bd69a91 100644
+--- a/recoma/models/impl/lite_llm_generator.py
++++ b/recoma/models/impl/lite_llm_generator.py
+@@ -2,7 +2,10 @@ import logging
+ import os
+ from typing import Any
+ import json
++import boto3
+ import litellm
++from botocore.config import Config
++from botocore.exceptions import ClientError
+ from diskcache import Cache
+ from litellm import completion, completion_cost
+ from tenacity import (before_sleep_log, retry,  # for exponential backoff
+@@ -48,6 +51,88 @@ class LiteLLMGenerator(LMGenerator):
+         self.use_cache = use_cache
+         self.model = model
+ 
++    def generate_bedrock(self, messages_json, formatted_messages, state):
++        """SOSOG: call modern Bedrock inference profiles without changing Recoma."""
++        system = []
++        messages = []
++        for message in messages_json:
++            role = message.get("role", "user")
++            content = str(message.get("content") or "")
++            if role == "system":
++                system.append({"text": content})
++            else:
++                messages.append(
++                    {"role": role if role in ("user", "assistant") else "user",
++                     "content": [{"text": content}]}
++                )
++        routes = [self.model]
++        fallback = os.environ.get("SOSOG_BEDROCK_FALLBACK_MODEL", "")
++        if "sonnet-4-6" in self.model and fallback and fallback != self.model:
++            routes.append(fallback)
++        client = boto3.client(
++            "bedrock-runtime",
++            region_name=os.environ.get("AWS_REGION", "us-east-1"),
++            config=Config(
++                connect_timeout=10,
++                read_timeout=300,
++                retries={"max_attempts": 3, "mode": "standard"},
++            ),
++        )
++        response = None
++        actual_route = self.model
++        for index, route in enumerate(routes):
++            try:
++                kwargs = {
++                    "modelId": route.removeprefix("bedrock/"),
++                    "messages": messages,
++                    "inferenceConfig": {
++                        "maxTokens": self.generator_params.max_tokens,
++                        "temperature": self.generator_params.temperature,
++                    },
++                }
++                if system:
++                    kwargs["system"] = system
++                response = client.converse(**kwargs)
++                actual_route = route
++                break
++            except ClientError as error:
++                code = error.response.get("Error", {}).get("Code", "")
++                retryable = code in {
++                    "ThrottlingException", "ServiceUnavailableException",
++                    "ModelTimeoutException", "InternalServerException",
++                }
++                if not retryable or index == len(routes) - 1:
++                    raise
++        if response is None:
++            raise RuntimeError("Bedrock Converse returned no response")
++        usage = response.get("usage", {})
++        prompt_tokens = int(usage.get("inputTokens", 0))
++        completion_tokens = int(usage.get("outputTokens", 0))
++        input_rate, output_rate = (
++            (0.000001, 0.000005) if "haiku" in actual_route
++            else (0.000003, 0.000015)
++        )
++        prefix = "litellm.{}".format(actual_route)
++        state.update_counter(prefix + ".calls", 1)
++        state.update_counter(prefix + ".prompt_tokens", prompt_tokens)
++        state.update_counter(prefix + ".completion_tokens", completion_tokens)
++        state.update_counter(prefix + ".total_tokens", prompt_tokens + completion_tokens)
++        state.update_counter(
++            prefix + ".cost",
++            prompt_tokens * input_rate + completion_tokens * output_rate,
++        )
++        text_response = "".join(
++            item.get("text", "")
++            for item in response["output"]["message"].get("content", [])
++        )
++        for stop_t in self.generator_params.stop:
++            if stop_t in text_response:
++                text_response = text_response[:text_response.index(stop_t)]
++        generation_outputs = GenerationOutputs(outputs=[text_response.lstrip()], scores=[])
++        if len(messages_json) > 1:
++            state.get_open_node().add_input_output_prompt(formatted_messages, generation_outputs)
++        return generation_outputs
++
+     @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(10),
+            before_sleep=before_sleep_log(logger, logging.DEBUG))
+     def completion_with_backoff(self, function, **kwargs) -> dict[Any, Any]:
+@@ -57,6 +142,8 @@ class LiteLLMGenerator(LMGenerator):
+         messages_json = self.extract_role_messages(input_str)
+         formatted_messages = json.dumps(messages_json, indent=2)
+         logger.debug("Messages:\n{}\n...\n{}".format(formatted_messages[:200], formatted_messages[-200:]))
++        if self.model.startswith("bedrock/"):
++            return self.generate_bedrock(messages_json, formatted_messages, state)
+         generator_args = self.generator_params_to_args(self.generator_params)
+         generator_args["messages"] = messages_json
+         generator_args["model"] = self.model
