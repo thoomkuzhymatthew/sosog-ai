@@ -9,13 +9,13 @@ run_stamp=${SOSOG_RUN_STAMP:-$(date -u +%Y%m%dT%H%M%SZ)}
 primary_model=bedrock/us.anthropic.claude-sonnet-4-6
 fallback_model=bedrock/global.anthropic.claude-sonnet-4-6
 haiku_model=bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0
-selection="$artifact_dir/swe_verified_60_task_ids.json"
+selection="$artifact_dir/swe_verified_30_task_ids.json"
 
 export AWS_DEFAULT_REGION=us-east-1
 export AWS_REGION=us-east-1
 export SOSOG_ARTIFACT_BUCKET=${SOSOG_ARTIFACT_BUCKET:-sosog-bedrock-batch-769377363988}
 export SOSOG_ARTIFACT_PREFIX=${SOSOG_ARTIFACT_PREFIX:-vertical-expansion}
-export MSWEA_GLOBAL_COST_LIMIT=3000
+export MSWEA_GLOBAL_COST_LIMIT=650
 export MSWEA_COST_TRACKING=ignore_errors
 mkdir -p "$artifact_dir"
 source "$repo_dir/infra/aws/load_research_env.sh"
@@ -28,7 +28,8 @@ sync_artifacts() {
 trap sync_artifacts EXIT
 
 "$venv/bin/pip" install --upgrade boto3 'psycopg[binary]' >/dev/null
-"$venv/bin/python" "$repo_dir/scripts/select_swe_tasks.py" --output "$selection"
+"$venv/bin/python" "$repo_dir/scripts/select_swe_tasks.py" \
+  --count 30 --output "$selection"
 mapfile -t golden_ids < <(jq -r '.golden_task_ids[]' "$selection")
 golden_id="m15-golden-${run_stamp}"
 cd "$swe_dir"
@@ -67,11 +68,11 @@ run_generation() {
 }
 
 retry_quota_failures() {
-  local phase=$1 trial=$2 output_dir=$3 route_map=$4
+  local phase=$1 trial=$2 output_dir=$3 route_map=$4 allowed_ids=$5
   local retry_ids="$artifact_dir/${phase}_t${trial}_retry_ids.json"
   local retry_filter
   retry_filter=$("$venv/bin/python" "$repo_dir/scripts/swe_retry_filter.py" \
-    "$output_dir" --ids-output "$retry_ids")
+    "$output_dir" --ids-output "$retry_ids" --only-ids "$allowed_ids")
   "$venv/bin/python" "$repo_dir/scripts/mark_swe_routes.py" \
     "$output_dir/preds.json" "$route_map" "$primary_model"
   if [[ -n $retry_filter ]]; then
@@ -104,41 +105,45 @@ evaluate_and_export() {
 
 baseline_output="$artifact_dir/baseline-output"
 baseline_routes="$artifact_dir/baseline_model_routes.json"
-for start in $(seq 0 20 480); do
-  end=$((start + 20))
-  run_generation baseline 0 "$baseline_output" "" "$start:$end"
-  retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes"
-  ids_file="$artifact_dir/baseline_${start}_${end}_ids.json"
-  jq --argjson start "$start" --argjson end "$end" \
-    '.baseline_task_ids[$start:$end]' "$selection" >"$ids_file"
+baseline_ids="$artifact_dir/baseline_ids.json"
+jq '.task_ids' "$selection" >"$baseline_ids"
+baseline_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
+if [[ ! -f $artifact_dir/baseline_t0_all_summary.json ]]; then
+  run_generation baseline 0 "$baseline_output" "$baseline_filter" ""
+  retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes" "$baseline_ids"
   evaluate_and_export baseline 0 "$baseline_output" "$baseline_routes" \
-    "$ids_file" "${start}-${end}"
-done
+    "$baseline_ids" all
+fi
 
 corpus_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
+jq '.task_ids' "$selection" >"$artifact_dir/corpus_ids.json"
 for trial in $(seq 0 4); do
   corpus_output="$artifact_dir/corpus-t${trial}-output"
   corpus_routes="$artifact_dir/corpus_t${trial}_model_routes.json"
-  run_generation corpus "$trial" "$corpus_output" "$corpus_filter" ""
-  retry_quota_failures corpus "$trial" "$corpus_output" "$corpus_routes"
-  jq '.task_ids' "$selection" >"$artifact_dir/corpus_ids.json"
-  evaluate_and_export corpus "$trial" "$corpus_output" "$corpus_routes" \
-    "$artifact_dir/corpus_ids.json" all
+  if [[ ! -f $artifact_dir/corpus_t${trial}_all_summary.json ]]; then
+    run_generation corpus "$trial" "$corpus_output" "$corpus_filter" ""
+    retry_quota_failures corpus "$trial" "$corpus_output" "$corpus_routes" \
+      "$artifact_dir/corpus_ids.json"
+    evaluate_and_export corpus "$trial" "$corpus_output" "$corpus_routes" \
+      "$artifact_dir/corpus_ids.json" all
+  fi
 done
 
 haiku_filter=$(jq -r '.haiku_task_ids | "^(" + join("|") + ")$"' "$selection")
 haiku_output="$artifact_dir/haiku-output"
 haiku_routes="$artifact_dir/haiku_model_routes.json"
-run_generation haiku 0 "$haiku_output" "$haiku_filter" "" "$haiku_model"
-"$venv/bin/python" "$repo_dir/scripts/mark_swe_routes.py" \
-  "$haiku_output/preds.json" "$haiku_routes" "$haiku_model"
 jq '.haiku_task_ids' "$selection" >"$artifact_dir/haiku_ids.json"
-evaluate_and_export haiku 0 "$haiku_output" "$haiku_routes" \
-  "$artifact_dir/haiku_ids.json" all
+if [[ ! -f $artifact_dir/haiku_t0_all_summary.json ]]; then
+  run_generation haiku 0 "$haiku_output" "$haiku_filter" "" "$haiku_model"
+  "$venv/bin/python" "$repo_dir/scripts/mark_swe_routes.py" \
+    "$haiku_output/preds.json" "$haiku_routes" "$haiku_model"
+  evaluate_and_export haiku 0 "$haiku_output" "$haiku_routes" \
+    "$artifact_dir/haiku_ids.json" all
+fi
 
 total_cost=$(jq -s '[.[].cost_usd] | add // 0' "$artifact_dir"/*_summary.json)
-if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 3000)}'; then
-  echo "SWE Verified track exceeded its $3000 budget: $total_cost" >&2
+if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 650)}'; then
+  echo "SWE Verified track exceeded its $650 budget: $total_cost" >&2
   exit 1
 fi
 printf 'complete cost_usd=%s\n' "$total_cost" >"$artifact_dir/status.txt"

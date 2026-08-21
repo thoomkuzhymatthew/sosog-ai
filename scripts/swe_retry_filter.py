@@ -19,12 +19,19 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output_dir", type=Path)
     parser.add_argument("--ids-output", type=Path, required=True)
+    parser.add_argument("--only-ids", type=Path)
     args = parser.parse_args()
+    allowed_ids = None
+    if args.only_ids:
+        allowed_ids = set(json.loads(args.only_ids.read_text()))
     predictions_path = args.output_dir / "preds.json"
     predictions = json.loads(predictions_path.read_text()) if predictions_path.exists() else {}
     retry_ids = []
     for path in sorted(args.output_dir.glob("*/*.traj.json")):
         data = json.loads(path.read_text())
+        task_id = data.get("instance_id") or path.parent.name
+        if allowed_ids is not None and task_id not in allowed_ids:
+            continue
         blob = json.dumps(
             {
                 "exit_status": data.get("info", {}).get("exit_status"),
@@ -34,7 +41,7 @@ def main() -> None:
             default=str,
         )
         if RETRYABLE.search(blob):
-            retry_ids.append(data.get("instance_id") or path.parent.name)
+            retry_ids.append(task_id)
     retry_ids = sorted(set(retry_ids))
     for task_id in retry_ids:
         predictions.pop(task_id, None)

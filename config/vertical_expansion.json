@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact_bucket": "sosog-bedrock-batch-769377363988",
   "artifact_prefix": "vertical-expansion",
-  "global_budget_usd": 5500,
+  "global_budget_usd": 1700,
   "reserve_usd": 200,
   "subject_routes": [
     "bedrock/us.anthropic.claude-sonnet-4-6",
@@ -21,19 +21,19 @@
     "appworld": {
       "milestone": "M14",
       "baseline_n": 1,
-      "corpus_n": 10,
+      "corpus_n": 5,
       "task_count": 60,
       "local_concurrency": 2,
-      "budget_usd": 1200
+      "budget_usd": 600
     },
     "swe_verified": {
       "milestone": "M15",
       "baseline_n": 1,
-      "baseline_task_count": 500,
+      "baseline_task_count": 30,
       "corpus_n": 5,
-      "corpus_task_count": 60,
+      "corpus_task_count": 30,
       "local_concurrency": 4,
-      "budget_usd": 3000
+      "budget_usd": 650
     },
     "webarena": {
       "milestone": "M16",
@@ -42,11 +42,12 @@
       "task_count": 40,
       "local_concurrency": 2,
       "initial_concurrency": 1,
-      "budget_usd": 800
+      "budget_usd": 0,
+      "status": "paused_before_paid_inference"
     },
     "haiku_probe": {
       "task_count_per_vertical": 5,
-      "budget_usd": 150
+      "budget_usd": 100
     }
   },
   "bedrock_governor": {

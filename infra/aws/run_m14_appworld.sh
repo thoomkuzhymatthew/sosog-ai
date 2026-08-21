@@ -78,14 +78,35 @@ run_phase() {
   local log="$artifact_dir/${phase}_t${trial}_us.log"
   local route_map="$artifact_dir/${phase}_t${trial}_model_routes.json"
   local marker_dir="$output_dir/recoma_output"
+  local run_dataset=$dataset
+  local resume_dataset="sosog_m14_${phase}_t${trial}_resume"
+  local resume_dataset_path="$root_dir/data/datasets/${resume_dataset}.txt"
+  local run_agent=1
   local tasks_per_gen=3
   [[ $dataset == sosog_m14_smoke ]] && tasks_per_gen=1
-  write_config "$dataset" "$model" "$config_path" "$tasks_per_gen"
+  "$venv/bin/python" - "$root_dir" "$marker_dir" "$dataset" "$resume_dataset_path" <<'PY'
+import sys
+from pathlib import Path
+root, markers, dataset, target = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], Path(sys.argv[4])
+ids = (root / "data" / "datasets" / f"{dataset}.txt").read_text().split()
+missing = [task_id for task_id in ids if not (markers / f"{task_id}_data.json").exists()]
+target.write_text("\n".join(missing) + ("\n" if missing else ""))
+print(len(missing))
+PY
+  if [[ -s $resume_dataset_path ]]; then
+    run_dataset=$resume_dataset
+  else
+    run_agent=0
+  fi
+  write_config "$run_dataset" "$model" "$config_path" "$tasks_per_gen"
 
-  set +e
-  "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 | tee "$log"
-  local primary_rc=${PIPESTATUS[0]}
-  set -e
+  local primary_rc=0
+  if (( run_agent )); then
+    set +e
+    "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 | tee "$log"
+    primary_rc=${PIPESTATUS[0]}
+    set -e
+  fi
 
   "$venv/bin/python" - "$output_dir" "$dataset" "$model" "$route_map" <<'PY'
 import json, sys
@@ -161,22 +182,24 @@ PY
   sync_artifacts
 }
 
-run_phase smoke sosog_m14_smoke 0 1
-run_phase baseline sosog_m14_dev 0 1
-for trial in $(seq 0 9); do
+[[ -f $artifact_dir/smoke_t0_summary.json ]] || run_phase smoke sosog_m14_smoke 0 1
+[[ -f $artifact_dir/baseline_t0_summary.json ]] || run_phase baseline sosog_m14_dev 0 1
+for trial in $(seq 0 4); do
   workers=1
   if /opt/sosog/runtime/bin/aws s3api head-object --bucket "$SOSOG_ARTIFACT_BUCKET" \
     --key "${SOSOG_ARTIFACT_PREFIX}/m13-airline-20260821T164841Z/baseline_summary.json" \
     >/dev/null 2>&1; then
     workers=2
   fi
-  run_phase corpus sosog_m14_dev "$trial" "$workers"
+  [[ -f $artifact_dir/corpus_t${trial}_summary.json ]] \
+    || run_phase corpus sosog_m14_dev "$trial" "$workers"
 done
-run_phase haiku sosog_m14_smoke 0 1 "$haiku_model"
+[[ -f $artifact_dir/haiku_t0_summary.json ]] \
+  || run_phase haiku sosog_m14_smoke 0 1 "$haiku_model"
 
 total_cost=$(jq -s '[.[].cost_usd] | add // 0' "$artifact_dir"/*_summary.json)
-if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 1200)}'; then
-  echo "AppWorld track exceeded its $1200 budget: $total_cost" >&2
+if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 600)}'; then
+  echo "AppWorld track exceeded its $600 budget: $total_cost" >&2
   exit 1
 fi
 printf 'complete cost_usd=%s\n' "$total_cost" >"$artifact_dir/status.txt"

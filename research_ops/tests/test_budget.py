@@ -1,4 +1,6 @@
 from decimal import Decimal
+import json
+from pathlib import Path
 
 import pytest
 
@@ -19,3 +21,11 @@ def test_budget_guard_rejects_event_over_cap_without_mutating(tmp_path):
     with pytest.raises(BudgetExceeded):
         guard.record("0.26")
     assert guard.total() == Decimal("0.75")
+
+
+def test_vertical_expansion_allocations_match_global_budget():
+    root = Path(__file__).resolve().parents[2]
+    config = json.loads((root / "config" / "vertical_expansion.json").read_text())
+    allocated = sum(track["budget_usd"] for track in config["tracks"].values())
+
+    assert allocated + config["reserve_usd"] == config["global_budget_usd"]

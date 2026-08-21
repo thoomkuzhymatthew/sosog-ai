@@ -85,6 +85,14 @@ run_phase() {
   sync_artifacts
 }
 
+paid_gate=/opt/sosog/state/webarena-paid-run.approved
+if [[ ! -f $paid_gate ]]; then
+  printf 'paused-before-paid-inference\n' >"$artifact_dir/status.txt"
+  sync_artifacts
+  echo "WebArena sites are ready; paid inference is paused pending explicit approval."
+  exit 0
+fi
+
 run_phase smoke 0 '.smoke_task_ids[]'
 bash "$repo_dir/infra/aws/reset_webarena_sites.sh"
 "$venv/bin/python" browser_env/auto_login.py
