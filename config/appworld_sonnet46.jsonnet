@@ -42,7 +42,7 @@
         "reader": {
             "type": "appworld_reader",
             "dataset_name": "sosog_m14_dev",
-            "tasks_per_gen": 1
+            "tasks_per_gen": 3
         }
     }
 }
