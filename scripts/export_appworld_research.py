@@ -37,6 +37,16 @@ def usage_cost(usage: dict[str, Any], route: str) -> float:
     return round(prompt_tokens * 0.000003 + completion_tokens * 0.000015, 10)
 
 
+def observed_model_routes(usage: dict[str, Any]) -> list[str]:
+    prefix = "litellm."
+    suffix = ".calls"
+    return sorted(
+        key[len(prefix) : -len(suffix)]
+        for key, value in usage.items()
+        if key.startswith(prefix) and key.endswith(suffix) and float(value or 0) > 0
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
@@ -85,7 +95,11 @@ def main() -> None:
         status = "COMPLETE" if task_eval is not None else "ERROR"
         statuses[status] += 1
         passed = bool(task_eval and task_eval.get("success"))
-        actual_route = route_map.get(task_id, "unknown")
+        observed_routes = observed_model_routes(usage)
+        actual_route = next(
+            (route for route in observed_routes if "/global." in route),
+            observed_routes[0] if observed_routes else route_map.get(task_id, "unknown"),
+        )
         cost = usage_cost(usage, actual_route)
         row = {
             "schema_version": 1,
@@ -115,7 +129,12 @@ def main() -> None:
                     "requested_model_route", "actual_model_route", "fallback_depth", "usage", "cost_usd",
                 )},
                 "error": None if status == "COMPLETE" else {"reason": "missing evaluation"},
-                "metadata": {"milestone": "M14", "vertical": "appworld", "phase": args.phase},
+                "metadata": {
+                    "milestone": "M14",
+                    "vertical": "appworld",
+                    "phase": args.phase,
+                    "observed_model_routes": observed_routes,
+                },
                 "trace": row,
             }
         )

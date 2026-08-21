@@ -94,8 +94,19 @@ output, dataset, model, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], Pa
 dataset_file = Path("/opt/sosog/appworld-root/data/datasets") / f"{dataset}.txt"
 routes = {}
 for task_id in dataset_file.read_text().split():
-    if (output / "recoma_output" / f"{task_id}_data.json").exists():
-        routes[task_id] = model
+    marker = output / "recoma_output" / f"{task_id}_data.json"
+    if not marker.exists():
+        continue
+    usage = json.loads(marker.read_text()).get("metadata", {})
+    observed = sorted(
+        key[len("litellm."):-len(".calls")]
+        for key, value in usage.items()
+        if key.startswith("litellm.") and key.endswith(".calls") and float(value or 0) > 0
+    )
+    routes[task_id] = next(
+        (route for route in observed if "/global." in route),
+        observed[0] if observed else model,
+    )
 target.write_text(json.dumps(routes, indent=2, sort_keys=True) + "\n")
 PY
 
