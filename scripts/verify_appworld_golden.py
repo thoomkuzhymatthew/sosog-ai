@@ -16,22 +16,34 @@ def main() -> None:
     args = parser.parse_args()
 
     os.environ["APPWORLD_ROOT"] = str(args.root)
-    from appworld import update_root
+    from appworld import __version__, update_root
     from appworld.evaluator import evaluate_tasks
 
     update_root(str(args.root))
     output_root = args.root / "experiments" / "outputs"
     candidates = sorted(output_root.glob("**/evaluations/test_normal.json"))
     candidates += sorted(output_root.glob("**/evaluations/dev.json"))
-    selected_path = next(
-        (path for path in candidates if len(json.loads(path.read_text()).get("individual", {})) >= 5),
-        None,
-    )
-    if selected_path is None:
-        raise SystemExit("no official AppWorld evaluation with five tasks was downloaded")
+    selected_path = None
+    expected_report = None
+    task_ids: list[str] = []
+    for path in candidates:
+        report = json.loads(path.read_text())
+        experiment_dir = path.parents[1]
+        compatible_ids = []
+        for task_id in sorted(report.get("individual", {})):
+            version_path = experiment_dir / "tasks" / task_id / "version" / "code.txt"
+            if version_path.exists() and version_path.read_text().strip() == __version__:
+                compatible_ids.append(task_id)
+        if len(compatible_ids) >= 5:
+            selected_path = path
+            expected_report = report
+            task_ids = compatible_ids[:5]
+            break
+    if selected_path is None or expected_report is None:
+        raise SystemExit(
+            f"no downloaded official evaluation has five outputs compatible with AppWorld {__version__}"
+        )
 
-    expected_report = json.loads(selected_path.read_text())
-    task_ids = sorted(expected_report["individual"])[:5]
     experiment_dir = selected_path.parents[1]
     experiment_name = str(experiment_dir.relative_to(output_root))
     actual_report = evaluate_tasks(
@@ -52,6 +64,7 @@ def main() -> None:
     payload = {
         "schema_version": 1,
         "harness": "appworld",
+        "appworld_version": __version__,
         "experiment_name": experiment_name,
         "task_ids": task_ids,
         "expected": expected,
