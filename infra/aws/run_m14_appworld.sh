@@ -18,9 +18,15 @@ export SOSOG_ARTIFACT_BUCKET=${SOSOG_ARTIFACT_BUCKET:-sosog-bedrock-batch-769377
 export SOSOG_ARTIFACT_PREFIX=${SOSOG_ARTIFACT_PREFIX:-vertical-expansion}
 mkdir -p "$artifact_dir" "$source_dir/experiments/configs/sosog_m14"
 source "$repo_dir/infra/aws/load_research_env.sh"
-if [[ ! -e "$root_dir/experiments" ]]; then
-  ln -s "$source_dir/experiments" "$root_dir/experiments"
-fi
+mkdir -p "$root_dir/experiments"
+# `appworld verify tasks` creates experiments/outputs under the data root before
+# the baseline runner starts. Add the three source-only trees individually so
+# those verification outputs remain intact and the v0.1.3 CLI can find agents.
+for component in code configs prompts; do
+  if [[ ! -e "$root_dir/experiments/$component" ]]; then
+    ln -s "$source_dir/experiments/$component" "$root_dir/experiments/$component"
+  fi
+done
 
 sync_artifacts() {
   /opt/sosog/runtime/bin/aws s3 sync "$artifact_dir" \
