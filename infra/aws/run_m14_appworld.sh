@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_dir=${SOSOG_REPO_DIR:-/opt/sosog/sosog-ai}
 root_dir=/opt/sosog/appworld-root
-source_dir=/opt/sosog/appworld
+source_dir=/opt/sosog/appworld-v013
 venv=/opt/sosog/appworld-venv
 artifact_dir=/opt/sosog/artifacts/m14-appworld
 run_stamp=${SOSOG_RUN_STAMP:-$(date -u +%Y%m%dT%H%M%SZ)}
@@ -18,6 +18,9 @@ export SOSOG_ARTIFACT_BUCKET=${SOSOG_ARTIFACT_BUCKET:-sosog-bedrock-batch-769377
 export SOSOG_ARTIFACT_PREFIX=${SOSOG_ARTIFACT_PREFIX:-vertical-expansion}
 mkdir -p "$artifact_dir" "$source_dir/experiments/configs/sosog_m14"
 source "$repo_dir/infra/aws/load_research_env.sh"
+if [[ ! -e "$root_dir/experiments" ]]; then
+  ln -s "$source_dir/experiments" "$root_dir/experiments"
+fi
 
 sync_artifacts() {
   /opt/sosog/runtime/bin/aws s3 sync "$artifact_dir" \
@@ -34,6 +37,13 @@ trap sync_artifacts EXIT
   --root "$root_dir" --output "$artifact_dir/appworld_60_task_ids.json"
 sync_artifacts
 
+write_config() {
+  local dataset=$1 model=$2 path=$3
+  jq --arg dataset "$dataset" --arg model "$model" \
+    '.config.reader.dataset_name=$dataset | .config.models.action.generator_params.model=$model' \
+    "$repo_dir/config/appworld_sonnet46.jsonnet" >"$path"
+}
+
 run_phase() {
   local phase=$1 dataset=$2 trial=$3 workers=$4 model=${5:-$primary_model}
   local experiment="sosog_m14/${phase}_t${trial}"
@@ -41,14 +51,11 @@ run_phase() {
   local output_dir="$root_dir/experiments/outputs/$experiment"
   local log="$artifact_dir/${phase}_t${trial}_us.log"
   local route_map="$artifact_dir/${phase}_t${trial}_model_routes.json"
-  local override
-  install -D -m 0644 "$repo_dir/config/appworld_sonnet46.jsonnet" "$config_path"
-  override=$(jq -nc --arg dataset "$dataset" --arg model "$model" \
-    '{config:{dataset:$dataset,agent:{model_config:{name:$model}}}}')
+  local marker_dir="$output_dir/recoma_output"
+  write_config "$dataset" "$model" "$config_path"
 
   set +e
-  "$venv/bin/appworld" run "$experiment" --root "$root_dir" \
-    --num-processes "$workers" --override "$override" 2>&1 | tee "$log"
+  "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 | tee "$log"
   local primary_rc=${PIPESTATUS[0]}
   set -e
 
@@ -59,7 +66,7 @@ output, dataset, model, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], Pa
 dataset_file = Path("/opt/sosog/appworld-root/data/datasets") / f"{dataset}.txt"
 routes = {}
 for task_id in dataset_file.read_text().split():
-    if (output / "tasks" / task_id / "misc" / "finished").exists():
+    if (output / "recoma_output" / f"{task_id}_data.json").exists():
         routes[task_id] = model
 target.write_text(json.dumps(routes, indent=2, sort_keys=True) + "\n")
 PY
@@ -70,22 +77,38 @@ PY
       echo "non-quota AppWorld failure in $phase trial $trial" >&2
       return "$primary_rc"
     fi
-    override=$(jq -nc --arg dataset "$dataset" --arg model "$fallback_model" \
-      '{config:{dataset:$dataset,agent:{model_config:{name:$model}}}}')
-    "$venv/bin/appworld" run "$experiment" --root "$root_dir" \
-      --num-processes "$workers" --override "$override" 2>&1 \
-      | tee "$artifact_dir/${phase}_t${trial}_global.log"
+    fallback_dataset="sosog_m14_${phase}_t${trial}_fallback"
+    fallback_dataset_path="$root_dir/data/datasets/${fallback_dataset}.txt"
+    "$venv/bin/python" - "$root_dir" "$experiment" "$dataset" "$fallback_dataset_path" <<'PY'
+import sys
+from pathlib import Path
+root, experiment, dataset, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], Path(sys.argv[4])
+markers = root / "experiments" / "outputs" / experiment / "recoma_output"
+ids = (root / "data" / "datasets" / f"{dataset}.txt").read_text().split()
+missing = [task_id for task_id in ids if not (markers / f"{task_id}_data.json").exists()]
+target.write_text("\n".join(missing) + ("\n" if missing else ""))
+print(len(missing))
+PY
+    if [[ -s $fallback_dataset_path ]]; then
+      write_config "$fallback_dataset" "$fallback_model" "$config_path"
+      "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 \
+        | tee "$artifact_dir/${phase}_t${trial}_global.log"
+    fi
     "$venv/bin/python" - "$root_dir" "$experiment" "$dataset" "$fallback_model" "$route_map" <<'PY'
 import json, sys
 from pathlib import Path
 root, experiment, dataset, model, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], sys.argv[4], Path(sys.argv[5])
 routes = json.loads(target.read_text())
 for task_id in (root / "data" / "datasets" / f"{dataset}.txt").read_text().split():
-    if task_id not in routes and (root / "experiments" / "outputs" / experiment / "tasks" / task_id / "misc" / "finished").exists():
+    marker = root / "experiments" / "outputs" / experiment / "recoma_output" / f"{task_id}_data.json"
+    if task_id not in routes and marker.exists():
         routes[task_id] = model
 target.write_text(json.dumps(routes, indent=2, sort_keys=True) + "\n")
 PY
   fi
+
+  write_config "$dataset" "$model" "$config_path"
+  "$venv/bin/appworld" evaluate "$experiment" "$dataset" --root "$root_dir"
 
   local run_id="m14-appworld-${phase}-t${trial}-${run_stamp}"
   "$venv/bin/python" "$repo_dir/scripts/export_appworld_research.py" \

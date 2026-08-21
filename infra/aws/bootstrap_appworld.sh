@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-commit=a072b7a86e7c1d5b1d7175659d750ebb9b79f10a
-source_dir=/opt/sosog/appworld
+commit=66ad8099e12188ece0d3fe45e661dbc01880813b
+source_dir=/opt/sosog/appworld-v013
 root_dir=/opt/sosog/appworld-root
 venv=/opt/sosog/appworld-venv
 status=/opt/sosog/state/appworld-bootstrap.status
@@ -19,20 +19,18 @@ git -C "$source_dir" checkout "$commit"
 python3 -m venv "$venv"
 "$venv/bin/pip" install --upgrade pip wheel
 # The source repository's Git LFS quota is not a reliable installation path.
-# The official wheel contains the same encrypted runtime bundle and unpacks it
-# with `appworld install`, while the pinned checkout supplies experiment code.
-"$venv/bin/pip" install 'appworld==0.1.3.post1' 'click<8.3.0' 'pydantic<2'
+# Match the official 0.1.3.post1 source tag to its PyPI wheel; upstream main's
+# agent package now requires an unreleased Pydantic-v2 AppWorld core.
+"$venv/bin/pip" install 'appworld==0.1.3.post1' 'litellm==1.37.20' \
+  'click<8.3.0' 'pydantic<2' diskcache tiktoken jinja2 jsonnet filelock
+# Recoma 0.0.4 pins a yanked LiteLLM 1.37.19 build. Its next patch release is
+# API-compatible, so install Recoma without that now-unresolvable exact pin.
+"$venv/bin/pip" install --no-deps 'recoma==0.0.4'
 "$venv/bin/appworld" install
-"$venv/bin/pip" install -e "$source_dir/experiments[simplified]"
-# The experiments extra does not cap Pydantic, while its pinned sqlmodel still
-# imports v1-only symbols. Re-assert the compatibility cap after dependency
-# resolution so a fresh bootstrap cannot silently upgrade to Pydantic v2.
-"$venv/bin/pip" install 'pydantic<2'
 
 install -d -o ubuntu -g ubuntu "$root_dir"
-"$venv/bin/appworld" download data --root "$root_dir" --with-setup
-"$venv/bin/appworld" verify tasks --root "$root_dir" \
-  --include-only-first-n-tasks 5 --num-processes 2
+"$venv/bin/appworld" download data --root "$root_dir"
+"$venv/bin/appworld" verify tasks --root "$root_dir"
 
 printf '%s\n' "$commit" >"$status"
 bash /opt/sosog/sosog-ai/infra/aws/install_track_service.sh \

@@ -18,8 +18,23 @@ if str(ROOT) not in sys.path:
 from research_ops.persistence import ResearchStore, StoreConfig  # noqa: E402
 
 
-def usage_cost(usage: dict[str, Any]) -> float:
-    return round(sum(float(value or 0) for value in usage.get("cost", {}).values()), 10)
+def usage_cost(usage: dict[str, Any], route: str) -> float:
+    reported = sum(
+        float(value or 0)
+        for key, value in usage.items()
+        if key.startswith(("litellm.", "openai.")) and key.endswith(".cost")
+    )
+    if reported:
+        return round(reported, 10)
+    prompt_tokens = sum(
+        int(value or 0) for key, value in usage.items() if key.endswith(".prompt_tokens")
+    )
+    completion_tokens = sum(
+        int(value or 0) for key, value in usage.items() if key.endswith(".completion_tokens")
+    )
+    if "haiku" in route:
+        return round(prompt_tokens * 0.000001 + completion_tokens * 0.000005, 10)
+    return round(prompt_tokens * 0.000003 + completion_tokens * 0.000015, 10)
 
 
 def main() -> None:
@@ -54,7 +69,7 @@ def main() -> None:
             "status": "RUNNING",
             "subject_model": "bedrock/anthropic.claude-sonnet-4-6",
             "harness_name": "appworld",
-            "harness_commit": "pypi:appworld==0.1.3.post1;agents:a072b7a86e7c1d5b1d7175659d750ebb9b79f10a",
+            "harness_commit": "pypi:appworld==0.1.3.post1;agents:66ad8099e12188ece0d3fe45e661dbc01880813b",
             "config": {"phase": args.phase, "dataset": args.dataset, "trial": args.trial},
             "cost_usd": 0,
         }
@@ -63,14 +78,15 @@ def main() -> None:
     statuses: Counter[str] = Counter()
     for task_id in task_ids:
         task_dir = output_dir / "tasks" / task_id
-        usage_path = task_dir / "misc" / "usage.json"
-        usage = json.loads(usage_path.read_text()) if usage_path.exists() else {}
+        usage_path = output_dir / "recoma_output" / f"{task_id}_data.json"
+        usage_row = json.loads(usage_path.read_text()) if usage_path.exists() else {}
+        usage = usage_row.get("metadata", {})
         task_eval = evaluation.get("individual", {}).get(task_id)
         status = "COMPLETE" if task_eval is not None else "ERROR"
         statuses[status] += 1
         passed = bool(task_eval and task_eval.get("success"))
-        cost = usage_cost(usage)
         actual_route = route_map.get(task_id, "unknown")
+        cost = usage_cost(usage, actual_route)
         row = {
             "schema_version": 1,
             "run_id": args.run_id,
@@ -112,7 +128,7 @@ def main() -> None:
             "status": "COMPLETE" if statuses.get("ERROR", 0) == 0 else "PAUSED",
             "subject_model": "bedrock/anthropic.claude-sonnet-4-6",
             "harness_name": "appworld",
-            "harness_commit": "pypi:appworld==0.1.3.post1;agents:a072b7a86e7c1d5b1d7175659d750ebb9b79f10a",
+            "harness_commit": "pypi:appworld==0.1.3.post1;agents:66ad8099e12188ece0d3fe45e661dbc01880813b",
             "config": {"phase": args.phase, "dataset": args.dataset, "trial": args.trial},
             "cost_usd": total_cost,
         }
