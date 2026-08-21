@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily quota-aware resume for the lean AppWorld investigation
+
+[Timer]
+OnCalendar=*-*-* 00:15:00 UTC
+Persistent=true
+Unit=sosog-m14-appworld-resume.service
+
+[Install]
+WantedBy=timers.target

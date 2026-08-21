@@ -1,0 +1,9 @@
+[Unit]
+Description=Resume the lean AppWorld investigation after quota reset
+After=network-online.target amazon-ssm-agent.service
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/bin/test ! -f /opt/sosog/artifacts/m14-appworld/status.txt
+ExecStart=/usr/bin/systemctl reset-failed sosog-track@m14-appworld.service
+ExecStart=/usr/bin/systemctl restart sosog-track@m14-appworld.service
