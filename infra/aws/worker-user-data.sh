@@ -39,7 +39,7 @@ install -d -o ubuntu -g ubuntu \
   /opt/sosog/state
 
 python3 -m venv /opt/sosog/runtime
-/opt/sosog/runtime/bin/pip install --upgrade pip awscli
+/opt/sosog/runtime/bin/pip install --upgrade pip awscli 'psycopg[binary]'
 
 docker info >/var/log/sosog-docker-info.txt
 df -h >/var/log/sosog-disk.txt

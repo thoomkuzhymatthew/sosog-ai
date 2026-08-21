@@ -43,7 +43,7 @@ git -C "$tau2_dir" apply --check "$repo_dir/patches/tau2-bedrock-prompt-cache.pa
 /opt/sosog/runtime/bin/pip install --upgrade uv boto3 'psycopg[binary]'
 cd "$tau2_dir"
 /opt/sosog/runtime/bin/uv sync
-/opt/sosog/runtime/bin/uv pip install boto3
+/opt/sosog/runtime/bin/uv pip install boto3 'psycopg[binary]'
 
 golden_ids=(0 3 10 20 30)
 /opt/sosog/runtime/bin/uv run python "$repo_dir/scripts/verify_tau2_golden.py" \

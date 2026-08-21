@@ -15,16 +15,16 @@ if [[ ! -d "$source_dir/.git" ]]; then
     https://github.com/StonyBrookNLP/appworld.git "$source_dir"
 fi
 git -C "$source_dir" checkout "$commit"
-git -C "$source_dir" lfs install --local
-git -C "$source_dir" lfs pull
 
 python3 -m venv "$venv"
 "$venv/bin/pip" install --upgrade pip wheel
-"$venv/bin/pip" install -e "$source_dir"
+# The source repository's Git LFS quota is not a reliable installation path.
+# The official wheel contains the same encrypted runtime bundle and unpacks it
+# with `appworld install`, while the pinned checkout supplies experiment code.
+"$venv/bin/pip" install 'appworld==0.1.3'
+"$venv/bin/appworld" install
 "$venv/bin/pip" install -e "$source_dir/experiments[simplified]"
 
-cd "$source_dir"
-"$venv/bin/appworld" install --repo
 install -d -o ubuntu -g ubuntu "$root_dir"
 "$venv/bin/appworld" download data --root "$root_dir" --with-setup
 "$venv/bin/appworld" verify tasks --root "$root_dir" \
