@@ -34,7 +34,7 @@ trap sync_artifacts EXIT
 "$venv/bin/python" "$repo_dir/scripts/verify_appworld_golden.py" \
   --root "$root_dir" --output "$artifact_dir/GOLDEN_REPLAY.json"
 "$venv/bin/python" "$repo_dir/scripts/select_appworld_tasks.py" \
-  --root "$root_dir" --output "$artifact_dir/appworld_60_task_ids.json"
+  --root "$root_dir" --output "$artifact_dir/appworld_dev_task_ids.json"
 sync_artifacts
 
 write_config() {
@@ -123,7 +123,7 @@ PY
 }
 
 run_phase smoke sosog_m14_smoke 0 1
-run_phase baseline sosog_m14_60 0 1
+run_phase baseline sosog_m14_dev 0 1
 for trial in $(seq 0 9); do
   workers=1
   if /opt/sosog/runtime/bin/aws s3api head-object --bucket "$SOSOG_ARTIFACT_BUCKET" \
@@ -131,7 +131,7 @@ for trial in $(seq 0 9); do
     >/dev/null 2>&1; then
     workers=2
   fi
-  run_phase corpus sosog_m14_60 "$trial" "$workers"
+  run_phase corpus sosog_m14_dev "$trial" "$workers"
 done
 run_phase haiku sosog_m14_smoke 0 1 "$haiku_model"
 

@@ -29,11 +29,12 @@ def main() -> None:
         difficulty: sorted(load_task_ids("dev", difficulty=difficulty), key=stable_rank)
         for difficulty in (1, 2, 3)
     }
+    target_count = min(args.count, sum(len(bucket) for bucket in buckets.values()))
     selected: list[str] = []
-    while len(selected) < args.count:
+    while len(selected) < target_count:
         progressed = False
         for difficulty in (1, 2, 3):
-            if buckets[difficulty] and len(selected) < args.count:
+            if buckets[difficulty] and len(selected) < target_count:
                 selected.append(buckets[difficulty].pop(0))
                 progressed = True
         if not progressed:
@@ -41,13 +42,15 @@ def main() -> None:
 
     dataset_dir = args.root / "data" / "datasets"
     dataset_dir.mkdir(parents=True, exist_ok=True)
-    (dataset_dir / "sosog_m14_60.txt").write_text("\n".join(selected) + "\n")
+    (dataset_dir / "sosog_m14_dev.txt").write_text("\n".join(selected) + "\n")
     smoke = [selected[index] for index in (0, 1, 2, 3, 4)]
     (dataset_dir / "sosog_m14_smoke.txt").write_text("\n".join(smoke) + "\n")
     payload = {
         "schema_version": 1,
         "source_dataset": "dev",
         "selection": "sha256 round-robin over difficulties 1, 2, 3",
+        "requested_count": args.count,
+        "selected_count": len(selected),
         "task_ids": selected,
         "smoke_task_ids": smoke,
     }
