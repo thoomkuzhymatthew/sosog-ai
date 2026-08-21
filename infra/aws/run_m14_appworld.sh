@@ -46,7 +46,10 @@ sync_artifacts
 write_config() {
   local dataset=$1 model=$2 path=$3
   jq --arg dataset "$dataset" --arg model "$model" \
-    '.config.reader.dataset_name=$dataset | .config.models.action.generator_params.model=$model' \
+    --arg prompt "$root_dir/experiments/prompts/react.txt" \
+    '.config.reader.dataset_name=$dataset
+     | .config.models.action.generator_params.model=$model
+     | .config.models.action.prompt_file=$prompt' \
     "$repo_dir/config/appworld_sonnet46.jsonnet" >"$path"
 }
 
