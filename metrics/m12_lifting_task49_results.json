@@ -1,0 +1,2617 @@
+{
+  "aggregate": {
+    "agent_cost_overhead_cached_usd": -0.6161523,
+    "agent_prompt_token_overhead": 376732,
+    "baseline": {
+      "cost_agent_cached_usd": 2.689674,
+      "cost_total_cached_usd": 3.191139,
+      "cost_user_cached_usd": 0.501465,
+      "errors": 0,
+      "failures": [
+        {
+          "seed": 1204968,
+          "termination_reason": "user_stop",
+          "trial": 1,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1204986,
+          "termination_reason": "user_stop",
+          "trial": 2,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205028,
+          "termination_reason": "user_stop",
+          "trial": 4,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205102,
+          "termination_reason": "user_stop",
+          "trial": 7,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205162,
+          "termination_reason": "user_stop",
+          "trial": 9,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205190,
+          "termination_reason": "user_stop",
+          "trial": 10,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205216,
+          "termination_reason": "user_stop",
+          "trial": 11,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205286,
+          "termination_reason": "user_stop",
+          "trial": 13,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205310,
+          "termination_reason": "user_stop",
+          "trial": 14,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205346,
+          "termination_reason": "user_stop",
+          "trial": 15,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205370,
+          "termination_reason": "user_stop",
+          "trial": 16,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205400,
+          "termination_reason": "user_stop",
+          "trial": 17,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205426,
+          "termination_reason": "user_stop",
+          "trial": 18,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        },
+        {
+          "seed": 1205460,
+          "termination_reason": "user_stop",
+          "trial": 19,
+          "write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ]
+        }
+      ],
+      "pass_rate": 0.3,
+      "passes": 6,
+      "runs": 20,
+      "usage_agent": {
+        "cache_creation_input_tokens": 10080,
+        "cache_read_input_tokens": 1154160,
+        "calls": 231,
+        "completion_tokens": 29263,
+        "noncached_input_tokens": 622227,
+        "prompt_tokens": 1786467,
+        "total_tokens": 1815730
+      },
+      "usage_total": {
+        "cache_creation_input_tokens": 10080,
+        "cache_read_input_tokens": 1154160,
+        "calls": 383,
+        "completion_tokens": 34324,
+        "noncached_input_tokens": 764077,
+        "prompt_tokens": 1928317,
+        "total_tokens": 1962641
+      },
+      "usage_user": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "calls": 152,
+        "completion_tokens": 5061,
+        "noncached_input_tokens": 141850,
+        "prompt_tokens": 141850,
+        "total_tokens": 146911
+      }
+    },
+    "lifted": {
+      "cost_agent_cached_usd": 2.0735217,
+      "cost_total_cached_usd": 2.4303027000000004,
+      "cost_user_cached_usd": 0.356781,
+      "errors": 0,
+      "failures": [],
+      "pass_rate": 1.0,
+      "passes": 20,
+      "runs": 20,
+      "usage_agent": {
+        "cache_creation_input_tokens": 19394,
+        "cache_read_input_tokens": 1764854,
+        "calls": 184,
+        "completion_tokens": 22299,
+        "noncached_input_tokens": 378951,
+        "prompt_tokens": 2163199,
+        "total_tokens": 2185498
+      },
+      "usage_total": {
+        "cache_creation_input_tokens": 19394,
+        "cache_read_input_tokens": 1764854,
+        "calls": 308,
+        "completion_tokens": 26402,
+        "noncached_input_tokens": 477363,
+        "prompt_tokens": 2261611,
+        "total_tokens": 2288013
+      },
+      "usage_user": {
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "calls": 124,
+        "completion_tokens": 4103,
+        "noncached_input_tokens": 98412,
+        "prompt_tokens": 98412,
+        "total_tokens": 102515
+      }
+    },
+    "pass_rate_delta_lifted_minus_baseline": 0.7
+  },
+  "config": {
+    "baseline_agent": "llm_agent",
+    "exemplar_count": 2,
+    "exemplar_source": "/Users/joshuajooste/Documents/matthew/sosog-ai/traces/m3/retail_db_checkable_n10_final_valid.jsonl",
+    "lifted_agent": "m12_lifted_agent",
+    "prompt_cache_env": "TAU2_BEDROCK_PROMPT_CACHE",
+    "temperature": 0.0,
+    "user": "user_simulator"
+  },
+  "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+  "n_requested_per_task_per_arm": 20,
+  "runs": [
+    {
+      "agent_cost_cached_usd": 0.156558,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.156558,
+      "cost_from_usage_total_cached_usd": 0.185634,
+      "cost_from_usage_user_cached_usd": 0.029076,
+      "db_match": true,
+      "elapsed_s": 653.3819651740014,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1204950,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 0,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 5040,
+            "cache_read_input_tokens": 55440,
+            "calls": 12,
+            "completion_tokens": 1720,
+            "noncached_input_tokens": 31742,
+            "prompt_tokens": 92222,
+            "total_tokens": 93942
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 313,
+            "noncached_input_tokens": 8127,
+            "prompt_tokens": 8127,
+            "total_tokens": 8440
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 5040,
+          "cache_read_input_tokens": 55440,
+          "calls": 20,
+          "completion_tokens": 2033,
+          "noncached_input_tokens": 39869,
+          "prompt_tokens": 100349,
+          "total_tokens": 102382
+        }
+      },
+      "user_cost_cached_usd": 0.029076000000000005,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.13128255,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.13128255,
+      "cost_from_usage_total_cached_usd": 0.14904855,
+      "cost_from_usage_user_cached_usd": 0.017766,
+      "db_match": true,
+      "elapsed_s": 39.1414583170008,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1204950,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 0,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 9697,
+            "cache_read_input_tokens": 77576,
+            "calls": 9,
+            "completion_tokens": 1112,
+            "noncached_input_tokens": 18322,
+            "prompt_tokens": 105595,
+            "total_tokens": 106707
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 230,
+            "noncached_input_tokens": 4772,
+            "prompt_tokens": 4772,
+            "total_tokens": 5002
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 9697,
+          "cache_read_input_tokens": 77576,
+          "calls": 15,
+          "completion_tokens": 1342,
+          "noncached_input_tokens": 23094,
+          "prompt_tokens": 110367,
+          "total_tokens": 111709
+        }
+      },
+      "user_cost_cached_usd": 0.017766,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.12615600000000002,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.126156,
+      "cost_from_usage_total_cached_usd": 0.148488,
+      "cost_from_usage_user_cached_usd": 0.022332,
+      "db_match": false,
+      "elapsed_s": 44.62586323799951,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1204968,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 1,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55440,
+            "calls": 11,
+            "completion_tokens": 1410,
+            "noncached_input_tokens": 29458,
+            "prompt_tokens": 84898,
+            "total_tokens": 86308
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 232,
+            "noncached_input_tokens": 6284,
+            "prompt_tokens": 6284,
+            "total_tokens": 6516
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55440,
+          "calls": 18,
+          "completion_tokens": 1642,
+          "noncached_input_tokens": 35742,
+          "prompt_tokens": 91182,
+          "total_tokens": 92824
+        }
+      },
+      "user_cost_cached_usd": 0.022331999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.111846,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.111846,
+      "cost_from_usage_total_cached_usd": 0.1323,
+      "cost_from_usage_user_cached_usd": 0.020454,
+      "db_match": true,
+      "elapsed_s": 39.67588971699843,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1204968,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 1,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 96970,
+            "calls": 10,
+            "completion_tokens": 1116,
+            "noncached_input_tokens": 22005,
+            "prompt_tokens": 118975,
+            "total_tokens": 120091
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 209,
+            "noncached_input_tokens": 5773,
+            "prompt_tokens": 5773,
+            "total_tokens": 5982
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 96970,
+          "calls": 17,
+          "completion_tokens": 1325,
+          "noncached_input_tokens": 27778,
+          "prompt_tokens": 124748,
+          "total_tokens": 126073
+        }
+      },
+      "user_cost_cached_usd": 0.020454,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.161916,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.161916,
+      "cost_from_usage_total_cached_usd": 0.194352,
+      "cost_from_usage_user_cached_usd": 0.032436,
+      "db_match": false,
+      "elapsed_s": 52.8712585530011,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1204986,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 2,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 65520,
+            "calls": 13,
+            "completion_tokens": 1563,
+            "noncached_input_tokens": 39605,
+            "prompt_tokens": 105125,
+            "total_tokens": 106688
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 9,
+            "completion_tokens": 296,
+            "noncached_input_tokens": 9332,
+            "prompt_tokens": 9332,
+            "total_tokens": 9628
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 65520,
+          "calls": 22,
+          "completion_tokens": 1859,
+          "noncached_input_tokens": 48937,
+          "prompt_tokens": 114457,
+          "total_tokens": 116316
+        }
+      },
+      "user_cost_cached_usd": 0.032436,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09701190000000001,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.0970119,
+      "cost_from_usage_total_cached_usd": 0.11397389999999999,
+      "cost_from_usage_user_cached_usd": 0.016962,
+      "db_match": true,
+      "elapsed_s": 35.848951735999435,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1204986,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 2,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1096,
+            "noncached_input_tokens": 18130,
+            "prompt_tokens": 105403,
+            "total_tokens": 106499
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 198,
+            "noncached_input_tokens": 4664,
+            "prompt_tokens": 4664,
+            "total_tokens": 4862
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1294,
+          "noncached_input_tokens": 22794,
+          "prompt_tokens": 110067,
+          "total_tokens": 111361
+        }
+      },
+      "user_cost_cached_usd": 0.016961999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.085182,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.085182,
+      "cost_from_usage_total_cached_usd": 0.101997,
+      "cost_from_usage_user_cached_usd": 0.016815,
+      "db_match": true,
+      "elapsed_s": 38.9332893139981,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205010,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 3,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 45360,
+            "calls": 9,
+            "completion_tokens": 1127,
+            "noncached_input_tokens": 18223,
+            "prompt_tokens": 63583,
+            "total_tokens": 64710
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 199,
+            "noncached_input_tokens": 4610,
+            "prompt_tokens": 4610,
+            "total_tokens": 4809
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 45360,
+          "calls": 15,
+          "completion_tokens": 1326,
+          "noncached_input_tokens": 22833,
+          "prompt_tokens": 68193,
+          "total_tokens": 69519
+        }
+      },
+      "user_cost_cached_usd": 0.016815,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09782489999999999,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09782489999999999,
+      "cost_from_usage_total_cached_usd": 0.1149249,
+      "cost_from_usage_user_cached_usd": 0.0171,
+      "db_match": true,
+      "elapsed_s": 37.349248118000105,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205010,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 3,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1130,
+            "noncached_input_tokens": 18231,
+            "prompt_tokens": 105504,
+            "total_tokens": 106634
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 194,
+            "noncached_input_tokens": 4730,
+            "prompt_tokens": 4730,
+            "total_tokens": 4924
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1324,
+          "noncached_input_tokens": 22961,
+          "prompt_tokens": 110234,
+          "total_tokens": 111558
+        }
+      },
+      "user_cost_cached_usd": 0.0171,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.140544,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.140544,
+      "cost_from_usage_total_cached_usd": 0.161367,
+      "cost_from_usage_user_cached_usd": 0.020823,
+      "db_match": false,
+      "elapsed_s": 648.0025047800009,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205028,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 4,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 5040,
+            "cache_read_input_tokens": 50400,
+            "calls": 11,
+            "completion_tokens": 1291,
+            "noncached_input_tokens": 29053,
+            "prompt_tokens": 84493,
+            "total_tokens": 85784
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 198,
+            "noncached_input_tokens": 5951,
+            "prompt_tokens": 5951,
+            "total_tokens": 6149
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 5040,
+          "cache_read_input_tokens": 50400,
+          "calls": 18,
+          "completion_tokens": 1489,
+          "noncached_input_tokens": 35004,
+          "prompt_tokens": 90444,
+          "total_tokens": 91933
+        }
+      },
+      "user_cost_cached_usd": 0.020822999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.13129155,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.13129154999999998,
+      "cost_from_usage_total_cached_usd": 0.14876055,
+      "cost_from_usage_user_cached_usd": 0.017469,
+      "db_match": true,
+      "elapsed_s": 38.07260586400298,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205028,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 4,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 9697,
+            "cache_read_input_tokens": 77576,
+            "calls": 9,
+            "completion_tokens": 1119,
+            "noncached_input_tokens": 18290,
+            "prompt_tokens": 105563,
+            "total_tokens": 106682
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 213,
+            "noncached_input_tokens": 4758,
+            "prompt_tokens": 4758,
+            "total_tokens": 4971
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 9697,
+          "cache_read_input_tokens": 77576,
+          "calls": 15,
+          "completion_tokens": 1332,
+          "noncached_input_tokens": 23048,
+          "prompt_tokens": 110321,
+          "total_tokens": 111653
+        }
+      },
+      "user_cost_cached_usd": 0.017469000000000002,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.129528,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.129528,
+      "cost_from_usage_total_cached_usd": 0.153957,
+      "cost_from_usage_user_cached_usd": 0.024429,
+      "db_match": true,
+      "elapsed_s": 47.42880794300072,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205040,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 5,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1319,
+            "noncached_input_tokens": 30533,
+            "prompt_tokens": 91013,
+            "total_tokens": 92332
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 229,
+            "noncached_input_tokens": 6998,
+            "prompt_tokens": 6998,
+            "total_tokens": 7227
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1548,
+          "noncached_input_tokens": 37531,
+          "prompt_tokens": 98011,
+          "total_tokens": 99559
+        }
+      },
+      "user_cost_cached_usd": 0.024429,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0972519,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09725189999999999,
+      "cost_from_usage_total_cached_usd": 0.1143429,
+      "cost_from_usage_user_cached_usd": 0.017091,
+      "db_match": true,
+      "elapsed_s": 37.44347651600037,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205040,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 5,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1110,
+            "noncached_input_tokens": 18140,
+            "prompt_tokens": 105413,
+            "total_tokens": 106523
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 203,
+            "noncached_input_tokens": 4682,
+            "prompt_tokens": 4682,
+            "total_tokens": 4885
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1313,
+          "noncached_input_tokens": 22822,
+          "prompt_tokens": 110095,
+          "total_tokens": 111408
+        }
+      },
+      "user_cost_cached_usd": 0.017091,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.133542,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.133542,
+      "cost_from_usage_total_cached_usd": 0.159528,
+      "cost_from_usage_user_cached_usd": 0.025986,
+      "db_match": true,
+      "elapsed_s": 48.44430228299825,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205072,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 6,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1441,
+            "noncached_input_tokens": 31261,
+            "prompt_tokens": 91741,
+            "total_tokens": 93182
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 268,
+            "noncached_input_tokens": 7322,
+            "prompt_tokens": 7322,
+            "total_tokens": 7590
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1709,
+          "noncached_input_tokens": 38583,
+          "prompt_tokens": 99063,
+          "total_tokens": 100772
+        }
+      },
+      "user_cost_cached_usd": 0.025986000000000002,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0972519,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09725189999999999,
+      "cost_from_usage_total_cached_usd": 0.1143729,
+      "cost_from_usage_user_cached_usd": 0.017121,
+      "db_match": true,
+      "elapsed_s": 37.37298430399824,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205072,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 6,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1110,
+            "noncached_input_tokens": 18140,
+            "prompt_tokens": 105413,
+            "total_tokens": 106523
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 205,
+            "noncached_input_tokens": 4682,
+            "prompt_tokens": 4682,
+            "total_tokens": 4887
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1315,
+          "noncached_input_tokens": 22822,
+          "prompt_tokens": 110095,
+          "total_tokens": 111410
+        }
+      },
+      "user_cost_cached_usd": 0.017120999999999997,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.15140399999999998,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.151404,
+      "cost_from_usage_total_cached_usd": 0.183102,
+      "cost_from_usage_user_cached_usd": 0.031698,
+      "db_match": false,
+      "elapsed_s": 53.10173083300106,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205102,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 7,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 65520,
+            "calls": 13,
+            "completion_tokens": 1655,
+            "noncached_input_tokens": 35641,
+            "prompt_tokens": 101161,
+            "total_tokens": 102816
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 9,
+            "completion_tokens": 260,
+            "noncached_input_tokens": 9266,
+            "prompt_tokens": 9266,
+            "total_tokens": 9526
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 65520,
+          "calls": 22,
+          "completion_tokens": 1915,
+          "noncached_input_tokens": 44907,
+          "prompt_tokens": 110427,
+          "total_tokens": 112342
+        }
+      },
+      "user_cost_cached_usd": 0.031698,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.112545,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.112545,
+      "cost_from_usage_total_cached_usd": 0.133032,
+      "cost_from_usage_user_cached_usd": 0.020487,
+      "db_match": true,
+      "elapsed_s": 43.04602743000214,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205102,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 7,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 96970,
+            "calls": 10,
+            "completion_tokens": 1162,
+            "noncached_input_tokens": 22008,
+            "prompt_tokens": 118978,
+            "total_tokens": 120140
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 204,
+            "noncached_input_tokens": 5809,
+            "prompt_tokens": 5809,
+            "total_tokens": 6013
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 96970,
+          "calls": 17,
+          "completion_tokens": 1366,
+          "noncached_input_tokens": 27817,
+          "prompt_tokens": 124787,
+          "total_tokens": 126153
+        }
+      },
+      "user_cost_cached_usd": 0.020487000000000005,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.10947,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.10947,
+      "cost_from_usage_total_cached_usd": 0.126456,
+      "cost_from_usage_user_cached_usd": 0.016986,
+      "db_match": true,
+      "elapsed_s": 40.44461100500121,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205130,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 8,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 50400,
+            "calls": 10,
+            "completion_tokens": 1341,
+            "noncached_input_tokens": 24745,
+            "prompt_tokens": 75145,
+            "total_tokens": 76486
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 219,
+            "noncached_input_tokens": 4567,
+            "prompt_tokens": 4567,
+            "total_tokens": 4786
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 50400,
+          "calls": 16,
+          "completion_tokens": 1560,
+          "noncached_input_tokens": 29312,
+          "prompt_tokens": 79712,
+          "total_tokens": 81272
+        }
+      },
+      "user_cost_cached_usd": 0.016986,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09701190000000001,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.0970119,
+      "cost_from_usage_total_cached_usd": 0.11397389999999999,
+      "cost_from_usage_user_cached_usd": 0.016962,
+      "db_match": true,
+      "elapsed_s": 34.9917743670012,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205130,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 8,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1096,
+            "noncached_input_tokens": 18130,
+            "prompt_tokens": 105403,
+            "total_tokens": 106499
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 198,
+            "noncached_input_tokens": 4664,
+            "prompt_tokens": 4664,
+            "total_tokens": 4862
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1294,
+          "noncached_input_tokens": 22794,
+          "prompt_tokens": 110067,
+          "total_tokens": 111361
+        }
+      },
+      "user_cost_cached_usd": 0.016961999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.127581,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.127581,
+      "cost_from_usage_total_cached_usd": 0.150381,
+      "cost_from_usage_user_cached_usd": 0.0228,
+      "db_match": false,
+      "elapsed_s": 45.026858844001254,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205162,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 9,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55440,
+            "calls": 11,
+            "completion_tokens": 1488,
+            "noncached_input_tokens": 29543,
+            "prompt_tokens": 84983,
+            "total_tokens": 86471
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 237,
+            "noncached_input_tokens": 6415,
+            "prompt_tokens": 6415,
+            "total_tokens": 6652
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55440,
+          "calls": 18,
+          "completion_tokens": 1725,
+          "noncached_input_tokens": 35958,
+          "prompt_tokens": 91398,
+          "total_tokens": 93123
+        }
+      },
+      "user_cost_cached_usd": 0.0228,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0970569,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09705689999999999,
+      "cost_from_usage_total_cached_usd": 0.11413889999999999,
+      "cost_from_usage_user_cached_usd": 0.017082,
+      "db_match": true,
+      "elapsed_s": 37.747783645998425,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205162,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 9,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1097,
+            "noncached_input_tokens": 18140,
+            "prompt_tokens": 105413,
+            "total_tokens": 106510
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 205,
+            "noncached_input_tokens": 4669,
+            "prompt_tokens": 4669,
+            "total_tokens": 4874
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1302,
+          "noncached_input_tokens": 22809,
+          "prompt_tokens": 110082,
+          "total_tokens": 111384
+        }
+      },
+      "user_cost_cached_usd": 0.017082,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.145962,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.145962,
+      "cost_from_usage_total_cached_usd": 0.175227,
+      "cost_from_usage_user_cached_usd": 0.029265,
+      "db_match": false,
+      "elapsed_s": 53.745004168999,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205190,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 10,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1622,
+            "noncached_input_tokens": 34496,
+            "prompt_tokens": 94976,
+            "total_tokens": 96598
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 304,
+            "noncached_input_tokens": 8235,
+            "prompt_tokens": 8235,
+            "total_tokens": 8539
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1926,
+          "noncached_input_tokens": 42731,
+          "prompt_tokens": 103211,
+          "total_tokens": 105137
+        }
+      },
+      "user_cost_cached_usd": 0.029265000000000003,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0971019,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09710189999999999,
+      "cost_from_usage_total_cached_usd": 0.1142589,
+      "cost_from_usage_user_cached_usd": 0.017157,
+      "db_match": true,
+      "elapsed_s": 39.31370212100228,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205190,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 10,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1097,
+            "noncached_input_tokens": 18155,
+            "prompt_tokens": 105428,
+            "total_tokens": 106525
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 208,
+            "noncached_input_tokens": 4679,
+            "prompt_tokens": 4679,
+            "total_tokens": 4887
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1305,
+          "noncached_input_tokens": 22834,
+          "prompt_tokens": 110107,
+          "total_tokens": 111412
+        }
+      },
+      "user_cost_cached_usd": 0.017157,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.14684400000000003,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.146844,
+      "cost_from_usage_total_cached_usd": 0.175041,
+      "cost_from_usage_user_cached_usd": 0.028197,
+      "db_match": false,
+      "elapsed_s": 54.19020469099996,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205216,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 11,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1632,
+            "noncached_input_tokens": 34740,
+            "prompt_tokens": 95220,
+            "total_tokens": 96852
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 272,
+            "noncached_input_tokens": 8039,
+            "prompt_tokens": 8039,
+            "total_tokens": 8311
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1904,
+          "noncached_input_tokens": 42779,
+          "prompt_tokens": 103259,
+          "total_tokens": 105163
+        }
+      },
+      "user_cost_cached_usd": 0.028197,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.11238300000000001,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.112383,
+      "cost_from_usage_total_cached_usd": 0.13317,
+      "cost_from_usage_user_cached_usd": 0.020787,
+      "db_match": true,
+      "elapsed_s": 42.901653439002985,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205216,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 11,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 96970,
+            "calls": 10,
+            "completion_tokens": 1139,
+            "noncached_input_tokens": 22069,
+            "prompt_tokens": 119039,
+            "total_tokens": 120178
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 218,
+            "noncached_input_tokens": 5839,
+            "prompt_tokens": 5839,
+            "total_tokens": 6057
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 96970,
+          "calls": 17,
+          "completion_tokens": 1357,
+          "noncached_input_tokens": 27908,
+          "prompt_tokens": 124878,
+          "total_tokens": 126235
+        }
+      },
+      "user_cost_cached_usd": 0.020787,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.129837,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.129837,
+      "cost_from_usage_total_cached_usd": 0.152823,
+      "cost_from_usage_user_cached_usd": 0.022986,
+      "db_match": true,
+      "elapsed_s": 48.011646330000076,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205252,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 12,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55440,
+            "calls": 11,
+            "completion_tokens": 1535,
+            "noncached_input_tokens": 30060,
+            "prompt_tokens": 85500,
+            "total_tokens": 87035
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 277,
+            "noncached_input_tokens": 6277,
+            "prompt_tokens": 6277,
+            "total_tokens": 6554
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55440,
+          "calls": 18,
+          "completion_tokens": 1812,
+          "noncached_input_tokens": 36337,
+          "prompt_tokens": 91777,
+          "total_tokens": 93589
+        }
+      },
+      "user_cost_cached_usd": 0.022986000000000003,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.11263500000000001,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.112635,
+      "cost_from_usage_total_cached_usd": 0.133602,
+      "cost_from_usage_user_cached_usd": 0.020967,
+      "db_match": true,
+      "elapsed_s": 40.235477383001125,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205252,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 12,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 96970,
+            "calls": 10,
+            "completion_tokens": 1162,
+            "noncached_input_tokens": 22038,
+            "prompt_tokens": 119008,
+            "total_tokens": 120170
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 223,
+            "noncached_input_tokens": 5874,
+            "prompt_tokens": 5874,
+            "total_tokens": 6097
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 96970,
+          "calls": 17,
+          "completion_tokens": 1385,
+          "noncached_input_tokens": 27912,
+          "prompt_tokens": 124882,
+          "total_tokens": 126267
+        }
+      },
+      "user_cost_cached_usd": 0.020967,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.143484,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.143484,
+      "cost_from_usage_total_cached_usd": 0.171093,
+      "cost_from_usage_user_cached_usd": 0.027609,
+      "db_match": false,
+      "elapsed_s": 52.70124176599711,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205286,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 13,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1560,
+            "noncached_input_tokens": 33980,
+            "prompt_tokens": 94460,
+            "total_tokens": 96020
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 267,
+            "noncached_input_tokens": 7868,
+            "prompt_tokens": 7868,
+            "total_tokens": 8135
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1827,
+          "noncached_input_tokens": 41848,
+          "prompt_tokens": 102328,
+          "total_tokens": 104155
+        }
+      },
+      "user_cost_cached_usd": 0.027609,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09782489999999999,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09782489999999999,
+      "cost_from_usage_total_cached_usd": 0.1149249,
+      "cost_from_usage_user_cached_usd": 0.0171,
+      "db_match": true,
+      "elapsed_s": 35.670237759000884,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205286,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 13,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1130,
+            "noncached_input_tokens": 18231,
+            "prompt_tokens": 105504,
+            "total_tokens": 106634
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 194,
+            "noncached_input_tokens": 4730,
+            "prompt_tokens": 4730,
+            "total_tokens": 4924
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1324,
+          "noncached_input_tokens": 22961,
+          "prompt_tokens": 110234,
+          "total_tokens": 111558
+        }
+      },
+      "user_cost_cached_usd": 0.0171,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.12329999999999999,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.1233,
+      "cost_from_usage_total_cached_usd": 0.144219,
+      "cost_from_usage_user_cached_usd": 0.020919,
+      "db_match": false,
+      "elapsed_s": 44.324149341999146,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205310,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 14,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55440,
+            "calls": 11,
+            "completion_tokens": 1307,
+            "noncached_input_tokens": 29021,
+            "prompt_tokens": 84461,
+            "total_tokens": 85768
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 205,
+            "noncached_input_tokens": 5948,
+            "prompt_tokens": 5948,
+            "total_tokens": 6153
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55440,
+          "calls": 18,
+          "completion_tokens": 1512,
+          "noncached_input_tokens": 34969,
+          "prompt_tokens": 90409,
+          "total_tokens": 91921
+        }
+      },
+      "user_cost_cached_usd": 0.020919,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0970599,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09705989999999999,
+      "cost_from_usage_total_cached_usd": 0.1140639,
+      "cost_from_usage_user_cached_usd": 0.017004,
+      "db_match": true,
+      "elapsed_s": 40.845625837002444,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205310,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 14,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1098,
+            "noncached_input_tokens": 18136,
+            "prompt_tokens": 105409,
+            "total_tokens": 106507
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 200,
+            "noncached_input_tokens": 4668,
+            "prompt_tokens": 4668,
+            "total_tokens": 4868
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1298,
+          "noncached_input_tokens": 22804,
+          "prompt_tokens": 110077,
+          "total_tokens": 111375
+        }
+      },
+      "user_cost_cached_usd": 0.017004,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.132474,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.132474,
+      "cost_from_usage_total_cached_usd": 0.158292,
+      "cost_from_usage_user_cached_usd": 0.025818,
+      "db_match": false,
+      "elapsed_s": 46.9074788839971,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205346,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 15,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1446,
+            "noncached_input_tokens": 30880,
+            "prompt_tokens": 91360,
+            "total_tokens": 92806
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 258,
+            "noncached_input_tokens": 7316,
+            "prompt_tokens": 7316,
+            "total_tokens": 7574
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1704,
+          "noncached_input_tokens": 38196,
+          "prompt_tokens": 98676,
+          "total_tokens": 100380
+        }
+      },
+      "user_cost_cached_usd": 0.025818,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09701190000000001,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.0970119,
+      "cost_from_usage_total_cached_usd": 0.11397389999999999,
+      "cost_from_usage_user_cached_usd": 0.016962,
+      "db_match": true,
+      "elapsed_s": 36.35923183500199,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205346,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 15,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1096,
+            "noncached_input_tokens": 18130,
+            "prompt_tokens": 105403,
+            "total_tokens": 106499
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 198,
+            "noncached_input_tokens": 4664,
+            "prompt_tokens": 4664,
+            "total_tokens": 4862
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1294,
+          "noncached_input_tokens": 22794,
+          "prompt_tokens": 110067,
+          "total_tokens": 111361
+        }
+      },
+      "user_cost_cached_usd": 0.016961999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.141996,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.141996,
+      "cost_from_usage_total_cached_usd": 0.168381,
+      "cost_from_usage_user_cached_usd": 0.026385,
+      "db_match": false,
+      "elapsed_s": 49.73016109300079,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205370,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 16,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1426,
+            "noncached_input_tokens": 34154,
+            "prompt_tokens": 94634,
+            "total_tokens": 96060
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 246,
+            "noncached_input_tokens": 7565,
+            "prompt_tokens": 7565,
+            "total_tokens": 7811
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1672,
+          "noncached_input_tokens": 41719,
+          "prompt_tokens": 102199,
+          "total_tokens": 103871
+        }
+      },
+      "user_cost_cached_usd": 0.026385,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.09798690000000002,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09798689999999999,
+      "cost_from_usage_total_cached_usd": 0.11548889999999999,
+      "cost_from_usage_user_cached_usd": 0.017502,
+      "db_match": true,
+      "elapsed_s": 40.144293022000056,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205370,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 16,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1129,
+            "noncached_input_tokens": 18290,
+            "prompt_tokens": 105563,
+            "total_tokens": 106692
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 213,
+            "noncached_input_tokens": 4769,
+            "prompt_tokens": 4769,
+            "total_tokens": 4982
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1342,
+          "noncached_input_tokens": 23059,
+          "prompt_tokens": 110332,
+          "total_tokens": 111674
+        }
+      },
+      "user_cost_cached_usd": 0.017502,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.132942,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.132942,
+      "cost_from_usage_total_cached_usd": 0.159171,
+      "cost_from_usage_user_cached_usd": 0.026229,
+      "db_match": false,
+      "elapsed_s": 46.53161106300104,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205400,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 17,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1467,
+            "noncached_input_tokens": 30931,
+            "prompt_tokens": 91411,
+            "total_tokens": 92878
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 252,
+            "noncached_input_tokens": 7483,
+            "prompt_tokens": 7483,
+            "total_tokens": 7735
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1719,
+          "noncached_input_tokens": 38414,
+          "prompt_tokens": 98894,
+          "total_tokens": 100613
+        }
+      },
+      "user_cost_cached_usd": 0.026229,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0968349,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09683489999999999,
+      "cost_from_usage_total_cached_usd": 0.1134399,
+      "cost_from_usage_user_cached_usd": 0.016605,
+      "db_match": true,
+      "elapsed_s": 35.036496566001006,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205400,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 17,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1093,
+            "noncached_input_tokens": 18086,
+            "prompt_tokens": 105359,
+            "total_tokens": 106452
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 180,
+            "noncached_input_tokens": 4635,
+            "prompt_tokens": 4635,
+            "total_tokens": 4815
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1273,
+          "noncached_input_tokens": 22721,
+          "prompt_tokens": 109994,
+          "total_tokens": 111267
+        }
+      },
+      "user_cost_cached_usd": 0.016604999999999998,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.14588700000000002,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.145887,
+      "cost_from_usage_total_cached_usd": 0.174744,
+      "cost_from_usage_user_cached_usd": 0.028857,
+      "db_match": false,
+      "elapsed_s": 51.41167325200149,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205426,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 18,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 60480,
+            "calls": 12,
+            "completion_tokens": 1551,
+            "noncached_input_tokens": 34826,
+            "prompt_tokens": 95306,
+            "total_tokens": 96857
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 8,
+            "completion_tokens": 307,
+            "noncached_input_tokens": 8084,
+            "prompt_tokens": 8084,
+            "total_tokens": 8391
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 60480,
+          "calls": 20,
+          "completion_tokens": 1858,
+          "noncached_input_tokens": 42910,
+          "prompt_tokens": 103390,
+          "total_tokens": 105248
+        }
+      },
+      "user_cost_cached_usd": 0.028857,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0970569,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09705689999999999,
+      "cost_from_usage_total_cached_usd": 0.11413889999999999,
+      "cost_from_usage_user_cached_usd": 0.017082,
+      "db_match": true,
+      "elapsed_s": 39.80708783500086,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205426,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 18,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1097,
+            "noncached_input_tokens": 18140,
+            "prompt_tokens": 105413,
+            "total_tokens": 106510
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 205,
+            "noncached_input_tokens": 4669,
+            "prompt_tokens": 4669,
+            "total_tokens": 4874
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1302,
+          "noncached_input_tokens": 22809,
+          "prompt_tokens": 110082,
+          "total_tokens": 111384
+        }
+      },
+      "user_cost_cached_usd": 0.017082,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.125067,
+      "arm": "baseline",
+      "cost_from_usage_agent_cached_usd": 0.125067,
+      "cost_from_usage_total_cached_usd": 0.146886,
+      "cost_from_usage_user_cached_usd": 0.021819,
+      "db_match": false,
+      "elapsed_s": 45.876375799001835,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 0.0,
+      "seed": 1205460,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 19,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 55440,
+            "calls": 11,
+            "completion_tokens": 1362,
+            "noncached_input_tokens": 29335,
+            "prompt_tokens": 84775,
+            "total_tokens": 86137
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 7,
+            "completion_tokens": 222,
+            "noncached_input_tokens": 6163,
+            "prompt_tokens": 6163,
+            "total_tokens": 6385
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 55440,
+          "calls": 18,
+          "completion_tokens": 1584,
+          "noncached_input_tokens": 35498,
+          "prompt_tokens": 90938,
+          "total_tokens": 92522
+        }
+      },
+      "user_cost_cached_usd": 0.021819,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    },
+    {
+      "agent_cost_cached_usd": 0.0972519,
+      "arm": "lifted",
+      "cost_from_usage_agent_cached_usd": 0.09725189999999999,
+      "cost_from_usage_total_cached_usd": 0.1143729,
+      "cost_from_usage_user_cached_usd": 0.017121,
+      "db_match": true,
+      "elapsed_s": 37.374120763000974,
+      "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+      "reward": 1.0,
+      "seed": 1205460,
+      "status": "ok",
+      "task_id": "49",
+      "termination_reason": "user_stop",
+      "trial": 19,
+      "usage": {
+        "by_role": {
+          "assistant": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 87273,
+            "calls": 9,
+            "completion_tokens": 1110,
+            "noncached_input_tokens": 18140,
+            "prompt_tokens": 105413,
+            "total_tokens": 106523
+          },
+          "user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 6,
+            "completion_tokens": 205,
+            "noncached_input_tokens": 4682,
+            "prompt_tokens": 4682,
+            "total_tokens": 4887
+          }
+        },
+        "total": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 87273,
+          "calls": 15,
+          "completion_tokens": 1315,
+          "noncached_input_tokens": 22822,
+          "prompt_tokens": 110095,
+          "total_tokens": 111410
+        }
+      },
+      "user_cost_cached_usd": 0.017120999999999997,
+      "write_skeleton": [
+        "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+      ]
+    }
+  ],
+  "seeds": [
+    1204901,
+    1204919,
+    1204937,
+    1204961,
+    1204979,
+    1204991,
+    1205023,
+    1205053,
+    1205081,
+    1205113,
+    1205141,
+    1205167,
+    1205203,
+    1205237,
+    1205261,
+    1205297,
+    1205321,
+    1205351,
+    1205377,
+    1205411
+  ],
+  "status": "complete",
+  "task_summaries": {
+    "49": {
+      "agent_cost_overhead_cached_usd": -0.6161523,
+      "agent_prompt_token_overhead": 376732,
+      "exemplar_chars": 14199,
+      "exemplar_count": 2,
+      "m3_passes": 4,
+      "m3_runs": 10,
+      "newly_passed": [
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1204968,
+          "trial": 1
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1204986,
+          "trial": 2
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205028,
+          "trial": 4
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205102,
+          "trial": 7
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205162,
+          "trial": 9
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205190,
+          "trial": 10
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205216,
+          "trial": 11
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205286,
+          "trial": 13
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205310,
+          "trial": 14
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205346,
+          "trial": 15
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205370,
+          "trial": 16
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205400,
+          "trial": 17
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205426,
+          "trial": 18
+        },
+        {
+          "baseline_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "lifted_write_skeleton": [
+            "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"1646531091\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+          ],
+          "seed": 1205460,
+          "trial": 19
+        }
+      ],
+      "paired_runs": 20,
+      "pass_rate_delta_lifted_minus_baseline": 0.7,
+      "regressions": [],
+      "summaries": {
+        "baseline": {
+          "cost_agent_cached_usd": 2.689674,
+          "cost_total_cached_usd": 3.191139,
+          "cost_user_cached_usd": 0.501465,
+          "errors": 0,
+          "failures": [
+            {
+              "seed": 1204968,
+              "termination_reason": "user_stop",
+              "trial": 1,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1204986,
+              "termination_reason": "user_stop",
+              "trial": 2,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205028,
+              "termination_reason": "user_stop",
+              "trial": 4,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205102,
+              "termination_reason": "user_stop",
+              "trial": 7,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205162,
+              "termination_reason": "user_stop",
+              "trial": 9,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205190,
+              "termination_reason": "user_stop",
+              "trial": 10,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205216,
+              "termination_reason": "user_stop",
+              "trial": 11,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205286,
+              "termination_reason": "user_stop",
+              "trial": 13,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205310,
+              "termination_reason": "user_stop",
+              "trial": 14,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205346,
+              "termination_reason": "user_stop",
+              "trial": 15,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205370,
+              "termination_reason": "user_stop",
+              "trial": 16,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205400,
+              "termination_reason": "user_stop",
+              "trial": 17,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205426,
+              "termination_reason": "user_stop",
+              "trial": 18,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            },
+            {
+              "seed": 1205460,
+              "termination_reason": "user_stop",
+              "trial": 19,
+              "write_skeleton": [
+                "exchange_delivered_order_items({\"item_ids\":[\"2757705742\"],\"new_item_ids\":[\"8555936349\"],\"order_id\":\"#W3470184\",\"payment_method_id\":\"gift_card_7245904\"})"
+              ]
+            }
+          ],
+          "pass_rate": 0.3,
+          "passes": 6,
+          "runs": 20,
+          "usage_agent": {
+            "cache_creation_input_tokens": 10080,
+            "cache_read_input_tokens": 1154160,
+            "calls": 231,
+            "completion_tokens": 29263,
+            "noncached_input_tokens": 622227,
+            "prompt_tokens": 1786467,
+            "total_tokens": 1815730
+          },
+          "usage_total": {
+            "cache_creation_input_tokens": 10080,
+            "cache_read_input_tokens": 1154160,
+            "calls": 383,
+            "completion_tokens": 34324,
+            "noncached_input_tokens": 764077,
+            "prompt_tokens": 1928317,
+            "total_tokens": 1962641
+          },
+          "usage_user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 152,
+            "completion_tokens": 5061,
+            "noncached_input_tokens": 141850,
+            "prompt_tokens": 141850,
+            "total_tokens": 146911
+          }
+        },
+        "lifted": {
+          "cost_agent_cached_usd": 2.0735217,
+          "cost_total_cached_usd": 2.4303027000000004,
+          "cost_user_cached_usd": 0.356781,
+          "errors": 0,
+          "failures": [],
+          "pass_rate": 1.0,
+          "passes": 20,
+          "runs": 20,
+          "usage_agent": {
+            "cache_creation_input_tokens": 19394,
+            "cache_read_input_tokens": 1764854,
+            "calls": 184,
+            "completion_tokens": 22299,
+            "noncached_input_tokens": 378951,
+            "prompt_tokens": 2163199,
+            "total_tokens": 2185498
+          },
+          "usage_total": {
+            "cache_creation_input_tokens": 19394,
+            "cache_read_input_tokens": 1764854,
+            "calls": 308,
+            "completion_tokens": 26402,
+            "noncached_input_tokens": 477363,
+            "prompt_tokens": 2261611,
+            "total_tokens": 2288013
+          },
+          "usage_user": {
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "calls": 124,
+            "completion_tokens": 4103,
+            "noncached_input_tokens": 98412,
+            "prompt_tokens": 98412,
+            "total_tokens": 102515
+          }
+        }
+      }
+    }
+  },
+  "tasks": [
+    "49"
+  ]
+}
