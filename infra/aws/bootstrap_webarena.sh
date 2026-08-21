@@ -22,8 +22,13 @@ git -C "$source_dir" checkout "$commit"
 "$venv/bin/pip" install -e "$source_dir"
 # WebArena pins Playwright 1.37, whose Ubuntu dependency helper requests the
 # obsolete `libasound2` package name on Ubuntu 24.04. The AMI already carries
-# browser runtime libraries; install the pinned Chromium payload directly and
-# prove it launches instead of relying on that stale helper.
+# most browser runtime libraries. Install Noble's renamed t64 packages plus the
+# remaining X/graphics libraries, then prove the pinned browser launches.
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libatspi2.0-0 \
+  libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 \
+  libpango-1.0-0 libcairo2 libasound2t64
 "$venv/bin/python" -m playwright install chromium
 "$venv/bin/python" - <<'PY'
 from playwright.sync_api import sync_playwright
