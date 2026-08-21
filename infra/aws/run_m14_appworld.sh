@@ -21,12 +21,17 @@ source "$repo_dir/infra/aws/load_research_env.sh"
 export SOSOG_BEDROCK_FALLBACK_MODEL=$fallback_model
 site_packages=$("$venv/bin/python" -c 'import site; print(site.getsitepackages()[0])')
 patch_file="$repo_dir/patches/recoma-bedrock-converse.patch"
-if patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
+patch_sha=$(sha256sum "$patch_file" | awk '{print $1}')
+patch_stamp=$venv/.sosog-recoma-bedrock-patch
+installed_patch_sha=$(cat "$patch_stamp" 2>/dev/null || true)
+if [[ $installed_patch_sha != "$patch_sha" ]]; then
+  "$venv/bin/pip" install --force-reinstall --no-deps 'recoma==0.0.4' >/dev/null
+  if ! patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
+    echo "Recoma Bedrock patch does not apply cleanly" >&2
+    exit 1
+  fi
   patch -s -p1 -d "$site_packages" <"$patch_file"
-elif ! grep -q 'SOSOG: call modern Bedrock' \
-  "$site_packages/recoma/models/impl/lite_llm_generator.py"; then
-  echo "Recoma Bedrock patch does not apply cleanly" >&2
-  exit 1
+  printf '%s\n' "$patch_sha" >"$patch_stamp"
 fi
 mkdir -p "$root_dir/experiments"
 # `appworld verify tasks` creates experiments/outputs under the data root before

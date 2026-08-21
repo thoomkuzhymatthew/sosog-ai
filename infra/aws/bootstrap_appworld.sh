@@ -25,19 +25,20 @@ python3 -m venv "$venv"
   'click<8.3.0' 'pydantic<2' diskcache tiktoken jinja2 jsonnet filelock
 # Recoma 0.0.4 pins a yanked LiteLLM 1.37.19 build. Its next patch release is
 # API-compatible, so install Recoma without that now-unresolvable exact pin.
-"$venv/bin/pip" install --no-deps 'recoma==0.0.4'
+"$venv/bin/pip" install --force-reinstall --no-deps 'recoma==0.0.4'
 "$venv/bin/pip" install treelib 'openai==1.55.3' tenacity registrable sympy \
   'gradio==3.50.2'
 "$venv/bin/pip" uninstall -y appworld-agents || true
 site_packages=$("$venv/bin/python" -c 'import site; print(site.getsitepackages()[0])')
 patch_file=/opt/sosog/sosog-ai/patches/recoma-bedrock-converse.patch
-if patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
-  patch -s -p1 -d "$site_packages" <"$patch_file"
-elif ! grep -q 'SOSOG: call modern Bedrock' \
-  "$site_packages/recoma/models/impl/lite_llm_generator.py"; then
+patch_sha=$(sha256sum "$patch_file" | awk '{print $1}')
+patch_stamp=$venv/.sosog-recoma-bedrock-patch
+if ! patch --dry-run -s -p1 -d "$site_packages" <"$patch_file"; then
   echo "Recoma Bedrock patch does not apply cleanly" >&2
   exit 1
 fi
+patch -s -p1 -d "$site_packages" <"$patch_file"
+printf '%s\n' "$patch_sha" >"$patch_stamp"
 "$venv/bin/appworld" install
 
 install -d -o ubuntu -g ubuntu "$root_dir"
