@@ -17,7 +17,7 @@ fi
 git -C "$source_dir" checkout "$commit"
 
 python3 -m venv "$venv"
-"$venv/bin/pip" install --upgrade pip wheel
+"$venv/bin/pip" install --upgrade pip wheel setuptools
 # The source repository's Git LFS quota is not a reliable installation path.
 # Match the official 0.1.3.post1 source tag to its PyPI wheel; upstream main's
 # agent package now requires an unreleased Pydantic-v2 AppWorld core.
@@ -28,6 +28,7 @@ python3 -m venv "$venv"
 "$venv/bin/pip" install --no-deps 'recoma==0.0.4'
 "$venv/bin/pip" install treelib 'openai==1.55.3' tenacity registrable sympy \
   'gradio==3.50.2'
+"$venv/bin/pip" uninstall -y appworld-agents || true
 "$venv/bin/appworld" install
 
 install -d -o ubuntu -g ubuntu "$root_dir"
