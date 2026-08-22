@@ -84,6 +84,8 @@ retry_quota_failures() {
 
 evaluate_and_export() {
   local phase=$1 trial=$2 output_dir=$3 route_map=$4 ids_json=$5 suffix=$6
+  local summary_path="$artifact_dir/${phase}_t${trial}_${suffix}_summary.json"
+  local summary_attempt="$artifact_dir/${phase}_t${trial}_${suffix}_attempt_summary.json"
   mapfile -t eval_ids < <(jq -r '.[]' "$ids_json")
   local eval_id="m15-${phase}-t${trial}-${suffix}-${run_stamp}"
   "$venv/bin/python" -m swebench.harness.run_evaluation \
@@ -96,10 +98,18 @@ evaluate_and_export() {
     --output-dir "$output_dir" --report "$report" --route-map "$route_map" \
     --run-id "$eval_id" --phase "$phase" --trial "$trial" --only-ids "$ids_json" \
     --output-jsonl "$artifact_dir/${phase}_t${trial}_${suffix}.jsonl" \
-    --summary "$artifact_dir/${phase}_t${trial}_${suffix}_summary.json"
+    --summary "$summary_attempt"
   /opt/sosog/runtime/bin/aws s3 sync "$output_dir" \
     "s3://${SOSOG_ARTIFACT_BUCKET}/${SOSOG_ARTIFACT_PREFIX}/${eval_id}/raw/" \
     --no-progress --only-show-errors
+  local remaining_errors
+  remaining_errors=$(jq -r '.status_counts.ERROR // 0' "$summary_attempt")
+  if (( remaining_errors > 0 )); then
+    sync_artifacts
+    echo "$phase trial $trial paused with $remaining_errors retryable errors" >&2
+    return 75
+  fi
+  mv "$summary_attempt" "$summary_path"
   sync_artifacts
 }
 
@@ -111,8 +121,8 @@ baseline_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
 if [[ ! -f $artifact_dir/baseline_t0_selected30_summary.json ]]; then
   if [[ ! -f $baseline_output/preds.json || ! -f $baseline_routes ]]; then
     run_generation baseline 0 "$baseline_output" "$baseline_filter" ""
-    retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes" "$baseline_ids"
   fi
+  retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes" "$baseline_ids"
   evaluate_and_export baseline 0 "$baseline_output" "$baseline_routes" \
     "$baseline_ids" selected30
 fi

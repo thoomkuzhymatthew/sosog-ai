@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily quota-aware resume for the SWE Verified investigation
+
+[Timer]
+OnCalendar=*-*-* 00:30:00 UTC
+Persistent=true
+Unit=sosog-m15-swe-resume.service
+
+[Install]
+WantedBy=timers.target

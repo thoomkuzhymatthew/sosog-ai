@@ -1,0 +1,9 @@
+[Unit]
+Description=Resume the SWE Verified investigation after quota reset
+After=network-online.target docker.service amazon-ssm-agent.service
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/bin/test ! -f /opt/sosog/artifacts/m15-swe-verified/status.txt
+ExecStart=/usr/bin/systemctl reset-failed sosog-track@m15-swe-verified.service
+ExecStart=/usr/bin/systemctl restart sosog-track@m15-swe-verified.service
