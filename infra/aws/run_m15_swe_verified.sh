@@ -27,6 +27,11 @@ sync_artifacts() {
 }
 trap sync_artifacts EXIT
 
+summary_complete() {
+  local summary=$1
+  [[ -f $summary ]] && [[ $(jq -r '.status_counts.ERROR // 0' "$summary") == 0 ]]
+}
+
 "$venv/bin/pip" install --upgrade boto3 'psycopg[binary]' >/dev/null
 "$venv/bin/python" "$repo_dir/scripts/select_swe_tasks.py" \
   --count 30 --output "$selection"
@@ -118,7 +123,7 @@ baseline_routes="$artifact_dir/baseline_model_routes.json"
 baseline_ids="$artifact_dir/baseline_ids.json"
 jq '.task_ids' "$selection" >"$baseline_ids"
 baseline_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
-if [[ ! -f $artifact_dir/baseline_t0_selected30_summary.json ]]; then
+if ! summary_complete "$artifact_dir/baseline_t0_selected30_summary.json"; then
   if [[ ! -f $baseline_output/preds.json || ! -f $baseline_routes ]]; then
     run_generation baseline 0 "$baseline_output" "$baseline_filter" ""
   fi
@@ -132,7 +137,7 @@ jq '.task_ids' "$selection" >"$artifact_dir/corpus_ids.json"
 for trial in $(seq 0 4); do
   corpus_output="$artifact_dir/corpus-t${trial}-output"
   corpus_routes="$artifact_dir/corpus_t${trial}_model_routes.json"
-  if [[ ! -f $artifact_dir/corpus_t${trial}_all_summary.json ]]; then
+  if ! summary_complete "$artifact_dir/corpus_t${trial}_all_summary.json"; then
     run_generation corpus "$trial" "$corpus_output" "$corpus_filter" ""
     retry_quota_failures corpus "$trial" "$corpus_output" "$corpus_routes" \
       "$artifact_dir/corpus_ids.json"
@@ -145,7 +150,7 @@ haiku_filter=$(jq -r '.haiku_task_ids | "^(" + join("|") + ")$"' "$selection")
 haiku_output="$artifact_dir/haiku-output"
 haiku_routes="$artifact_dir/haiku_model_routes.json"
 jq '.haiku_task_ids' "$selection" >"$artifact_dir/haiku_ids.json"
-if [[ ! -f $artifact_dir/haiku_t0_all_summary.json ]]; then
+if ! summary_complete "$artifact_dir/haiku_t0_all_summary.json"; then
   run_generation haiku 0 "$haiku_output" "$haiku_filter" "" "$haiku_model"
   "$venv/bin/python" "$repo_dir/scripts/mark_swe_routes.py" \
     "$haiku_output/preds.json" "$haiku_routes" "$haiku_model"
