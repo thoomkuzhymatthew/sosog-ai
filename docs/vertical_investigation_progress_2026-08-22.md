@@ -2,7 +2,7 @@
 
 Date: 2026-08-22
 
-Snapshot time: approximately 10:00 UTC
+Snapshot time: approximately 10:42 UTC
 
 Audience: founder, technical collaborator, design partner, or investor evaluating what the current investigation says about product and GTM direction.
 
@@ -33,12 +33,30 @@ The current commercial verdict is therefore **yellow-green**:
 
 | Track | Current state | Usable result | Main limitation |
 | --- | --- | --- | --- |
-| M13 Airline | Complete; EC2 stopped | Full 50-task baseline and 224 valid repeated executions across all 50 tasks | 276 of 500 planned corpus rows were infrastructure/quota errors; only 4–5 valid repetitions per task |
-| M14 AppWorld | Blocked; EC2 still running | Valid five-task smoke test; nine baseline task markers preserved | Overnight resume failed before inference because AppWorld requires complete three-task scenario groups |
-| M15 SWE Verified | Active | Filtered 30-task baseline plus three completed 30-task corpus trials; fourth trial running | Two trials and the Haiku probe remain; baseline export contains 25 stale out-of-scope rows and must be filtered |
-| M16 WebArena | Sites ready, benchmark blocked; EC2 still running | Local sites and five containers prepared; paid-inference gate remains closed | Golden verifier import failed because the installed OpenAI package no longer exposes `openai.error`; no model result exists |
+| M13 Airline | Repaired; safely paused on daily quota; automatic resume at 00:05 UTC | Full 50-task baseline and 224 valid repeated executions across all 50 tasks | 276 of 500 planned corpus rows remain infrastructure/quota errors; only missing eligible rows will be retried |
+| M14 AppWorld | Repaired; safely paused on daily quota; automatic resume at 00:15 UTC | Valid five-task smoke test, nine baseline task markers, and a 5/5 golden replay | Behavioral evidence remains too small; the repaired resume selected 54 tasks in complete scenario groups |
+| M15 SWE Verified | Repaired; safely paused on daily quota; automatic resume at 00:30 UTC | Filtered 30-task baseline, three corpus trials, and a 3/3 golden replay | Trial 2 still has one error; trials 3–4 and the Haiku probe remain |
+| M16 WebArena | Harness repaired; 3/3 golden replay; paid run remains gated; EC2 stopped | Five sites prepared and 40 tasks selected without paid inference | No browser-agent model result exists until a paid-inference budget is explicitly approved |
 
 M17 remains frozen. It should not be presented as a cross-vertical prediction engine until the retained tracks are complete or formally dropped and an immutable snapshot is evaluated.
+
+## Repair and resume update
+
+The morning audit found four distinct checkpoint or harness faults. All four are now repaired in repository release `8e24c3c01cda402ca6ef2ef33c02f64072bdbdc1`, pushed to `main`, packaged in S3, and deployed to the relevant instances.
+
+- **Airline:** the runner now recovers the original run stamp, skips completed smoke and baseline phases, retries only eligible missing corpus rows, and refuses to write a completion marker while errors remain.
+- **AppWorld:** resume selection is now scenario-aware. If any member of a three-task scenario is missing, the complete triplet is supplied to AppWorld. The live repair passed its 5/5 golden replay and selected 54 tasks covering the 48 missing task IDs before AWS returned the daily quota limit.
+- **SWE Verified:** exports are restricted to the immutable 30-task selection; summary files containing errors no longer count as complete; retries target only incomplete IDs. The live repair passed its 3/3 golden replay and correctly narrowed the contaminated baseline directory to the seven incomplete selected tasks rather than rerunning 500 tasks.
+- **WebArena:** the pinned verifier now works with the installed OpenAI/LiteLLM stack. The golden replay passed 3/3, 40 tasks were selected, artifacts were synced to S3, and the instance stopped at the paid-inference gate.
+
+The quota-limited retries were stopped once AWS returned `Too many tokens per day`; continuing them could not produce evidence and would only consume EC2 time. No false completion marker was left behind. Airline, AppWorld, and SWE remain on running instances because their local systemd timers cannot wake a stopped EC2 instance. Their benchmark services are parked, their checkpoints are preserved, and their next automatic attempts are staggered at 00:05, 00:15, and 00:30 UTC on 2026-08-23. WebArena is stopped and will make no paid model calls without explicit budget approval.
+
+Verification completed before deployment:
+
+- Shell syntax checks passed for all repaired runners.
+- `PYTHONPATH=. pytest -q research_ops/tests predictor/tests` passed: 28 tests plus 5 subtests.
+- The WebArena compatibility patch was applied and replayed idempotently against the pinned upstream revision.
+- The deployed instances reproduced the intended checkpoint filters and golden-verifier results.
 
 ## M13 Airline
 
@@ -106,7 +124,7 @@ Nine baseline task markers were subsequently completed:
 - Marker-reported cost: **$1.667895**
 - No baseline pass rate is available because the phase did not reach evaluation
 
-The overnight resume did not consume another meaningful task batch. It generated a dataset containing only missing individual tasks, but AppWorld's reader requires all three task variants for each scenario. The runner stopped with a scenario-group validation error before it could resume inference.
+The overnight resume did not consume another meaningful task batch. It generated a dataset containing only missing individual tasks, but AppWorld's reader requires all three task variants for each scenario. That defect is now repaired: the live resume generated complete scenario triplets and reached inference, where it paused on the AWS daily token limit.
 
 ### Interpretation
 
@@ -138,7 +156,7 @@ The filtered baseline has:
 | 2 | 29 | 1 | 23 | 79.3% of valid rows | $13.931104 |
 | **Combined** | **89** | **1** | **70** | **78.7% of valid rows** | **$41.286209** |
 
-Trial 3 was running at the snapshot time. Trial 4 and the five-task Haiku probe remain pending.
+Trial 3 has no completed summary and will resume after the quota reset. Trial 4 and the five-task Haiku probe remain pending.
 
 ### Repeatability signal
 
@@ -173,20 +191,21 @@ Coding is the strongest new evidence for the prediction/routing layer because te
 
 ## M16 WebArena
 
-The expensive setup work completed:
+The expensive setup work and harness repair completed:
 
 - Site status is `ready`.
-- Shopping, shopping-admin, forum, GitLab, and Wikipedia containers are running.
+- Shopping, shopping-admin, forum, GitLab, and Wikipedia containers were verified during setup.
 - The paid-inference approval file is absent, so no paid WebArena model run was authorized or executed.
+- The repaired golden replay passed all three verifier cases and selected 40 benchmark tasks.
 
-The benchmark runner failed before it reached the approval-gate branch. Installing the current LiteLLM stack upgraded the OpenAI package, while the pinned WebArena verifier imports the removed `openai.error` module. Consequently:
+The original runner failed because installing the current LiteLLM stack upgraded the OpenAI package while the pinned WebArena verifier imported the removed `openai.error` module. The compatibility repair now supports the installed exception interface and reaches the approval gate. Consequently:
 
-- No golden replay was written.
+- A 3/3 golden replay and the 40-task selection were written and synced to S3.
 - No smoke or baseline tasks ran.
 - No WebArena model conclusion is possible.
-- The EC2 instance and site containers remained running rather than stopping cleanly.
+- The EC2 instance is stopped, so idle browser infrastructure is no longer accruing instance time.
 
-This is an infrastructure blocker, not a negative result about browser agents. Browser agents remain commercially unranked by our own measurements.
+The infrastructure blocker is resolved. The remaining blocker is an intentional commercial decision: browser agents remain unranked by our own measurements until paid inference is explicitly approved.
 
 ## Spend position
 
@@ -199,7 +218,7 @@ The current vertical artifacts account for at least **$99.80** of recorded model
 
 This is a lower bound rather than an AWS invoice. It excludes the in-progress SWE trial, any failed request not represented in final trajectory cost, EC2, EBS, S3, and RDS. Exact billed cost remains unavailable to this IAM user because it lacks Cost Explorer access.
 
-Airline stopped as intended. AppWorld and WebArena are currently idle-blocked but still running. Their persisted state is on EBS, so stopping them until their harness fixes are ready would preserve the work while avoiding unnecessary instance hours.
+Airline, AppWorld, and SWE are quota-paused with staggered automatic-resume timers; their EC2 instances must remain running for those local timers to fire. WebArena is stopped at the paid-inference gate. Persisted artifacts and release archives are also synced to S3.
 
 ## Commercial implications
 
@@ -272,8 +291,8 @@ The most important new discovery question is:
 
 1. **Continue the lean investigation.** The Airline and SWE signals justify finishing the remaining high-information work, not restoring exhaustive benchmark scope.
 2. **Allow SWE to finish trials 3–4 and the Haiku probe**, then freeze and audit the 30-task corpus.
-3. **Stop idle AppWorld and WebArena compute until fixes are deployed.** AppWorld needs scenario-aware resume; WebArena needs a compatible OpenAI/LiteLLM dependency strategy.
-4. **Give AppWorld one bounded repair attempt.** Its structured back-office workflows are commercially relevant, but do not let harness work expand indefinitely.
+3. **Let the repaired Airline, AppWorld, and SWE timers make their staggered post-reset attempts.** Checkpoint filters now prevent broad reruns; stop any track whose residual evidence has low marginal value.
+4. **Keep AppWorld bounded after its successful harness repair.** Its structured back-office workflows are commercially relevant, but the next run must earn its place through usable evaluated rows.
 5. **Keep WebArena paid inference paused.** Site preparation is preserved, but browser-agent evidence has lower marginal GTM value than a real design-partner conversation.
 6. **Audit Airline action/state-change stability before assigning promotion labels.** Pass consistency alone is not a safe compilation criterion.
 7. **Do not unfreeze or retune M17 on partial labels.** Either complete or formally drop each retained track, build one immutable snapshot, and report held-out regret and unsafe promotions.
@@ -302,4 +321,8 @@ Primary persisted sources:
 
 Derived metrics in this update use only `status=COMPLETE` rows when describing behavioral pass rates, outcome repeatability, and valid cost distributions. Planned-row pass rates retain error rows only when explicitly labelled. Baseline-label accuracy is a same-task recurrence measure: the single baseline label is compared with later valid executions of that same task. It is not a held-out prediction metric.
 
-Repository revision audited: `724996b34f87487498c37c30deb514404174af6b`.
+Evidence revision audited: `724996b34f87487498c37c30deb514404174af6b`.
+
+Repair release deployed: `8e24c3c01cda402ca6ef2ef33c02f64072bdbdc1`.
+
+Repair archive: `s3://sosog-bedrock-batch-769377363988/vertical-expansion/control/releases/sosog-ai-8e24c3c01cda402ca6ef2ef33c02f64072bdbdc1.tar.gz`.
