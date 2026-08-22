@@ -25,6 +25,18 @@ export SOSOG_ARTIFACT_PREFIX=${SOSOG_ARTIFACT_PREFIX:-vertical-expansion}
 mkdir -p "$artifact_dir" "$results_root"
 source "$repo_dir/infra/aws/load_research_env.sh"
 
+apply_repo_patch() {
+  local patch_file=$1
+  if git apply --check "$patch_file"; then
+    git apply "$patch_file"
+  elif git apply --reverse --check "$patch_file"; then
+    return 0
+  else
+    echo "WebArena patch is neither applicable nor already applied: $patch_file" >&2
+    return 1
+  fi
+}
+
 sync_artifacts() {
   /opt/sosog/runtime/bin/aws s3 sync "$artifact_dir" \
     "s3://${SOSOG_ARTIFACT_BUCKET}/${SOSOG_ARTIFACT_PREFIX}/m16-webarena-${run_stamp}/" \
@@ -36,9 +48,10 @@ sync_artifacts() {
 trap sync_artifacts EXIT
 
 cd "$source_dir"
-git apply --check "$repo_dir/patches/webarena-bedrock-litellm.patch" \
-  && git apply "$repo_dir/patches/webarena-bedrock-litellm.patch" || true
-"$venv/bin/pip" install --upgrade litellm boto3 'psycopg[binary]' >/dev/null
+apply_repo_patch "$repo_dir/patches/webarena-bedrock-litellm.patch"
+apply_repo_patch "$repo_dir/patches/webarena-openai-v1-compat.patch"
+"$venv/bin/pip" install 'litellm==1.97.0' 'openai==2.54.0' \
+  boto3 'psycopg[binary]' >/dev/null
 "$venv/bin/python" scripts/generate_test_data.py
 "$venv/bin/python" "$repo_dir/scripts/verify_webarena_golden.py" \
   config_files/test.raw.json --output "$artifact_dir/GOLDEN_REPLAY.json"

@@ -4,7 +4,12 @@ set -euo pipefail
 repo_dir=${SOSOG_REPO_DIR:-/opt/sosog/sosog-ai}
 tau2_dir=/opt/sosog/tau2-bench
 artifact_dir=/opt/sosog/artifacts/m13-airline
-run_stamp=${SOSOG_RUN_STAMP:-$(date -u +%Y%m%dT%H%M%SZ)}
+run_stamp=${SOSOG_RUN_STAMP:-}
+if [[ -z $run_stamp && -f $artifact_dir/baseline_summary.json ]]; then
+  run_stamp=$(jq -r '.run_id | sub("^m13-airline-baseline-"; "")' \
+    "$artifact_dir/baseline_summary.json")
+fi
+run_stamp=${run_stamp:-$(date -u +%Y%m%dT%H%M%SZ)}
 primary_model=bedrock/us.anthropic.claude-sonnet-4-6
 fallback_model=bedrock/global.anthropic.claude-sonnet-4-6
 tau2_commit=c3398666e6559e3a063da3fc04b5acf7f941464e
@@ -112,14 +117,25 @@ run_phase() {
 }
 
 smoke_ids=("${golden_ids[@]}")
-run_phase smoke 1 smoke_ids
+[[ -f $artifact_dir/smoke_summary.json ]] || run_phase smoke 1 smoke_ids
 if [[ $(jq -r '.rows' "$artifact_dir/smoke_summary.json") != 5 ]]; then
   echo "live smoke did not produce exactly five rows" >&2
   exit 1
 fi
 
-run_phase baseline 1 task_ids
+[[ -f $artifact_dir/baseline_summary.json ]] || run_phase baseline 1 task_ids
 run_phase corpus 10 task_ids
+remaining_errors=$(jq -r '.status_counts.ERROR // 0' "$artifact_dir/corpus_summary.json")
+if (( remaining_errors > 0 )); then
+  rm -f "$artifact_dir/status.txt"
+  printf 'paused infrastructure_errors=%s cost_usd=%s\n' \
+    "$remaining_errors" "$(jq -r '.cost_usd' "$artifact_dir/corpus_summary.json")" \
+    >"$artifact_dir/progress.txt"
+  sync_artifacts
+  echo "Airline corpus paused with $remaining_errors retryable infrastructure errors." >&2
+  exit 75
+fi
+rm -f "$artifact_dir/progress.txt"
 printf 'complete\n' >"$artifact_dir/status.txt"
 sync_artifacts
 /usr/sbin/shutdown -h +1 || true

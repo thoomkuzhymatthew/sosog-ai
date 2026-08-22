@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily quota-aware resume for the Airline investigation
+
+[Timer]
+OnCalendar=*-*-* 00:05:00 UTC
+Persistent=true
+Unit=sosog-m13-airline-resume.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Resume the Airline investigation after quota reset
+After=network-online.target amazon-ssm-agent.service
+
+[Service]
+Type=oneshot
+ExecCondition=/usr/bin/test ! -f /opt/sosog/artifacts/m13-airline/status.txt
+ExecStart=/usr/bin/systemctl reset-failed sosog-track@m13-airline.service
+ExecStart=/usr/bin/systemctl restart sosog-track@m13-airline.service

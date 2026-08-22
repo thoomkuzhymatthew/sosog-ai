@@ -17,6 +17,14 @@ if str(ROOT) not in sys.path:
 from research_ops.persistence import ResearchStore, StoreConfig  # noqa: E402
 
 
+def selected_task_ids(report: dict, only_ids: Path | None) -> list[str]:
+    """Return submitted task IDs, optionally constrained to an audit set."""
+    submitted = set(report.get("submitted_ids", []))
+    if only_ids is not None:
+        submitted &= set(json.loads(only_ids.read_text()))
+    return sorted(submitted)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -25,6 +33,7 @@ def main() -> None:
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--phase", required=True)
     parser.add_argument("--trial", type=int, required=True)
+    parser.add_argument("--only-ids", type=Path)
     parser.add_argument("--output-jsonl", type=Path, required=True)
     parser.add_argument("--summary", type=Path, required=True)
     args = parser.parse_args()
@@ -34,7 +43,7 @@ def main() -> None:
     resolved = set(report.get("resolved_ids", []))
     completed = set(report.get("completed_ids", []))
     errors = set(report.get("error_ids", []))
-    task_ids = sorted(set(report.get("submitted_ids", [])))
+    task_ids = selected_task_ids(report, args.only_ids)
     store = ResearchStore(StoreConfig.from_env())
     harness_commit = "7a21e05772954cc81471ae19d56f436cecf43c54"
     store.record_run(

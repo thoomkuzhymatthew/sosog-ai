@@ -1,0 +1,74 @@
+diff --git a/llms/providers/openai_utils.py b/llms/providers/openai_utils.py
+index 4ca8fd1..66d7249 100644
+--- a/llms/providers/openai_utils.py
++++ b/llms/providers/openai_utils.py
+@@ -12,8 +12,14 @@ from typing import Any
+ 
+ import aiolimiter
+ import openai
+-import openai.error
+ from tqdm.asyncio import tqdm_asyncio
++
++try:
++    from openai import APIError as OpenAIAPIError
++    from openai import RateLimitError as OpenAIRateLimitError
++except ImportError:
++    from openai.error import APIError as OpenAIAPIError
++    from openai.error import RateLimitError as OpenAIRateLimitError
+ 
+ 
+ def retry_with_exponential_backoff(  # type: ignore
+@@ -22,6 +28,6 @@ def retry_with_exponential_backoff(  # type: ignore
+     jitter: bool = True,
+     max_retries: int = 3,
+-    errors: tuple[Any] = (openai.error.RateLimitError,),
++    errors: tuple[Any] = (OpenAIRateLimitError,),
+ ):
+     """Retry a function with exponential backoff."""
+ 
+@@ -75,12 +81,12 @@ async def _throttled_openai_completion_acreate(
+                     max_tokens=max_tokens,
+                     top_p=top_p,
+                 )
+-            except openai.error.RateLimitError:
++            except OpenAIRateLimitError:
+                 logging.warning(
+                     "OpenAI API rate limit exceeded. Sleeping for 10 seconds."
+                 )
+                 await asyncio.sleep(10)
+-            except openai.error.APIError as e:
++            except OpenAIAPIError as e:
+                 logging.warning(f"OpenAI API error: {e}")
+                 break
+         return {"choices": [{"message": {"content": ""}}]}
+@@ -177,7 +183,7 @@ async def _throttled_openai_chat_completion_acreate(
+                     max_tokens=max_tokens,
+                     top_p=top_p,
+                 )
+-            except openai.error.RateLimitError:
++            except OpenAIRateLimitError:
+                 logging.warning(
+                     "OpenAI API rate limit exceeded. Sleeping for 10 seconds."
+                 )
+@@ -185,7 +191,7 @@ async def _throttled_openai_chat_completion_acreate(
+             except asyncio.exceptions.TimeoutError:
+                 logging.warning("OpenAI API timeout. Sleeping for 10 seconds.")
+                 await asyncio.sleep(10)
+-            except openai.error.APIError as e:
++            except OpenAIAPIError as e:
+                 logging.warning(f"OpenAI API error: {e}")
+                 break
+         return {"choices": [{"message": {"content": ""}}]}
+diff --git a/run.py b/run.py
+index a037037..8416049 100644
+--- a/run.py
++++ b/run.py
+@@ -347,7 +347,7 @@ def test(args: argparse.Namespace, config_file_list: list[str]) -> None:
+                     Path(args.result_dir) / "traces" / f"{task_id}.zip"
+                 )
+ 
+-        except openai.error.OpenAIError as e:
++        except openai.OpenAIError as e:
+             logger.info(f"[OpenAI Error] {repr(e)}")
+         except Exception as e:
+             logger.info(f"[Unhandled Error] {repr(e)}]")

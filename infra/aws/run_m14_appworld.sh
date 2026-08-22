@@ -84,15 +84,10 @@ run_phase() {
   local run_agent=1
   local tasks_per_gen=3
   [[ $dataset == sosog_m14_smoke ]] && tasks_per_gen=1
-  "$venv/bin/python" - "$root_dir" "$marker_dir" "$dataset" "$resume_dataset_path" <<'PY'
-import sys
-from pathlib import Path
-root, markers, dataset, target = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], Path(sys.argv[4])
-ids = (root / "data" / "datasets" / f"{dataset}.txt").read_text().split()
-missing = [task_id for task_id in ids if not (markers / f"{task_id}_data.json").exists()]
-target.write_text("\n".join(missing) + ("\n" if missing else ""))
-print(len(missing))
-PY
+  "$venv/bin/python" "$repo_dir/scripts/appworld_resume_dataset.py" \
+    --dataset "$root_dir/data/datasets/${dataset}.txt" \
+    --marker-dir "$marker_dir" --output "$resume_dataset_path" \
+    --group-size "$tasks_per_gen"
   if [[ -s $resume_dataset_path ]]; then
     run_dataset=$resume_dataset
   else
@@ -139,16 +134,10 @@ PY
     fi
     fallback_dataset="sosog_m14_${phase}_t${trial}_fallback"
     fallback_dataset_path="$root_dir/data/datasets/${fallback_dataset}.txt"
-    "$venv/bin/python" - "$root_dir" "$experiment" "$dataset" "$fallback_dataset_path" <<'PY'
-import sys
-from pathlib import Path
-root, experiment, dataset, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], Path(sys.argv[4])
-markers = root / "experiments" / "outputs" / experiment / "recoma_output"
-ids = (root / "data" / "datasets" / f"{dataset}.txt").read_text().split()
-missing = [task_id for task_id in ids if not (markers / f"{task_id}_data.json").exists()]
-target.write_text("\n".join(missing) + ("\n" if missing else ""))
-print(len(missing))
-PY
+    "$venv/bin/python" "$repo_dir/scripts/appworld_resume_dataset.py" \
+      --dataset "$root_dir/data/datasets/${dataset}.txt" \
+      --marker-dir "$marker_dir" --output "$fallback_dataset_path" \
+      --group-size "$tasks_per_gen"
     if [[ -s $fallback_dataset_path ]]; then
       write_config "$fallback_dataset" "$fallback_model" "$config_path" "$tasks_per_gen"
       "$venv/bin/appworld" run "$experiment" --root "$root_dir" 2>&1 \
@@ -158,11 +147,21 @@ PY
 import json, sys
 from pathlib import Path
 root, experiment, dataset, model, target = Path(sys.argv[1]), sys.argv[2], sys.argv[3], sys.argv[4], Path(sys.argv[5])
-routes = json.loads(target.read_text())
+routes = {}
 for task_id in (root / "data" / "datasets" / f"{dataset}.txt").read_text().split():
     marker = root / "experiments" / "outputs" / experiment / "recoma_output" / f"{task_id}_data.json"
-    if task_id not in routes and marker.exists():
-        routes[task_id] = model
+    if not marker.exists():
+        continue
+    usage = json.loads(marker.read_text()).get("metadata", {})
+    observed = sorted(
+        key[len("litellm."):-len(".calls")]
+        for key, value in usage.items()
+        if key.startswith("litellm.") and key.endswith(".calls") and float(value or 0) > 0
+    )
+    routes[task_id] = next(
+        (route for route in observed if "/global." in route),
+        observed[0] if observed else model,
+    )
 target.write_text(json.dumps(routes, indent=2, sort_keys=True) + "\n")
 PY
   fi

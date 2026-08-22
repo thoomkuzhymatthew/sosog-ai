@@ -94,7 +94,7 @@ evaluate_and_export() {
   report=$(find "$artifact_dir" -maxdepth 1 -name "*.$eval_id.json" -print -quit)
   "$venv/bin/python" "$repo_dir/scripts/export_swe_research.py" \
     --output-dir "$output_dir" --report "$report" --route-map "$route_map" \
-    --run-id "$eval_id" --phase "$phase" --trial "$trial" \
+    --run-id "$eval_id" --phase "$phase" --trial "$trial" --only-ids "$ids_json" \
     --output-jsonl "$artifact_dir/${phase}_t${trial}_${suffix}.jsonl" \
     --summary "$artifact_dir/${phase}_t${trial}_${suffix}_summary.json"
   /opt/sosog/runtime/bin/aws s3 sync "$output_dir" \
@@ -108,11 +108,13 @@ baseline_routes="$artifact_dir/baseline_model_routes.json"
 baseline_ids="$artifact_dir/baseline_ids.json"
 jq '.task_ids' "$selection" >"$baseline_ids"
 baseline_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
-if [[ ! -f $artifact_dir/baseline_t0_all_summary.json ]]; then
-  run_generation baseline 0 "$baseline_output" "$baseline_filter" ""
-  retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes" "$baseline_ids"
+if [[ ! -f $artifact_dir/baseline_t0_selected30_summary.json ]]; then
+  if [[ ! -f $baseline_output/preds.json || ! -f $baseline_routes ]]; then
+    run_generation baseline 0 "$baseline_output" "$baseline_filter" ""
+    retry_quota_failures baseline 0 "$baseline_output" "$baseline_routes" "$baseline_ids"
+  fi
   evaluate_and_export baseline 0 "$baseline_output" "$baseline_routes" \
-    "$baseline_ids" all
+    "$baseline_ids" selected30
 fi
 
 corpus_filter=$(jq -r '.task_ids | "^(" + join("|") + ")$"' "$selection")
@@ -141,7 +143,12 @@ if [[ ! -f $artifact_dir/haiku_t0_all_summary.json ]]; then
     "$artifact_dir/haiku_ids.json" all
 fi
 
-total_cost=$(jq -s '[.[].cost_usd] | add // 0' "$artifact_dir"/*_summary.json)
+summary_paths=("$artifact_dir/baseline_t0_selected30_summary.json")
+for trial in $(seq 0 4); do
+  summary_paths+=("$artifact_dir/corpus_t${trial}_all_summary.json")
+done
+summary_paths+=("$artifact_dir/haiku_t0_all_summary.json")
+total_cost=$(jq -s '[.[].cost_usd] | add // 0' "${summary_paths[@]}")
 if awk -v cost="$total_cost" 'BEGIN {exit !(cost > 650)}'; then
   echo "SWE Verified track exceeded its $650 budget: $total_cost" >&2
   exit 1
