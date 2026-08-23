@@ -12,6 +12,10 @@ service, or grant unrestricted host access.
 
 - The service runs as the unprivileged `ubuntu` user.
 - A queue manifest may select only `read-only` or `workspace-write`.
+- The service keeps `CAP_NET_ADMIN` in its bounding set solely so Bubblewrap
+  can configure loopback inside a newly created private network namespace. It
+  is not granted as an ambient capability in the host namespace. The runner
+  verifies this sandbox path before making a model request.
 - The runner invokes `codex exec` with the versioned configuration override
   `approval_policy="never"`. Anything outside the selected sandbox therefore
   fails closed instead of waiting for an unattended approval.

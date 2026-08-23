@@ -52,9 +52,10 @@ done
 codex_realpath=$(realpath -e -- "$codex_bin")
 codex_bin_dir="${codex_realpath%/*}"
 codex_package_root="${codex_bin_dir%/bin}"
+codex_bwrap="${codex_package_root}/codex-resources/bwrap"
 for codex_support_file in \
   "${codex_bin_dir}/codex-code-mode-host" \
-  "${codex_package_root}/codex-resources/bwrap" \
+  "$codex_bwrap" \
   "${codex_package_root}/codex-path/rg"; do
   if [[ ! -x $codex_support_file ]]; then
     printf 'Codex standalone support executable is unavailable: %s\n' \
@@ -62,6 +63,14 @@ for codex_support_file in \
     exit 69
   fi
 done
+if ! "$codex_bwrap" \
+  --unshare-user \
+  --unshare-net \
+  --ro-bind / / \
+  -- /bin/true >/dev/null 2>&1; then
+  printf 'Codex Bubblewrap network sandbox preflight failed\n' >&2
+  exit 69
+fi
 
 queue_dir="${agent_root}/queue"
 prompt_root="${agent_root}/prompts"
