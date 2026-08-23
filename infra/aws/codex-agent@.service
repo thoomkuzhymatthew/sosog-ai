@@ -1,0 +1,52 @@
+[Unit]
+Description=SOSOG Codex coding worker %i
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=30min
+StartLimitBurst=3
+
+[Service]
+Type=exec
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/sosog/codex-agents
+EnvironmentFile=-/etc/sosog/codex-agents.env
+ExecStart=/usr/local/libexec/sosog/run_codex_agent.sh %i
+
+# Failed attempts are reviewable under the job directory. Bound retries so an
+# invalid prompt, exhausted account, or broken test suite cannot loop forever.
+Restart=on-failure
+RestartSec=30s
+RuntimeMaxSec=12h
+TimeoutStopSec=2min
+KillSignal=SIGINT
+KillMode=mixed
+
+# Host-level limits complement (but do not replace) the Codex CLI sandbox.
+UMask=0077
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=full
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+TasksMax=512
+LimitNOFILE=4096
+MemoryHigh=3G
+MemoryMax=4G
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=codex-agent-%i
+
+[Install]
+WantedBy=multi-user.target

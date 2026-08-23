@@ -1,0 +1,35 @@
+[
+  {
+    "action": "FULL_CRYSTALLIZE",
+    "family_id": "flight-change",
+    "job_id": "airline-flight-change-v1",
+    "manifest_path": "metrics/m18_airline_promotion/coding_jobs/manifests/airline-flight-change-v1.json",
+    "manifest_sha256": "1395a8632735cd59ea6459a03dc8e00abee5dfcb534a413504a7b9753ed5a73a",
+    "may_merge_or_deploy": false,
+    "prompt_path": "metrics/m18_airline_promotion/coding_jobs/airline-flight-change-v1.md",
+    "prompt_sha256": "489871479ed3c30aad05c566c3709bb9b8ad8eb339f3badadc47a56aadb9d803",
+    "requires_human_safety_review": true
+  },
+  {
+    "action": "FULL_CRYSTALLIZE",
+    "family_id": "cancellation",
+    "job_id": "airline-cancellation-v1",
+    "manifest_path": "metrics/m18_airline_promotion/coding_jobs/manifests/airline-cancellation-v1.json",
+    "manifest_sha256": "d1465f4d4a979143046b1fd1a986d83909ab6cbb28a26d0186c200fca70c1875",
+    "may_merge_or_deploy": false,
+    "prompt_path": "metrics/m18_airline_promotion/coding_jobs/airline-cancellation-v1.md",
+    "prompt_sha256": "67482eb71f5e45e6cbdb3f03b16feb92da5bc06ebcff76bf3eaf114845ee9b1f",
+    "requires_human_safety_review": true
+  },
+  {
+    "action": "FULL_CRYSTALLIZE",
+    "family_id": "compound-update",
+    "job_id": "airline-compound-update-v1",
+    "manifest_path": "metrics/m18_airline_promotion/coding_jobs/manifests/airline-compound-update-v1.json",
+    "manifest_sha256": "028d4c3475a429ec4996877370bd4d21d3f04b08ab0bf1115920e73dc7ec2f2e",
+    "may_merge_or_deploy": false,
+    "prompt_path": "metrics/m18_airline_promotion/coding_jobs/airline-compound-update-v1.md",
+    "prompt_sha256": "7f321f265b6549baa37f8c29719c1b525ce0bced33c562ee5f259b61a55885e3",
+    "requires_human_safety_review": true
+  }
+]

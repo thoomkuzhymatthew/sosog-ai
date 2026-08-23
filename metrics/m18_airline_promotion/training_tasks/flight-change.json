@@ -1,0 +1,208 @@
+[
+  {
+    "annotations": null,
+    "description": {
+      "notes": null,
+      "purpose": "Test finding cheapest Economy cabin class (not Basic Economy) flight on the next day. Multiple airports to consider. Testing understanding that policy forbids changing origin or destination of a reservation.",
+      "relevant_policies": null
+    },
+    "evaluation_criteria": {
+      "actions": [
+        {
+          "action_id": "15_0",
+          "arguments": {
+            "cabin": "economy",
+            "flights": [
+              {
+                "date": "2024-05-24",
+                "flight_number": "HAT110"
+              },
+              {
+                "date": "2024-05-24",
+                "flight_number": "HAT172"
+              }
+            ],
+            "payment_id": "gift_card_8887175",
+            "reservation_id": "M05KNL"
+          },
+          "info": null,
+          "name": "update_reservation_flights"
+        }
+      ],
+      "communicate_info": [],
+      "nl_assertions": [
+        "Agent updates reservation M05KNL to economy with flights HAT110 and HAT172 on 2024-05-24.",
+        "Agent uses the payment id: gift_card_8887175"
+      ],
+      "reward_basis": [
+        "DB",
+        "COMMUNICATE"
+      ]
+    },
+    "id": "15",
+    "initial_state": null,
+    "user_scenario": {
+      "instructions": {
+        "domain": "airline",
+        "known_info": "Your name is Aarav Garcia.\n\nYour user id is aarav_garcia_1177.",
+        "reason_for_call": "For your upcoming trip from ATL to PHL, you want to change for the cheapest flight in Economy cabin class (not Basic Economy) and for the day after the original reservation.",
+        "task_instructions": "Since you live in Princeton, so EWR and PHL are equally convenient for you and you want to consider both.\n\nYou are happy with original payment for refund.",
+        "unknown_info": null
+      },
+      "persona": null
+    }
+  },
+  {
+    "annotations": null,
+    "description": {
+      "notes": null,
+      "purpose": "Check that agent doesn't remove bags from a reservation.",
+      "relevant_policies": null
+    },
+    "evaluation_criteria": {
+      "actions": [
+        {
+          "action_id": "30_0",
+          "arguments": {
+            "reservation_id": "1N99U6"
+          },
+          "info": null,
+          "name": "get_reservation_details"
+        },
+        {
+          "action_id": "30_1",
+          "arguments": {
+            "date": "2024-05-19",
+            "destination": "IAH",
+            "origin": "LAS"
+          },
+          "info": null,
+          "name": "search_direct_flight"
+        },
+        {
+          "action_id": "30_2",
+          "arguments": {
+            "cabin": "economy",
+            "flights": [
+              {
+                "date": "2024-05-19",
+                "flight_number": "HAT266"
+              },
+              {
+                "date": "2024-05-27",
+                "flight_number": "HAT112"
+              }
+            ],
+            "payment_id": "gift_card_5634230",
+            "reservation_id": "1N99U6"
+          },
+          "info": null,
+          "name": "update_reservation_flights"
+        }
+      ],
+      "communicate_info": [],
+      "nl_assertions": [
+        "Agent updates reservation to flights HAT266 and HAT112.",
+        "Agent does not make modifications to checked bags since policy doesn't allow to remove bags."
+      ],
+      "reward_basis": [
+        "DB",
+        "COMMUNICATE"
+      ]
+    },
+    "id": "30",
+    "initial_state": null,
+    "user_scenario": {
+      "instructions": {
+        "domain": "airline",
+        "known_info": "You are James Taylor.\n\nYour user id is james_taylor_7043. \n\nYour reservation ID is 1N99U6.",
+        "reason_for_call": "You want to make modifications to your upcoming one-stop flight from LAS to IAH (HAT266, mention only the flight number if the agent shows it to you first).",
+        "task_instructions": "You want to change your upcoming one-stop flight from LAS to IAH to a nonstop flight.\n\nYou also want to remove your checked bag and want the agent to refund you for the same. If agent says that you cannot remove bags, accept it and move on.\n\nYou want to use the gift card (do not mention this unless the agent asks) for payment.",
+        "unknown_info": null
+      },
+      "persona": null
+    }
+  },
+  {
+    "annotations": null,
+    "description": {
+      "notes": null,
+      "purpose": "Test two cancellations requests, none allowed + 1 upgrade to business class.",
+      "relevant_policies": null
+    },
+    "evaluation_criteria": {
+      "actions": [
+        {
+          "action_id": "37_1",
+          "arguments": {
+            "reservation_id": "M20IZO"
+          },
+          "info": null,
+          "name": "get_reservation_details"
+        },
+        {
+          "action_id": "37_2",
+          "arguments": {
+            "date": "2024-05-22",
+            "destination": "ATL",
+            "origin": "JFK"
+          },
+          "info": null,
+          "name": "search_direct_flight"
+        },
+        {
+          "action_id": "37_3",
+          "arguments": {
+            "date": "2024-05-22",
+            "destination": "MCO",
+            "origin": "ATL"
+          },
+          "info": null,
+          "name": "search_direct_flight"
+        },
+        {
+          "action_id": "37_4",
+          "arguments": {
+            "cabin": "business",
+            "flights": [
+              {
+                "date": "2024-05-22",
+                "flight_number": "HAT268"
+              },
+              {
+                "date": "2024-05-22",
+                "flight_number": "HAT010"
+              }
+            ],
+            "payment_id": "credit_card_9074831",
+            "reservation_id": "M20IZO"
+          },
+          "info": null,
+          "name": "update_reservation_flights"
+        }
+      ],
+      "communicate_info": [],
+      "nl_assertions": [
+        "Agent does not cancel reservation NQNU5R since it is in the past.",
+        "Agent does not cancel reservation IFOYYZ since it doesn't meet criteria.",
+        "Agent upgrades M20IZO to business class."
+      ],
+      "reward_basis": [
+        "DB",
+        "COMMUNICATE"
+      ]
+    },
+    "id": "37",
+    "initial_state": null,
+    "user_scenario": {
+      "instructions": {
+        "domain": "airline",
+        "known_info": "You are Aarav Ahmed.\nYour user id is aarav_ahmed_6699.",
+        "reason_for_call": "You want to cancel two of your upcoming reservations (IFOYYZ and NQNU5R) and upgrade a third (M20IZO) to business class.",
+        "task_instructions": "You want to use your credit card ending in 7334 to pay for all charges and are willing to comply with airline policies for the changes.",
+        "unknown_info": null
+      },
+      "persona": null
+    }
+  }
+]

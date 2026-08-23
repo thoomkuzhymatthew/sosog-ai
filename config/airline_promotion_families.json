@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "vertical": "airline",
+  "tau2_dependency": {
+    "commit": "c3398666e6559e3a063da3fc04b5acf7f941464e",
+    "repository": "https://github.com/sierra-research/tau2-bench.git",
+    "runtime_path": "/opt/sosog/tau-bench"
+  },
+  "families": [
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "allowed_changed_paths": [
+        "crystallized/airline/flight_change.py",
+        "crystallized/airline/tests/test_flight_change.py",
+        "docs/experiments/airline_flight_change.md"
+      ],
+      "allowed_write_tools": [
+        "update_reservation_flights"
+      ],
+      "evaluation_set_id": "airline-flight-change-heldout-v1",
+      "family_id": "flight-change",
+      "job_id": "airline-flight-change-v1",
+      "max_changed_files": 3,
+      "max_diff_bytes": 1000000,
+      "module_path": "crystallized/airline/flight_change.py",
+      "test_path": "crystallized/airline/tests/test_flight_change.py",
+      "training_task_ids": [
+        "15",
+        "30",
+        "37"
+      ]
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "allowed_changed_paths": [
+        "crystallized/airline/cancellation.py",
+        "crystallized/airline/tests/test_cancellation.py",
+        "docs/experiments/airline_cancellation.md"
+      ],
+      "allowed_write_tools": [
+        "cancel_reservation"
+      ],
+      "evaluation_set_id": "airline-cancellation-heldout-v1",
+      "family_id": "cancellation",
+      "job_id": "airline-cancellation-v1",
+      "max_changed_files": 3,
+      "max_diff_bytes": 1000000,
+      "module_path": "crystallized/airline/cancellation.py",
+      "test_path": "crystallized/airline/tests/test_cancellation.py",
+      "training_task_ids": [
+        "19"
+      ]
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "allowed_changed_paths": [
+        "crystallized/airline/compound_update.py",
+        "crystallized/airline/tests/test_compound_update.py",
+        "docs/experiments/airline_compound_update.md"
+      ],
+      "allowed_write_tools": [
+        "update_reservation_baggages",
+        "update_reservation_flights",
+        "update_reservation_passengers"
+      ],
+      "evaluation_set_id": "airline-compound-update-heldout-v1",
+      "family_id": "compound-update",
+      "job_id": "airline-compound-update-v1",
+      "max_changed_files": 3,
+      "max_diff_bytes": 1000000,
+      "module_path": "crystallized/airline/compound_update.py",
+      "test_path": "crystallized/airline/tests/test_compound_update.py",
+      "training_task_ids": [
+        "22"
+      ]
+    }
+  ]
+}

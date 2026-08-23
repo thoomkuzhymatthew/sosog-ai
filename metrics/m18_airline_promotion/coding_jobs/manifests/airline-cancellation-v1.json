@@ -1,0 +1,52 @@
+{
+  "action": "FULL_CRYSTALLIZE",
+  "allowed_changed_paths": [
+    "crystallized/airline/cancellation.py",
+    "crystallized/airline/tests/test_cancellation.py",
+    "docs/experiments/airline_cancellation.md"
+  ],
+  "evaluation": {
+    "controller_owned": true,
+    "manifest_sha256": "c025a555112041589c0a504edea0922a416070b22b3ad21d0ff94009e98be4c2",
+    "set_id": "airline-cancellation-heldout-v1",
+    "visible_to_worker": false
+  },
+  "family_id": "cancellation",
+  "inputs": {
+    "tau2_dependency": {
+      "commit": "c3398666e6559e3a063da3fc04b5acf7f941464e",
+      "repository": "https://github.com/sierra-research/tau2-bench.git",
+      "runtime_path": "/opt/sosog/tau-bench"
+    },
+    "training_task_ids": [
+      "19"
+    ],
+    "training_tasks": {
+      "path": "metrics/m18_airline_promotion/training_tasks/cancellation.json",
+      "sha256": "3cf62f7ca97ee52bcc6316519c7c3ae4fcbf98d6b99d7fb1eedf570e079cd5ae"
+    },
+    "training_trace": {
+      "path": "metrics/m18_airline_promotion/training_traces/cancellation.jsonl",
+      "sha256": "8478459a1e4ed6d0f11e03f23790d80d46b5868fdfdccc246a34b7529b1198ca"
+    }
+  },
+  "job_id": "airline-cancellation-v1",
+  "max_changed_files": 3,
+  "max_diff_bytes": 1000000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "required_review_stages": [
+    "INDEPENDENT_HELD_OUT",
+    "ADVERSARIAL_DEFERRAL",
+    "HUMAN_SAFETY_REVIEW",
+    "SHADOW_ECONOMICS"
+  ],
+  "schema_version": 2,
+  "vertical": "airline"
+}

@@ -1,0 +1,10 @@
+{
+  "write_tools": [
+    "book_reservation",
+    "cancel_reservation",
+    "send_certificate",
+    "update_reservation_baggages",
+    "update_reservation_flights",
+    "update_reservation_passengers"
+  ]
+}

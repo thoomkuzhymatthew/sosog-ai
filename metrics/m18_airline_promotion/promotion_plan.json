@@ -1,0 +1,1960 @@
+{
+  "candidates": [
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.511,
+        "mean_cost_usd": 0.053577,
+        "n": 8,
+        "pass_rate": 1.0,
+        "passes": 8,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"emma_kim_9957\"})",
+          "get_reservation_details({\"reservation_id\":\"EHGLP3\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "0",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.083987,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"raj_sanchez_7340\"})",
+          "get_reservation_details({\"reservation_id\":\"MZDDS4\"})",
+          "get_reservation_details({\"reservation_id\":\"60RX9E\"})",
+          "get_reservation_details({\"reservation_id\":\"S5IK51\"})",
+          "get_reservation_details({\"reservation_id\":\"OUEA45\"})",
+          "get_reservation_details({\"reservation_id\":\"Q69X3R\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "1",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.119877,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"noah_muller_9847\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "2",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.511,
+        "mean_cost_usd": 0.057794,
+        "n": 8,
+        "pass_rate": 1.0,
+        "passes": 8,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"anya_garcia_5901\"})",
+          "get_reservation_details({\"reservation_id\":\"JMO1MG\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "3",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.117334,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_silva_7557\"})",
+          "get_reservation_details({\"reservation_id\":\"NM1VX1\"})",
+          "get_reservation_details({\"reservation_id\":\"KC18K6\"})",
+          "get_reservation_details({\"reservation_id\":\"S61CZX\"})",
+          "get_reservation_details({\"reservation_id\":\"H8Q05L\"})",
+          "get_reservation_details({\"reservation_id\":\"WUNA5K\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "4",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.112314,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mei_brown_7075\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "5",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.061745,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "6",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.93,
+        "mean_cost_usd": 0.191237,
+        "n": 8,
+        "pass_rate": 0.0,
+        "passes": 0,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"daiki_muller_1116\"})",
+          "get_reservation_details({\"reservation_id\":\"XEHM4B\"})",
+          "get_reservation_details({\"reservation_id\":\"59XX6W\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation"
+          ],
+          [
+            "update_reservation_flights",
+            "cancel_reservation",
+            "cancel_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "7",
+      "vertical": "airline"
+    },
+    {
+      "action": "DECOMPOSE",
+      "evidence": {
+        "confidence": 0.805,
+        "mean_cost_usd": 0.160779,
+        "n": 7,
+        "pass_rate": 0.285714,
+        "passes": 2,
+        "proposed_next_stage": "GENERATE_PREFIX_AND_TAIL_BOUNDARY",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_silva_7557\"})",
+          "search_direct_flight({\"date\":\"2024-05-26\",\"destination\":\"PHL\",\"origin\":\"ORD\"})",
+          "get_reservation_details({\"reservation_id\":\"NM1VX1\"})",
+          "get_reservation_details({\"reservation_id\":\"KC18K6\"})",
+          "get_reservation_details({\"reservation_id\":\"S61CZX\"})",
+          "get_reservation_details({\"reservation_id\":\"H8Q05L\"})",
+          "get_reservation_details({\"reservation_id\":\"WUNA5K\"})"
+        ],
+        "reason": "a common read prefix ends at a volatile write-tail boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_read_prefix_and_handoff",
+        "fallback": "full_agent_from_start_on_prefix_or_handoff_failure",
+        "nl_parser_placement": "not_in_the_volatile_tail",
+        "runtime_path": [
+          "raw_request",
+          "deterministic_read_only_prefix",
+          "validated_handoff",
+          "full_agent_tail",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "8",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.084342,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"aarav_ahmed_6699\"})",
+          "get_reservation_details({\"reservation_id\":\"IFOYYZ\"})",
+          "get_reservation_details({\"reservation_id\":\"NQNU5R\"})",
+          "get_reservation_details({\"reservation_id\":\"M20IZO\"})",
+          "search_direct_flight({\"date\":\"2024-05-22\",\"destination\":\"MCO\",\"origin\":\"JFK\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "9",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.240823,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"liam_khan_2521\"})",
+          "get_reservation_details({\"reservation_id\":\"4NQLHD\"})",
+          "get_reservation_details({\"reservation_id\":\"KHIK97\"})",
+          "get_reservation_details({\"reservation_id\":\"NO6SVK\"})",
+          "get_reservation_details({\"reservation_id\":\"AJVCTQ\"})",
+          "get_reservation_details({\"reservation_id\":\"ZB7LBX\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "10",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.125789,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"james_patel_9828\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "11",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.103479,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"chen_lee_6825\"})",
+          "get_reservation_details({\"reservation_id\":\"YAX4DR\"})",
+          "get_flight_status({\"date\":\"2024-05-18\",\"flight_number\":\"HAT235\"})",
+          "get_flight_status({\"date\":\"2024-05-19\",\"flight_number\":\"HAT298\"})",
+          "search_direct_flight({\"date\":\"2024-05-18\",\"destination\":\"MCO\",\"origin\":\"BOS\"})",
+          "search_direct_flight({\"date\":\"2024-05-19\",\"destination\":\"MSP\",\"origin\":\"MCO\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "12",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.047597,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"james_lee_6136\"})",
+          "get_reservation_details({\"reservation_id\":\"XEWRD9\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "13",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.220363,
+        "n": 7,
+        "pass_rate": 0.0,
+        "passes": 0,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mohamed_silva_9265\"})",
+          "get_reservation_details({\"reservation_id\":\"K1NW8N\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ],
+          [
+            "cancel_reservation",
+            "book_reservation",
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "14",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.232988,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"aarav_garcia_1177\"})",
+          "get_reservation_details({\"reservation_id\":\"M05KNL\"})",
+          "get_reservation_details({\"reservation_id\":\"UHDAHF\"})",
+          "search_direct_flight({\"date\":\"2024-05-24\",\"destination\":\"PHL\",\"origin\":\"ATL\"})",
+          "search_onestop_flight({\"date\":\"2024-05-24\",\"destination\":\"PHL\",\"origin\":\"ATL\"})",
+          "search_direct_flight({\"date\":\"2024-05-24\",\"destination\":\"EWR\",\"origin\":\"ATL\"})",
+          "search_onestop_flight({\"date\":\"2024-05-24\",\"destination\":\"EWR\",\"origin\":\"ATL\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "15",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.130887,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"aarav_garcia_1177\"})",
+          "get_reservation_details({\"reservation_id\":\"M05KNL\"})",
+          "get_reservation_details({\"reservation_id\":\"UHDAHF\"})",
+          "search_direct_flight({\"date\":\"2024-05-24\",\"destination\":\"PHL\",\"origin\":\"ATL\"})",
+          "search_onestop_flight({\"date\":\"2024-05-24\",\"destination\":\"PHL\",\"origin\":\"ATL\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "16",
+      "vertical": "airline"
+    },
+    {
+      "action": "DECOMPOSE",
+      "evidence": {
+        "confidence": 0.805,
+        "mean_cost_usd": 0.192052,
+        "n": 7,
+        "pass_rate": 0.571429,
+        "passes": 4,
+        "proposed_next_stage": "GENERATE_PREFIX_AND_TAIL_BOUNDARY",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"omar_rossi_1241\"})",
+          "get_reservation_details({\"reservation_id\":\"UM3OG5\"})",
+          "get_reservation_details({\"reservation_id\":\"5RJ7UH\"})",
+          "get_reservation_details({\"reservation_id\":\"FQ8APE\"})",
+          "get_reservation_details({\"reservation_id\":\"QKRY03\"})",
+          "get_flight_status({\"date\":\"2024-05-25\",\"flight_number\":\"HAT056\"})",
+          "get_flight_status({\"date\":\"2024-05-25\",\"flight_number\":\"HAT138\"})",
+          "search_direct_flight({\"date\":\"2024-05-25\",\"destination\":\"IAH\",\"origin\":\"EWR\"})",
+          "search_direct_flight({\"date\":\"2024-05-25\",\"destination\":\"ORD\",\"origin\":\"IAH\"})"
+        ],
+        "reason": "a common read prefix ends at a volatile write-tail boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights",
+            "update_reservation_baggages",
+            "update_reservation_passengers"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_passengers",
+            "update_reservation_baggages"
+          ],
+          [
+            "update_reservation_passengers",
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_read_prefix_and_handoff",
+        "fallback": "full_agent_from_start_on_prefix_or_handoff_failure",
+        "nl_parser_placement": "not_in_the_volatile_tail",
+        "runtime_path": [
+          "raw_request",
+          "deterministic_read_only_prefix",
+          "validated_handoff",
+          "full_agent_tail",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "17",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.231914,
+        "n": 7,
+        "pass_rate": 0.857143,
+        "passes": 6,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"omar_davis_3817\"})",
+          "get_reservation_details({\"reservation_id\":\"JG7FMM\"})",
+          "get_reservation_details({\"reservation_id\":\"LQ940Q\"})",
+          "get_reservation_details({\"reservation_id\":\"2FBBAH\"})",
+          "get_reservation_details({\"reservation_id\":\"X7BYG1\"})",
+          "get_reservation_details({\"reservation_id\":\"EQ1G6C\"})",
+          "get_reservation_details({\"reservation_id\":\"BOH180\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "18",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.065994,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"olivia_gonzalez_2305\"})",
+          "get_reservation_details({\"reservation_id\":\"Z7GOZK\"})",
+          "get_reservation_details({\"reservation_id\":\"K67C4W\"})",
+          "get_reservation_details({\"reservation_id\":\"THY2DG\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "19",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.163089,
+        "n": 7,
+        "pass_rate": 0.0,
+        "passes": 0,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mia_li_3668\"})",
+          "search_direct_flight({\"date\":\"2024-05-20\",\"destination\":\"SEA\",\"origin\":\"JFK\"})",
+          "search_direct_flight({\"date\":\"2024-05-20\",\"destination\":\"SEA\",\"origin\":\"LGA\"})",
+          "search_direct_flight({\"date\":\"2024-05-20\",\"destination\":\"SEA\",\"origin\":\"EWR\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "20",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.321647,
+        "n": 7,
+        "pass_rate": 0.142857,
+        "passes": 1,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sofia_kim_7287\"})",
+          "get_reservation_details({\"reservation_id\":\"OI5L9G\"})",
+          "get_reservation_details({\"reservation_id\":\"AQLBTL\"})",
+          "get_reservation_details({\"reservation_id\":\"KA7I60\"})",
+          "get_reservation_details({\"reservation_id\":\"I57WUD\"})",
+          "get_reservation_details({\"reservation_id\":\"OBUT9V\"})",
+          "get_reservation_details({\"reservation_id\":\"4BMN53\"})",
+          "get_reservation_details({\"reservation_id\":\"Q0ZF0J\"})",
+          "search_direct_flight({\"date\":\"2024-05-27\",\"destination\":\"IAH\",\"origin\":\"DEN\"})",
+          "search_onestop_flight({\"date\":\"2024-05-27\",\"destination\":\"IAH\",\"origin\":\"DEN\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "21",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.203128,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"omar_rossi_1241\"})",
+          "get_reservation_details({\"reservation_id\":\"UM3OG5\"})",
+          "get_reservation_details({\"reservation_id\":\"5RJ7UH\"})",
+          "get_reservation_details({\"reservation_id\":\"FQ8APE\"})",
+          "get_reservation_details({\"reservation_id\":\"QKRY03\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_passengers",
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "22",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.448936,
+        "n": 7,
+        "pass_rate": 0.285714,
+        "passes": 2,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mohamed_silva_9265\"})",
+          "get_reservation_details({\"reservation_id\":\"K1NW8N\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": [
+          [
+            "book_reservation",
+            "book_reservation",
+            "book_reservation"
+          ],
+          [
+            "cancel_reservation",
+            "book_reservation"
+          ],
+          [
+            "cancel_reservation",
+            "book_reservation",
+            "book_reservation",
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "23",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.209152,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mia_kim_4397\"})",
+          "get_reservation_details({\"reservation_id\":\"H9ZU1C\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "24",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.128469,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"ivan_muller_7015\"})",
+          "get_reservation_details({\"reservation_id\":\"G72NSF\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ],
+          [
+            "book_reservation",
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "25",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.068218,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"amelia_sanchez_4739\"})",
+          "get_reservation_details({\"reservation_id\":\"3FRNFB\"})",
+          "get_reservation_details({\"reservation_id\":\"Q4L9HS\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "26",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.492,
+        "mean_cost_usd": 0.137308,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"ethan_martin_2396\"})",
+          "get_reservation_details({\"reservation_id\":\"GXWCPN\"})",
+          "get_reservation_details({\"reservation_id\":\"DQST39\"})",
+          "get_reservation_details({\"reservation_id\":\"BSSSM3\"})",
+          "get_reservation_details({\"reservation_id\":\"RVQC22\"})",
+          "get_reservation_details({\"reservation_id\":\"P824NH\"})",
+          "get_reservation_details({\"reservation_id\":\"3HE6QG\"})",
+          "get_reservation_details({\"reservation_id\":\"NTIRXF\"})",
+          "get_reservation_details({\"reservation_id\":\"HG8X9P\"})",
+          "get_reservation_details({\"reservation_id\":\"M61CQM\"})",
+          "get_flight_status({\"date\":\"2024-05-15\",\"flight_number\":\"HAT039\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "27",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.473,
+        "mean_cost_usd": 0.079799,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"amelia_rossi_1297\"})",
+          "get_reservation_details({\"reservation_id\":\"SI5UKW\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "28",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.168774,
+        "n": 6,
+        "pass_rate": 0.166667,
+        "passes": 1,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"raj_brown_5782\"})",
+          "get_reservation_details({\"reservation_id\":\"VA5SGQ\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation",
+            "book_reservation"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "29",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.096532,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"james_taylor_7043\"})",
+          "get_reservation_details({\"reservation_id\":\"1N99U6\"})",
+          "search_direct_flight({\"date\":\"2024-05-19\",\"destination\":\"IAH\",\"origin\":\"LAS\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "30",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.058302,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"daiki_lee_6144\"})",
+          "get_reservation_details({\"reservation_id\":\"DF89BM\"})",
+          "get_reservation_details({\"reservation_id\":\"COVE6R\"})",
+          "get_reservation_details({\"reservation_id\":\"IIHXDG\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "31",
+      "vertical": "airline"
+    },
+    {
+      "action": "LIFT",
+      "evidence": {
+        "confidence": 0.731,
+        "mean_cost_usd": 0.28609,
+        "n": 6,
+        "pass_rate": 0.333333,
+        "passes": 2,
+        "proposed_next_stage": "RUN_LIFTING_EXPERIMENT",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"ivan_rossi_8555\"})",
+          "get_reservation_details({\"reservation_id\":\"OWZ4XL\"})",
+          "get_reservation_details({\"reservation_id\":\"F3IQK1\"})",
+          "get_reservation_details({\"reservation_id\":\"8WMF4C\"})",
+          "get_reservation_details({\"reservation_id\":\"L2H5FP\"})"
+        ],
+        "reason": "mid-band pass rate reflects a bounded genuine action inconsistency",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_lifting_experiment",
+        "fallback": "unlifted_full_agent",
+        "nl_parser_placement": "none_until_lifted_task_reclassifies",
+        "runtime_path": [
+          "raw_request",
+          "trace_exemplar_selection",
+          "full_agent_with_exemplars",
+          "programmatic_verifier",
+          "reclassify_after_matched_ab"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "32",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.221015,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"yara_garcia_1905\"})",
+          "get_reservation_details({\"reservation_id\":\"HXDUBJ\"})",
+          "search_direct_flight({\"date\":\"2024-05-19\",\"destination\":\"SFO\",\"origin\":\"IAH\"})",
+          "search_direct_flight({\"date\":\"2024-05-23\",\"destination\":\"IAH\",\"origin\":\"SFO\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights",
+            "update_reservation_baggages"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "33",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.473,
+        "mean_cost_usd": 0.181649,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"yara_garcia_1905\"})",
+          "get_reservation_details({\"reservation_id\":\"HXDUBJ\"})",
+          "search_direct_flight({\"date\":\"2024-05-19\",\"destination\":\"SFO\",\"origin\":\"IAH\"})",
+          "search_direct_flight({\"date\":\"2024-05-23\",\"destination\":\"IAH\",\"origin\":\"SFO\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "34",
+      "vertical": "airline"
+    },
+    {
+      "action": "DECOMPOSE",
+      "evidence": {
+        "confidence": 0.774,
+        "mean_cost_usd": 0.285058,
+        "n": 6,
+        "pass_rate": 0.833333,
+        "passes": 5,
+        "proposed_next_stage": "GENERATE_PREFIX_AND_TAIL_BOUNDARY",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"aarav_ahmed_6699\"})",
+          "get_reservation_details({\"reservation_id\":\"M20IZO\"})",
+          "get_reservation_details({\"reservation_id\":\"N6F783\"})",
+          "get_reservation_details({\"reservation_id\":\"IFOYYZ\"})",
+          "get_reservation_details({\"reservation_id\":\"NQNU5R\"})",
+          "search_direct_flight({\"date\":\"2024-05-24\",\"destination\":\"SFO\",\"origin\":\"JFK\"})",
+          "search_onestop_flight({\"date\":\"2024-05-24\",\"destination\":\"SFO\",\"origin\":\"JFK\"})"
+        ],
+        "reason": "a common read prefix ends at a volatile write-tail boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "book_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_read_prefix_and_handoff",
+        "fallback": "full_agent_from_start_on_prefix_or_handoff_failure",
+        "nl_parser_placement": "not_in_the_volatile_tail",
+        "runtime_path": [
+          "raw_request",
+          "deterministic_read_only_prefix",
+          "validated_handoff",
+          "full_agent_tail",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "35",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.042556,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"lucas_brown_4047\"})",
+          "get_reservation_details({\"reservation_id\":\"EUJUY6\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "36",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.150231,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"aarav_ahmed_6699\"})",
+          "get_reservation_details({\"reservation_id\":\"IFOYYZ\"})",
+          "get_reservation_details({\"reservation_id\":\"NQNU5R\"})",
+          "get_reservation_details({\"reservation_id\":\"M20IZO\"})",
+          "get_flight_status({\"date\":\"2024-05-22\",\"flight_number\":\"HAT268\"})",
+          "get_flight_status({\"date\":\"2024-05-22\",\"flight_number\":\"HAT010\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "37",
+      "vertical": "airline"
+    },
+    {
+      "action": "LIFT",
+      "evidence": {
+        "confidence": 0.761,
+        "mean_cost_usd": 0.136599,
+        "n": 7,
+        "pass_rate": 0.857143,
+        "passes": 6,
+        "proposed_next_stage": "RUN_LIFTING_EXPERIMENT",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"noah_muller_9847\"})"
+        ],
+        "reason": "mid-band pass rate reflects a bounded genuine action inconsistency",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation",
+            "send_certificate"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_lifting_experiment",
+        "fallback": "unlifted_full_agent",
+        "nl_parser_placement": "none_until_lifted_task_reclassifies",
+        "runtime_path": [
+          "raw_request",
+          "trace_exemplar_selection",
+          "full_agent_with_exemplars",
+          "programmatic_verifier",
+          "reclassify_after_matched_ab"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "38",
+      "vertical": "airline"
+    },
+    {
+      "action": "DECOMPOSE",
+      "evidence": {
+        "confidence": 0.805,
+        "mean_cost_usd": 0.134879,
+        "n": 7,
+        "pass_rate": 0.714286,
+        "passes": 5,
+        "proposed_next_stage": "GENERATE_PREFIX_AND_TAIL_BOUNDARY",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"amelia_davis_8890\"})",
+          "get_reservation_details({\"reservation_id\":\"8C8K4E\"})",
+          "get_reservation_details({\"reservation_id\":\"UDMOP1\"})",
+          "get_reservation_details({\"reservation_id\":\"XAZ3C0\"})",
+          "get_reservation_details({\"reservation_id\":\"LU15PA\"})",
+          "get_reservation_details({\"reservation_id\":\"MSJ4OA\"})",
+          "get_reservation_details({\"reservation_id\":\"I6M8JQ\"})",
+          "get_reservation_details({\"reservation_id\":\"4XGCCM\"})"
+        ],
+        "reason": "a common read prefix ends at a volatile write-tail boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation",
+            "cancel_reservation"
+          ],
+          [
+            "cancel_reservation",
+            "cancel_reservation",
+            "cancel_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_read_prefix_and_handoff",
+        "fallback": "full_agent_from_start_on_prefix_or_handoff_failure",
+        "nl_parser_placement": "not_in_the_volatile_tail",
+        "runtime_path": [
+          "raw_request",
+          "deterministic_read_only_prefix",
+          "validated_handoff",
+          "full_agent_tail",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "39",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.046998,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"anya_garcia_5901\"})",
+          "get_reservation_details({\"reservation_id\":\"3RK2T9\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "update_reservation_passengers"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "40",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.895,
+        "mean_cost_usd": 0.0788,
+        "n": 7,
+        "pass_rate": 1.0,
+        "passes": 7,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"amelia_davis_8890\"})",
+          "get_reservation_details({\"reservation_id\":\"8C8K4E\"})",
+          "get_reservation_details({\"reservation_id\":\"UDMOP1\"})",
+          "get_reservation_details({\"reservation_id\":\"XAZ3C0\"})",
+          "get_reservation_details({\"reservation_id\":\"LU15PA\"})",
+          "get_reservation_details({\"reservation_id\":\"MSJ4OA\"})",
+          "get_reservation_details({\"reservation_id\":\"I6M8JQ\"})",
+          "get_reservation_details({\"reservation_id\":\"4XGCCM\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "41",
+      "vertical": "airline"
+    },
+    {
+      "action": "FULL_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.145998,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_FULL_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_martin_4574\"})",
+          "get_reservation_details({\"reservation_id\":\"MFRB94\"})",
+          "get_reservation_details({\"reservation_id\":\"PUNERT\"})",
+          "get_reservation_details({\"reservation_id\":\"HSR97W\"})",
+          "get_reservation_details({\"reservation_id\":\"SE9KEL\"})",
+          "get_reservation_details({\"reservation_id\":\"FDZ0T5\"})",
+          "get_reservation_details({\"reservation_id\":\"HTR26G\"})",
+          "get_reservation_details({\"reservation_id\":\"5BGGWZ\"})"
+        ],
+        "reason": "pass rate is at least 0.90 with exactly one passing write skeleton",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation",
+            "cancel_reservation"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_executor_and_gates",
+        "fallback": "full_agent_on_parse_ambiguity_or_gate_deferral",
+        "nl_parser_placement": "before_schema_and_consistency_gates",
+        "runtime_path": [
+          "raw_request",
+          "cheap_structured_intent_parser",
+          "schema_gate",
+          "consistency_gate",
+          "deterministic_executor",
+          "programmatic_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "42",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.113967,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"mohamed_hernandez_5188\"})",
+          "get_reservation_details({\"reservation_id\":\"35V5SM\"})",
+          "get_reservation_details({\"reservation_id\":\"XXDC1M\"})",
+          "get_reservation_details({\"reservation_id\":\"V5EMZH\"})",
+          "get_reservation_details({\"reservation_id\":\"D1EW9B\"})",
+          "get_reservation_details({\"reservation_id\":\"9HBUV8\"})",
+          "get_reservation_details({\"reservation_id\":\"DGZSYX\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "43",
+      "vertical": "airline"
+    },
+    {
+      "action": "DROP",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.415385,
+        "n": 6,
+        "pass_rate": 0.166667,
+        "passes": 1,
+        "proposed_next_stage": "ARCHIVE_CANDIDATE",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_silva_7557\"})",
+          "get_reservation_details({\"reservation_id\":\"NM1VX1\"})",
+          "get_reservation_details({\"reservation_id\":\"KC18K6\"})",
+          "get_reservation_details({\"reservation_id\":\"S61CZX\"})",
+          "get_reservation_details({\"reservation_id\":\"H8Q05L\"})",
+          "get_reservation_details({\"reservation_id\":\"WUNA5K\"})",
+          "get_flight_status({\"date\":\"2024-05-25\",\"flight_number\":\"HAT300\"})",
+          "get_flight_status({\"date\":\"2024-05-27\",\"flight_number\":\"HAT208\"})",
+          "get_flight_status({\"date\":\"2024-05-21\",\"flight_number\":\"HAT300\"})",
+          "get_flight_status({\"date\":\"2024-05-21\",\"flight_number\":\"HAT215\"})",
+          "get_flight_status({\"date\":\"2024-05-23\",\"flight_number\":\"HAT228\"})",
+          "get_flight_status({\"date\":\"2024-05-24\",\"flight_number\":\"HAT043\"})",
+          "get_flight_status({\"date\":\"2024-05-24\",\"flight_number\":\"HAT157\"})",
+          "get_flight_status({\"date\":\"2024-05-25\",\"flight_number\":\"HAT041\"})",
+          "get_flight_status({\"date\":\"2024-05-24\",\"flight_number\":\"HAT268\"})"
+        ],
+        "reason": "complete-run pass rate is at or below the 0.20 drop boundary",
+        "review_required": false,
+        "write_name_patterns": [
+          [
+            "cancel_reservation"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ],
+          [
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights",
+            "update_reservation_flights"
+          ]
+        ]
+      },
+      "execution_design": {
+        "coding_job": "generate_early_exit_policy",
+        "fallback": "human_or_alternative_strategy",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "early_reject_or_escalate"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "44",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.078757,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_taylor_9065\"})",
+          "get_reservation_details({\"reservation_id\":\"PEP4E0\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "45",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.473,
+        "mean_cost_usd": 0.03106,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "46",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.093225,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"sophia_silva_7557\"})",
+          "get_reservation_details({\"reservation_id\":\"H8Q05L\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "47",
+      "vertical": "airline"
+    },
+    {
+      "action": "RETAIN",
+      "evidence": {
+        "confidence": 0.473,
+        "mean_cost_usd": 0.054286,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "HUMAN_REVIEW",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"anya_garcia_5901\"})",
+          "get_reservation_details({\"reservation_id\":\"3RK2T9\"})"
+        ],
+        "reason": "trace evidence does not cross an automatic treatment boundary",
+        "review_required": true,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": null,
+        "fallback": "existing_agent_path",
+        "nl_parser_placement": "none",
+        "runtime_path": [
+          "raw_request",
+          "full_agent"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "48",
+      "vertical": "airline"
+    },
+    {
+      "action": "RESPONSE_CRYSTALLIZE",
+      "evidence": {
+        "confidence": 0.86,
+        "mean_cost_usd": 0.033765,
+        "n": 6,
+        "pass_rate": 1.0,
+        "passes": 6,
+        "proposed_next_stage": "GENERATE_RESPONSE_EXECUTOR",
+        "read_prefix": [
+          "get_user_details({\"user_id\":\"anya_garcia_5901\"})",
+          "get_reservation_details({\"reservation_id\":\"3RK2T9\"})"
+        ],
+        "reason": "all complete runs pass with one stable read/response trace and no writes",
+        "review_required": false,
+        "write_name_patterns": []
+      },
+      "execution_design": {
+        "coding_job": "generate_response_template_and_gate",
+        "fallback": "full_agent_unless_policy_response_is_proven",
+        "nl_parser_placement": "before_policy_response_template",
+        "runtime_path": [
+          "raw_request",
+          "cheap_intent_parser",
+          "policy_and_state_gate",
+          "deterministic_response_template",
+          "communication_verifier"
+        ]
+      },
+      "promotion_review_required": true,
+      "task_id": "49",
+      "vertical": "airline"
+    }
+  ],
+  "family_job_package": {
+    "controller_evaluation_hashes": {
+      "airline-cancellation-heldout-v1": "c025a555112041589c0a504edea0922a416070b22b3ad21d0ff94009e98be4c2",
+      "airline-compound-update-heldout-v1": "19256c5598759d3c133a23249744e84188beca5abc60018445fc7e8bc8cd56e2",
+      "airline-flight-change-heldout-v1": "8b7f83643e0d96c2c8a0afb97f9e953246620a5fdbd60baa0e008919f9714d7b"
+    },
+    "job_ids": [
+      "airline-flight-change-v1",
+      "airline-cancellation-v1",
+      "airline-compound-update-v1"
+    ],
+    "schema_version": 1,
+    "strategy": "family_level_derivation_with_controller_owned_evaluation"
+  },
+  "schema_version": 1,
+  "summary": {
+    "action_counts": {
+      "DECOMPOSE": 4,
+      "DROP": 6,
+      "FULL_CRYSTALLIZE": 12,
+      "LIFT": 2,
+      "RESPONSE_CRYSTALLIZE": 8,
+      "RETAIN": 18
+    },
+    "coding_jobs_emitted": 3,
+    "complete_rows": 335,
+    "drop_pass_rate": 0.2,
+    "ignored_rows": 165,
+    "input_rows": 500,
+    "mean_complete_cost_usd": 0.144794,
+    "min_complete_runs": 5,
+    "observed_cost_usd": 48.505966,
+    "promote_pass_rate": 0.9,
+    "task_count": 50
+  },
+  "vertical": "airline",
+  "workflow": {
+    "observability_rule": "every coding-agent attempt emits an immutable JSONL event trace and a terminal outcome record, including failed attempts",
+    "promotion_rule": "coding agents may propose code; only deterministic held-out checks and the configured human safety review may advance it",
+    "schema_version": 1,
+    "stages": [
+      "INGEST",
+      "CLASSIFY",
+      "GENERATE_CHANGE",
+      "VERIFY_HELD_OUT",
+      "HUMAN_SAFETY_REVIEW",
+      "PROPOSE_PR",
+      "SHADOW_MEASURE",
+      "REPORT"
+    ]
+  }
+}
