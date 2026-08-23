@@ -5,7 +5,7 @@ readonly agent_user="ubuntu"
 readonly agent_group="ubuntu"
 readonly default_agent_root="/opt/sosog/codex-agents"
 readonly default_repo="/opt/sosog/codex-repo"
-readonly default_codex_bin="/usr/local/bin/codex"
+readonly default_codex_bin="/home/ubuntu/.local/bin/codex"
 
 if [[ ${EUID} -ne 0 ]]; then
   printf 'run this bootstrap script as root\n' >&2
@@ -98,11 +98,17 @@ if [[ ! -x $codex_bin ]]; then
     "$codex_bin" >&2
 else
   codex_realpath=$(realpath -e -- "$codex_bin")
-  codex_host_bin="${codex_realpath%/*}/codex-code-mode-host"
-  if [[ ! -x $codex_host_bin ]]; then
-    printf 'warning: Codex code-mode host is not executable beside the CLI: %s\n' \
-      "$codex_host_bin" >&2
-  fi
+  codex_bin_dir="${codex_realpath%/*}"
+  codex_package_root="${codex_bin_dir%/bin}"
+  for codex_support_file in \
+    "${codex_bin_dir}/codex-code-mode-host" \
+    "${codex_package_root}/codex-resources/bwrap" \
+    "${codex_package_root}/codex-path/rg"; do
+    if [[ ! -x $codex_support_file ]]; then
+      printf 'warning: Codex standalone support executable is unavailable: %s\n' \
+        "$codex_support_file" >&2
+    fi
+  done
 fi
 if ! git -C "$repo" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   printf 'warning: configured repository is not currently a Git worktree: %s\n' \

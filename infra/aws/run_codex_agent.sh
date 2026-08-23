@@ -18,7 +18,7 @@ fi
 
 agent_root=${CODEX_AGENT_ROOT:-/opt/sosog/codex-agents}
 repo=${CODEX_AGENT_REPO:-/opt/sosog/codex-repo}
-codex_bin=${CODEX_AGENT_CODEX_BIN:-/usr/local/bin/codex}
+codex_bin=${CODEX_AGENT_CODEX_BIN:-/home/ubuntu/.local/bin/codex}
 max_concurrency=${CODEX_AGENT_MAX_CONCURRENCY:-3}
 slot_wait_seconds=${CODEX_AGENT_SLOT_WAIT_SECONDS:-21600}
 job_timeout_seconds=${CODEX_AGENT_TIMEOUT_SECONDS:-21600}
@@ -50,12 +50,18 @@ for required_command in cmp flock git jq realpath sha256sum tar timeout; do
   fi
 done
 codex_realpath=$(realpath -e -- "$codex_bin")
-codex_host_bin="${codex_realpath%/*}/codex-code-mode-host"
-if [[ ! -x $codex_host_bin ]]; then
-  printf 'Codex code-mode host is not executable beside the CLI: %s\n' \
-    "$codex_host_bin" >&2
-  exit 69
-fi
+codex_bin_dir="${codex_realpath%/*}"
+codex_package_root="${codex_bin_dir%/bin}"
+for codex_support_file in \
+  "${codex_bin_dir}/codex-code-mode-host" \
+  "${codex_package_root}/codex-resources/bwrap" \
+  "${codex_package_root}/codex-path/rg"; do
+  if [[ ! -x $codex_support_file ]]; then
+    printf 'Codex standalone support executable is unavailable: %s\n' \
+      "$codex_support_file" >&2
+    exit 69
+  fi
+done
 
 queue_dir="${agent_root}/queue"
 prompt_root="${agent_root}/prompts"

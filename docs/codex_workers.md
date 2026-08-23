@@ -40,23 +40,23 @@ Prerequisites:
 - a trusted Linux EC2 host with systemd, Git, `flock`, `jq`, `realpath`,
   `sha256sum`, and `timeout`;
 - this repository available at `/opt/sosog/codex-repo` as a real Git worktree;
-- the Codex CLI executable at `/usr/local/bin/codex` and its matching
-  `codex-code-mode-host` executable in the same resolved `bin` directory;
+- a complete Codex standalone package, normally reached through the
+  installer-managed `/home/ubuntu/.local/bin/codex` symlink;
 - an existing `ubuntu` user and group.
 
-The standalone installer is a package, not a single binary. If you copy the
-CLI into `/usr/local/bin`, copy its matching host too:
+The standalone installer is a package, not a single binary. The worker needs
+the matching `codex-code-mode-host`, `codex-resources/bwrap`, and
+`codex-path/rg` shipped beside the CLI. Verify the installer-managed path:
 
 ```bash
-release_bin=/home/ubuntu/.codex/packages/standalone/current/bin
-sudo install -m 0755 "$release_bin/codex" /usr/local/bin/codex
-sudo install -m 0755 "$release_bin/codex-code-mode-host" \
-  /usr/local/bin/codex-code-mode-host
+realpath -e /home/ubuntu/.local/bin/codex
+test -x /home/ubuntu/.codex/packages/standalone/current/bin/codex-code-mode-host
+test -x /home/ubuntu/.codex/packages/standalone/current/codex-resources/bwrap
+test -x /home/ubuntu/.codex/packages/standalone/current/codex-path/rg
 ```
 
-Keeping `/home/ubuntu/.local/bin/codex` as the configured executable is also
-valid because the installer-managed symlink resolves into the complete
-standalone package.
+Do not copy only the main CLI executable into `/usr/local/bin`; doing so
+separates it from the sandbox and code-mode host it needs.
 
 Review the scripts and then run:
 
@@ -75,7 +75,7 @@ To use different absolute paths on the first installation:
 sudo env \
   CODEX_AGENT_ROOT=/srv/sosog/codex-agents \
   CODEX_AGENT_REPO=/srv/sosog/sosog-ai \
-  CODEX_AGENT_CODEX_BIN=/usr/local/bin/codex \
+  CODEX_AGENT_CODEX_BIN=/home/ubuntu/.local/bin/codex \
   /srv/sosog/sosog-ai/infra/aws/bootstrap_codex_agents.sh
 ```
 
@@ -117,7 +117,7 @@ before turning this prototype into a continuous service.
 ```dotenv
 CODEX_AGENT_ROOT=/opt/sosog/codex-agents
 CODEX_AGENT_REPO=/opt/sosog/codex-repo
-CODEX_AGENT_CODEX_BIN=/usr/local/bin/codex
+CODEX_AGENT_CODEX_BIN=/home/ubuntu/.local/bin/codex
 CODEX_AGENT_MAX_CONCURRENCY=3
 CODEX_AGENT_SLOT_WAIT_SECONDS=21600
 CODEX_AGENT_TIMEOUT_SECONDS=21600
