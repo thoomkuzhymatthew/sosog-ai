@@ -561,7 +561,7 @@ set +e
       --ephemeral \
       --ignore-user-config \
       --sandbox "$sandbox" \
-      --ask-for-approval never \
+      -c 'approval_policy="never"' \
       -c 'sandbox_workspace_write.network_access=false' \
       --json \
       --output-last-message "$final_file" \

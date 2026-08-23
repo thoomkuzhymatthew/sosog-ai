@@ -12,9 +12,9 @@ service, or grant unrestricted host access.
 
 - The service runs as the unprivileged `ubuntu` user.
 - A queue manifest may select only `read-only` or `workspace-write`.
-- The runner invokes `codex exec` with `--ask-for-approval never`. Anything
-  outside the selected sandbox therefore fails closed instead of waiting for
-  an unattended approval.
+- The runner invokes `codex exec` with the versioned configuration override
+  `approval_policy="never"`. Anything outside the selected sandbox therefore
+  fails closed instead of waiting for an unattended approval.
 - Network access for commands executed by the agent is disabled. Codex can
   still contact its model provider, but repository code and tests cannot make
   outbound connections through the Codex workspace sandbox.
