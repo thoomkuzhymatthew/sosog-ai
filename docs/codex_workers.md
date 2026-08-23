@@ -40,8 +40,23 @@ Prerequisites:
 - a trusted Linux EC2 host with systemd, Git, `flock`, `jq`, `realpath`,
   `sha256sum`, and `timeout`;
 - this repository available at `/opt/sosog/codex-repo` as a real Git worktree;
-- the Codex CLI executable at `/usr/local/bin/codex`;
+- the Codex CLI executable at `/usr/local/bin/codex` and its matching
+  `codex-code-mode-host` executable in the same resolved `bin` directory;
 - an existing `ubuntu` user and group.
+
+The standalone installer is a package, not a single binary. If you copy the
+CLI into `/usr/local/bin`, copy its matching host too:
+
+```bash
+release_bin=/home/ubuntu/.codex/packages/standalone/current/bin
+sudo install -m 0755 "$release_bin/codex" /usr/local/bin/codex
+sudo install -m 0755 "$release_bin/codex-code-mode-host" \
+  /usr/local/bin/codex-code-mode-host
+```
+
+Keeping `/home/ubuntu/.local/bin/codex` as the configured executable is also
+valid because the installer-managed symlink resolves into the complete
+standalone package.
 
 Review the scripts and then run:
 

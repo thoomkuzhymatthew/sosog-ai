@@ -96,6 +96,13 @@ systemctl daemon-reload
 if [[ ! -x $codex_bin ]]; then
   printf 'warning: Codex CLI is not executable at %s; install it before starting a worker\n' \
     "$codex_bin" >&2
+else
+  codex_realpath=$(realpath -e -- "$codex_bin")
+  codex_host_bin="${codex_realpath%/*}/codex-code-mode-host"
+  if [[ ! -x $codex_host_bin ]]; then
+    printf 'warning: Codex code-mode host is not executable beside the CLI: %s\n' \
+      "$codex_host_bin" >&2
+  fi
 fi
 if ! git -C "$repo" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   printf 'warning: configured repository is not currently a Git worktree: %s\n' \

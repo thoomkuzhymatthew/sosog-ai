@@ -49,6 +49,13 @@ for required_command in cmp flock git jq realpath sha256sum tar timeout; do
     exit 69
   fi
 done
+codex_realpath=$(realpath -e -- "$codex_bin")
+codex_host_bin="${codex_realpath%/*}/codex-code-mode-host"
+if [[ ! -x $codex_host_bin ]]; then
+  printf 'Codex code-mode host is not executable beside the CLI: %s\n' \
+    "$codex_host_bin" >&2
+  exit 69
+fi
 
 queue_dir="${agent_root}/queue"
 prompt_root="${agent_root}/prompts"
