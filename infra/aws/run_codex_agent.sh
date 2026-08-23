@@ -18,7 +18,7 @@ fi
 
 agent_root=${CODEX_AGENT_ROOT:-/opt/sosog/codex-agents}
 repo=${CODEX_AGENT_REPO:-/opt/sosog/codex-repo}
-codex_bin=${CODEX_AGENT_CODEX_BIN:-/home/ubuntu/.local/bin/codex}
+codex_bin=${CODEX_AGENT_CODEX_BIN:-/opt/sosog/codex-cli/current/bin/codex}
 max_concurrency=${CODEX_AGENT_MAX_CONCURRENCY:-3}
 slot_wait_seconds=${CODEX_AGENT_SLOT_WAIT_SECONDS:-21600}
 job_timeout_seconds=${CODEX_AGENT_TIMEOUT_SECONDS:-21600}
@@ -43,7 +43,7 @@ if [[ ! -x $codex_bin ]]; then
   printf 'Codex CLI is not executable: %s\n' "$codex_bin" >&2
   exit 69
 fi
-for required_command in cmp flock git jq realpath sha256sum tar timeout; do
+for required_command in cmp flock git jq realpath sha256sum stat tar timeout; do
   if ! command -v "$required_command" >/dev/null; then
     printf 'required command is unavailable: %s\n' "$required_command" >&2
     exit 69
@@ -53,20 +53,27 @@ codex_realpath=$(realpath -e -- "$codex_bin")
 codex_bin_dir="${codex_realpath%/*}"
 codex_package_root="${codex_bin_dir%/bin}"
 codex_bwrap="${codex_package_root}/codex-resources/bwrap"
-for codex_support_file in \
+for codex_runtime_path in \
+  "$codex_package_root" \
+  "$codex_realpath" \
   "${codex_bin_dir}/codex-code-mode-host" \
   "$codex_bwrap" \
   "${codex_package_root}/codex-path/rg"; do
-  if [[ ! -x $codex_support_file ]]; then
+  if [[ ! -x $codex_runtime_path ]]; then
     printf 'Codex standalone support executable is unavailable: %s\n' \
-      "$codex_support_file" >&2
+      "$codex_runtime_path" >&2
+    exit 69
+  fi
+  runtime_owner=$(stat -c '%u:%g' -- "$codex_runtime_path")
+  runtime_mode=$(stat -c '%a' -- "$codex_runtime_path")
+  if [[ $runtime_owner != '0:0' ]] || (( (8#$runtime_mode & 8#022) != 0 )); then
+    printf 'Codex runtime path is not root-owned and non-writable: %s\n' \
+      "$codex_runtime_path" >&2
     exit 69
   fi
 done
-if ! "$codex_bin" sandbox \
-  --enable use_legacy_landlock \
-  -- /bin/true >/dev/null 2>&1; then
-  printf 'Codex legacy Landlock sandbox preflight failed\n' >&2
+if ! "$codex_bin" sandbox -- /bin/true >/dev/null 2>&1; then
+  printf 'Codex Bubblewrap sandbox preflight failed\n' >&2
   exit 69
 fi
 
@@ -580,7 +587,6 @@ set +e
     "$codex_bin" exec \
       --ephemeral \
       --ignore-user-config \
-      --enable use_legacy_landlock \
       --sandbox "$sandbox" \
       -c 'approval_policy="never"' \
       -c 'sandbox_workspace_write.network_access=false' \

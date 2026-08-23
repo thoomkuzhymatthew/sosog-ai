@@ -13,11 +13,10 @@ service, or grant unrestricted host access.
 - The service runs as the unprivileged `ubuntu` user.
 - A queue manifest may select only `read-only` or `workspace-write`.
 - The host capability and ambient-capability sets are empty.
-- This Ubuntu host currently needs Codex's `use_legacy_landlock` compatibility
-  backend because AppArmor prevents the bundled Bubblewrap helper from
-  configuring loopback in a systemd service. The runner pins and smoke-tests
-  that backend before making a model request. Codex marks it deprecated, so a
-  CLI upgrade must repeat this smoke test before workers are restarted.
+- Ubuntu restricts unprivileged user namespaces for unprofiled executables.
+  The worker therefore uses a root-owned, version-pinned Codex runtime and an
+  AppArmor attachment granting `userns` only to that exact bundled Bubblewrap
+  path. The runner smoke-tests the real sandbox before making a model request.
 - The runner invokes `codex exec` with the versioned configuration override
   `approval_policy="never"`. Anything outside the selected sandbox therefore
   fails closed instead of waiting for an unattended approval.
@@ -46,23 +45,29 @@ Prerequisites:
 - a trusted Linux EC2 host with systemd, Git, `flock`, `jq`, `realpath`,
   `sha256sum`, and `timeout`;
 - this repository available at `/opt/sosog/codex-repo` as a real Git worktree;
-- a complete Codex standalone package, normally reached through the
-  installer-managed `/home/ubuntu/.local/bin/codex` symlink;
+- a complete Codex standalone package installed and authenticated for the
+  `ubuntu` user;
 - an existing `ubuntu` user and group.
 
-The standalone installer is a package, not a single binary. The worker needs
-the matching `codex-code-mode-host`, `codex-resources/bwrap`, and
-`codex-path/rg` shipped beside the CLI. Verify the installer-managed path:
+The standalone installer is a package, not a single binary. First verify the
+installer-managed source, then install the reviewed root-owned runtime and its
+version-specific AppArmor profile:
 
 ```bash
 realpath -e /home/ubuntu/.local/bin/codex
 test -x /home/ubuntu/.codex/packages/standalone/current/bin/codex-code-mode-host
 test -x /home/ubuntu/.codex/packages/standalone/current/codex-resources/bwrap
 test -x /home/ubuntu/.codex/packages/standalone/current/codex-path/rg
+
+sudo /opt/sosog/codex-repo/infra/aws/install_codex_runtime.sh
 ```
 
-Do not copy only the main CLI executable into `/usr/local/bin`; doing so
-separates it from the sandbox and code-mode host it needs.
+The installer copies the complete authenticated package to
+`/opt/sosog/codex-cli/0.149.0`, makes it root-owned, loads the exact-path
+AppArmor attachment, and executes a no-model sandbox probe in a fresh systemd
+service. Do not start a worker if this probe fails. Upgrading Codex requires a
+new versioned target and a reviewed profile path; the wildcard is deliberately
+not used.
 
 Review the scripts and then run:
 
@@ -81,7 +86,7 @@ To use different absolute paths on the first installation:
 sudo env \
   CODEX_AGENT_ROOT=/srv/sosog/codex-agents \
   CODEX_AGENT_REPO=/srv/sosog/sosog-ai \
-  CODEX_AGENT_CODEX_BIN=/home/ubuntu/.local/bin/codex \
+  CODEX_AGENT_CODEX_BIN=/opt/sosog/codex-cli/current/bin/codex \
   /srv/sosog/sosog-ai/infra/aws/bootstrap_codex_agents.sh
 ```
 
@@ -123,7 +128,7 @@ before turning this prototype into a continuous service.
 ```dotenv
 CODEX_AGENT_ROOT=/opt/sosog/codex-agents
 CODEX_AGENT_REPO=/opt/sosog/codex-repo
-CODEX_AGENT_CODEX_BIN=/home/ubuntu/.local/bin/codex
+CODEX_AGENT_CODEX_BIN=/opt/sosog/codex-cli/current/bin/codex
 CODEX_AGENT_MAX_CONCURRENCY=3
 CODEX_AGENT_SLOT_WAIT_SECONDS=21600
 CODEX_AGENT_TIMEOUT_SECONDS=21600

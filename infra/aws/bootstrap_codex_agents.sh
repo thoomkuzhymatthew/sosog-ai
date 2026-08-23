@@ -5,7 +5,7 @@ readonly agent_user="ubuntu"
 readonly agent_group="ubuntu"
 readonly default_agent_root="/opt/sosog/codex-agents"
 readonly default_repo="/opt/sosog/codex-repo"
-readonly default_codex_bin="/home/ubuntu/.local/bin/codex"
+readonly default_codex_bin="/opt/sosog/codex-cli/current/bin/codex"
 
 if [[ ${EUID} -ne 0 ]]; then
   printf 'run this bootstrap script as root\n' >&2

@@ -1,0 +1,9 @@
+abi <abi/4.0>,
+include <tunables/global>
+
+# This attachment is deliberately version-specific. A Codex upgrade must
+# install a new root-owned runtime, review this path, reload the profile, and
+# pass the worker sandbox preflight before jobs are restarted.
+profile sosog-codex-bwrap /opt/sosog/codex-cli/0.149.0/codex-resources/bwrap flags=(unconfined) {
+  userns,
+}
