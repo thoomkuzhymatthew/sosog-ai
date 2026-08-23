@@ -12,10 +12,12 @@ service, or grant unrestricted host access.
 
 - The service runs as the unprivileged `ubuntu` user.
 - A queue manifest may select only `read-only` or `workspace-write`.
-- The service keeps `CAP_NET_ADMIN` in its bounding set solely so Bubblewrap
-  can configure loopback inside a newly created private network namespace. It
-  is not granted as an ambient capability in the host namespace. The runner
-  verifies this sandbox path before making a model request.
+- The host capability and ambient-capability sets are empty.
+- This Ubuntu host currently needs Codex's `use_legacy_landlock` compatibility
+  backend because AppArmor prevents the bundled Bubblewrap helper from
+  configuring loopback in a systemd service. The runner pins and smoke-tests
+  that backend before making a model request. Codex marks it deprecated, so a
+  CLI upgrade must repeat this smoke test before workers are restarted.
 - The runner invokes `codex exec` with the versioned configuration override
   `approval_policy="never"`. Anything outside the selected sandbox therefore
   fails closed instead of waiting for an unattended approval.

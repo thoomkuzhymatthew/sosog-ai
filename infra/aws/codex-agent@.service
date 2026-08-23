@@ -37,10 +37,7 @@ ProtectSystem=full
 RestrictRealtime=true
 RestrictSUIDSGID=true
 LockPersonality=true
-# Bubblewrap creates a private network namespace and needs CAP_NET_ADMIN
-# inside that namespace to bring up loopback. Keeping it only in the bounding
-# set does not grant it to the unprivileged service in the host namespace.
-CapabilityBoundingSet=CAP_NET_ADMIN
+CapabilityBoundingSet=
 AmbientCapabilities=
 TasksMax=512
 LimitNOFILE=4096

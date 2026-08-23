@@ -63,12 +63,10 @@ for codex_support_file in \
     exit 69
   fi
 done
-if ! "$codex_bwrap" \
-  --unshare-user \
-  --unshare-net \
-  --ro-bind / / \
+if ! "$codex_bin" sandbox \
+  --enable use_legacy_landlock \
   -- /bin/true >/dev/null 2>&1; then
-  printf 'Codex Bubblewrap network sandbox preflight failed\n' >&2
+  printf 'Codex legacy Landlock sandbox preflight failed\n' >&2
   exit 69
 fi
 
@@ -582,6 +580,7 @@ set +e
     "$codex_bin" exec \
       --ephemeral \
       --ignore-user-config \
+      --enable use_legacy_landlock \
       --sandbox "$sandbox" \
       -c 'approval_policy="never"' \
       -c 'sandbox_workspace_write.network_access=false' \
