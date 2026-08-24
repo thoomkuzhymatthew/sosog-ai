@@ -1,0 +1,25 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/economics/__init__.py",
+    "sosog/economics/inputs.py",
+    "sosog/economics/cost_model.py",
+    "sosog/economics/fee.py",
+    "sosog/economics/tests/__init__.py",
+    "sosog/economics/tests/test_inputs.py",
+    "sosog/economics/tests/test_cost_model.py",
+    "sosog/economics/tests/test_fee.py"
+  ],
+  "job_id": "sosog-v1-economics",
+  "max_changed_files": 8,
+  "max_diff_bytes": 900000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

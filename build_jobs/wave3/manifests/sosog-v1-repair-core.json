@@ -1,0 +1,29 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/repair/__init__.py",
+    "sosog/repair/contracts.py",
+    "sosog/repair/vertical_adapter.py",
+    "sosog/repair/evaluator.py",
+    "sosog/repair/controller.py",
+    "sosog/repair/case_drafting.py",
+    "sosog/repair/tests/__init__.py",
+    "sosog/repair/tests/test_evaluator.py",
+    "sosog/repair/tests/test_controller.py",
+    "sosog/repair/tests/test_case_drafting.py",
+    "sosog/orchestration/controller.py",
+    "sosog/orchestration/tests/test_controller.py"
+  ],
+  "job_id": "sosog-v1-repair-core",
+  "max_changed_files": 12,
+  "max_diff_bytes": 1200000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-repair-core",
+    "manifest_path": "build_jobs/wave3/manifests/sosog-v1-repair-core.json",
+    "manifest_sha256": "f32546e3341d6c0bf9aad2f64c0e7bdb930f1d72a86ffe625d366d93be989e9b",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave3/prompts/sosog-v1-repair-core.md",
+    "prompt_sha256": "b7a326efc4e6e0fc486e4ea0252d392130615c908dfe67d9066c242d4b6353b0",
+    "requires_human_safety_review": true
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-operations-persistence",
+    "manifest_path": "build_jobs/wave3/manifests/sosog-v1-operations-persistence.json",
+    "manifest_sha256": "a25b7cc48f85ff50bd248ad5e5f379a3d8439018ed82563ef52116842b08a534",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave3/prompts/sosog-v1-operations-persistence.md",
+    "prompt_sha256": "bd1ca0213b83252a9f88fa8844ae0e2eb98531b35ba3149679a765932d0117b0",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-economics",
+    "manifest_path": "build_jobs/wave3/manifests/sosog-v1-economics.json",
+    "manifest_sha256": "4d19411526edb9212ed1fa5100912b91b104900a97cc4c6d7822ea3972a5b565",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave3/prompts/sosog-v1-economics.md",
+    "prompt_sha256": "9f6e89808a33a311cb23980da37989d9441aac6e9a4fed32ae94bba2d62365e6",
+    "requires_human_safety_review": false
+  }
+]

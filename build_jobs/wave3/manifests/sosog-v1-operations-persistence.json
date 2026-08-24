@@ -1,0 +1,20 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "infra/aws/sql/004_sosog_v1_operations.sql",
+    "sosog/persistence/store.py",
+    "sosog/persistence/tests/test_store.py"
+  ],
+  "job_id": "sosog-v1-operations-persistence",
+  "max_changed_files": 3,
+  "max_diff_bytes": 900000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}
