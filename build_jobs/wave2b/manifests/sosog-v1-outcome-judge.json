@@ -1,0 +1,21 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/task_identification/__init__.py",
+    "sosog/task_identification/outcome_judge.py",
+    "sosog/task_identification/tests/__init__.py",
+    "sosog/task_identification/tests/test_outcome_judge.py"
+  ],
+  "job_id": "sosog-v1-outcome-judge",
+  "max_changed_files": 4,
+  "max_diff_bytes": 700000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

@@ -1,0 +1,25 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/task_identification/__init__.py",
+    "sosog/task_identification/embed.py",
+    "sosog/task_identification/cluster.py",
+    "sosog/task_identification/label.py",
+    "sosog/task_identification/review.py",
+    "sosog/task_identification/tests/__init__.py",
+    "sosog/task_identification/tests/test_cluster.py",
+    "sosog/task_identification/tests/test_embed.py"
+  ],
+  "job_id": "sosog-v1-task-clustering",
+  "max_changed_files": 8,
+  "max_diff_bytes": 1200000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

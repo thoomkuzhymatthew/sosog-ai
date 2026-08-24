@@ -1,0 +1,23 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "promotion_engine/taxonomy.py",
+    "promotion_engine/audit.py",
+    "promotion_engine/tests/test_taxonomy.py",
+    "promotion_engine/tests/test_audit.py",
+    "predictor/router_v0.py",
+    "predictor/labels.py"
+  ],
+  "job_id": "sosog-v1-classifier-consolidation",
+  "max_changed_files": 6,
+  "max_diff_bytes": 800000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

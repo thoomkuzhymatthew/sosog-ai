@@ -1,0 +1,12 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-ingestion",
+    "manifest_path": "build_jobs/wave2/manifests/sosog-v1-ingestion.json",
+    "manifest_sha256": "3a41608df9449936584b132b297e77c31290b3e831c563fc147803aa3c233c1c",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave2/prompts/sosog-v1-ingestion.md",
+    "prompt_sha256": "23d59de7e9c6482543046ddf0b54605ccfb1959dd3b693d43beaef01c45ebcef",
+    "requires_human_safety_review": false
+  }
+]

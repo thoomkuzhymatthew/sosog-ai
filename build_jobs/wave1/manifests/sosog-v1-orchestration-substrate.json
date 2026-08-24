@@ -1,0 +1,28 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "infra/aws/run_codex_agent.sh",
+    "infra/aws/sosog-codex-auth-refresh.service",
+    "infra/aws/sosog-codex-auth-refresh.timer",
+    "infra/aws/refresh_codex_auth.sh",
+    "infra/aws/codex_login_and_resume.sh",
+    "sosog/__init__.py",
+    "sosog/orchestration/__init__.py",
+    "sosog/orchestration/dispatcher.py",
+    "sosog/orchestration/controller.py",
+    "sosog/orchestration/tests/__init__.py",
+    "sosog/orchestration/tests/test_dispatcher.py"
+  ],
+  "job_id": "sosog-v1-orchestration-substrate",
+  "max_changed_files": 11,
+  "max_diff_bytes": 1200000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-persistence-narrow",
+    "manifest_path": "build_jobs/wave1/manifests/sosog-v1-persistence-narrow.json",
+    "manifest_sha256": "d108eb1fd119eb6d4cfc6835030a44b09db5c673a67d9ad15f6cf8a7a2c9a9d8",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave1/prompts/sosog-v1-persistence-narrow.md",
+    "prompt_sha256": "b9e45c162efa4c86819309414520149d3bc0f30bf090b568e7e075034326174b",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-classifier-consolidation",
+    "manifest_path": "build_jobs/wave1/manifests/sosog-v1-classifier-consolidation.json",
+    "manifest_sha256": "24124d54f2bcb171e81bb805cff570e4a039081c6cd17df3df6b351565809d44",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave1/prompts/sosog-v1-classifier-consolidation.md",
+    "prompt_sha256": "5b49b4e94389f88e38f9d9c2b7dd9c923d93c9fd40c1f9ad0ffda0dfc0395b1f",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-orchestration-substrate",
+    "manifest_path": "build_jobs/wave1/manifests/sosog-v1-orchestration-substrate.json",
+    "manifest_sha256": "e7c2ff8e347795b687062c57fcadc7a1e2895b514cc17bb3fcd97cd6a6247557",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave1/prompts/sosog-v1-orchestration-substrate.md",
+    "prompt_sha256": "831a8ca6327f705064466c0b2a3a9129a0968dfcaeaf57d4eb255f384b079c72",
+    "requires_human_safety_review": false
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/ingestion/__init__.py",
+    "sosog/ingestion/schema.py",
+    "sosog/ingestion/adapters/__init__.py",
+    "sosog/ingestion/adapters/generic_mapped.py",
+    "sosog/ingestion/pipeline.py",
+    "sosog/ingestion/redaction.py",
+    "sosog/ingestion/tests/__init__.py",
+    "sosog/ingestion/tests/test_pipeline.py",
+    "config/generic_ingestion_mapping.example.json"
+  ],
+  "job_id": "sosog-v1-ingestion",
+  "max_changed_files": 9,
+  "max_diff_bytes": 1200000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

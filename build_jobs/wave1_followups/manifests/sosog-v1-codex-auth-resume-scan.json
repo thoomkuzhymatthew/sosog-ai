@@ -1,0 +1,18 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "infra/aws/refresh_codex_auth.sh"
+  ],
+  "job_id": "sosog-v1-codex-auth-resume-scan",
+  "max_changed_files": 1,
+  "max_diff_bytes": 300000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}

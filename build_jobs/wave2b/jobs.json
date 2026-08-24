@@ -1,0 +1,22 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-task-clustering",
+    "manifest_path": "build_jobs/wave2b/manifests/sosog-v1-task-clustering.json",
+    "manifest_sha256": "09fa1e35fa69f207a53895002e797fc32ca3d2efb7890ce8443547e0c0a8ea65",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave2b/prompts/sosog-v1-task-clustering.md",
+    "prompt_sha256": "d6e7e8cdaaba8f6a2fdfee7d0a5ab1adbf40d6fed566e9d053d0ca304a04d406",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-outcome-judge",
+    "manifest_path": "build_jobs/wave2b/manifests/sosog-v1-outcome-judge.json",
+    "manifest_sha256": "07625796288560f78ca61913c6de1d835402f0df618c0a7af956f8da774be22b",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave2b/prompts/sosog-v1-outcome-judge.md",
+    "prompt_sha256": "5e205c31c6b81d787611d2c38ef14f519b786dde6aeeaa5b53c71a8e0a39f098",
+    "requires_human_safety_review": false
+  }
+]

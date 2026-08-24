@@ -1,0 +1,22 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-classifier-audit-fixups",
+    "manifest_path": "build_jobs/wave1_followups/manifests/sosog-v1-classifier-audit-fixups.json",
+    "manifest_sha256": "ab956b822301c53de5099249033e74cd18c7fe915614d220838ec9bf48cbc5ca",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave1_followups/prompts/sosog-v1-classifier-audit-fixups.md",
+    "prompt_sha256": "d3b07cb07d736fdf807a652248f49253668df2c7fda9db4f2fab49d9b17dde58",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-codex-auth-resume-scan",
+    "manifest_path": "build_jobs/wave1_followups/manifests/sosog-v1-codex-auth-resume-scan.json",
+    "manifest_sha256": "1b6e7e92a441154c9f3705a59fa6ec6e5e16d036a3ea72f20a8fe91332c6874b",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave1_followups/prompts/sosog-v1-codex-auth-resume-scan.md",
+    "prompt_sha256": "187a90163a2db572dfbb6622bd9e8d1190aef28885c9dcbc48aeafa1fc1f1f08",
+    "requires_human_safety_review": false
+  }
+]
