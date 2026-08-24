@@ -158,7 +158,33 @@ class _SyntheticTools:
             self.validation_complete_at_write = (
                 self.validation_complete_at_write and self._validation_is_complete()
             )
-            self.writes.append(call); return deepcopy(self.fixture["reservation"])
+            self.writes.append(call)
+            reservation=self.fixture["reservation"]
+            reservation["cabin"]=arguments["cabin"]
+            flight_map={
+                (item["flight_number"],search_key[2]):item
+                for search_key,values in self.fixture["searches"].items()
+                for item in values
+            }
+            current_map={
+                (item["flight_number"],item["date"]):item
+                for item in reservation["flights"]
+            }
+            updated=[]
+            for requested in arguments["flights"]:
+                key=(requested["flight_number"],requested["date"])
+                source=flight_map.get(key,current_map.get(key))
+                if source is None: raise RuntimeError(f"synthetic flight missing: {key}")
+                updated.append({
+                    "flight_number":requested["flight_number"],
+                    "date":requested["date"], "origin":source["origin"],
+                    "destination":source["destination"],
+                    "price":source.get("prices",{}).get(
+                        arguments["cabin"],source.get("price",0)
+                    ),
+                })
+            reservation["flights"]=updated
+            return deepcopy(reservation)
         raise RuntimeError("unexpected synthetic tool")
 
 

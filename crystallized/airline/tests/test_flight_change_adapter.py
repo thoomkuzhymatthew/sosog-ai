@@ -3,7 +3,11 @@ import hashlib, json, sys, tempfile, unittest
 from pathlib import Path
 
 from crystallized.airline.contracts import ExecutionResult, ExecutionStatus
-from crystallized.airline.flight_change_adapter import FlightChangeAdapter
+from crystallized.airline.flight_change_adapter import (
+    FlightChangeAdapter,
+    _LOCKED,
+    _SyntheticTools,
+)
 from sosog.repair.contracts import CandidateReference, CaseClass, EvaluationTier
 from sosog.repair.evaluator import reports_to_feedback
 from sosog.repair.vertical_adapter import VerticalAdapter
@@ -59,6 +63,26 @@ class AdapterTests(unittest.TestCase):
         report=FlightChangeAdapter(locked_runner=good_runner).evaluate(self.ref,EvaluationTier.LOCKED)
         self.assertTrue(report.succeeded); self.assertTrue(all(x.passed for x in report.cases))
         self.assertEqual(sum(x.case_class is CaseClass.NORMAL_MUST_COMPLETE for x in report.cases),4)
+
+    def test_synthetic_write_returns_the_updated_postcondition(self):
+        case=_LOCKED[2]
+        tools=_SyntheticTools(case.payload["fixture"],case.payload["intent"])
+        intent=case.payload["intent"]
+        tools.call("get_reservation_details",{"reservation_id":intent["reservation_id"]})
+        tools.call("get_user_details",{"user_id":intent["user_id"]})
+        for flight in intent["flights"]:
+            tools.call("search_direct_flight",{
+                "origin":flight["origin"],"destination":flight["destination"],
+                "date":flight["date"],
+            })
+        updated=tools.call("update_reservation_flights",{
+            "reservation_id":intent["reservation_id"],"cabin":intent["cabin"],
+            "flights":[{"flight_number":x["flight_number"],"date":x["date"]}
+                       for x in intent["flights"]],"payment_id":intent["payment_id"],
+        })
+        self.assertEqual(updated["flights"][0]["flight_number"],"SYN202")
+        self.assertEqual(updated["flights"][0]["date"],"2024-06-11")
+        self.assertTrue(tools.validation_complete_at_write)
 
     def test_wrong_write_and_model_call_are_violations(self):
         def bad(module,payload,tools):
