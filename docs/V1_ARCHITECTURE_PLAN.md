@@ -22,10 +22,11 @@ Two separate tracks exist — don't conflate them:
 | Job 3 — orchestration substrate + Codex auth-refresh fix | **Merged**, same commit |
 | Follow-ups — classifier audit validation/source + auth-blocked resume | **Merged**, with Wave 2 ingestion in commit `0efd3df8b4bf57b0a3901611b90a4116c97640a1` |
 | Wave 2 — generic ingestion/redaction/artifact pipeline | **Merged**, same commit; independent review added structural-field redaction protection and atomic pre-persistence validation |
-| `sosog_v1` database | `002_sosog_v1.sql` applied over TLS; secure runtime config is `/etc/sosog/v1.env`; a live ingestion/redaction/artifact/readback smoke episode passed |
-| EC2 Python runtime | `/opt/sosog/runtime-venv` has pinned `psycopg[binary]==3.3.4` and `hdbscan==0.8.44`; both import inside the Codex sandbox (bootstrap codification remains follow-up work) |
-| Wave 2b — task clustering + outcome judge (`build_jobs/wave2b/`, 2 concurrent jobs) | Prompts reviewed and dependency satisfied; launch next from `0efd3df...` or its documentation-only descendant |
-| Everything else (worker-trace dogfood wiring, repair-loop generalization, economics, reporting, re-investigation, review console) | Not started |
+| `sosog_v1` database | `002_sosog_v1.sql` and the `003` product-category constraint migration applied over TLS; secure runtime config is `/etc/sosog/v1.env`; ingestion and worker-dogfood readback checks passed |
+| EC2 Python runtime | `/opt/sosog/runtime-venv` has `psycopg[binary]==3.3.4`, `hdbscan==0.8.44`, and `boto3==1.43.78`; Titan and Haiku invoke successfully through the instance role (bootstrap codification remains follow-up work) |
+| Wave 2b — task clustering + outcome judge (`build_jobs/wave2b/`, 2 concurrent jobs) | **Merged**, commit `b3e655c0f1671011e4721e541031e8995d18c616`; independent review added input, model-selection, and persistence-failure validation |
+| Component 9 — worker-trace adapter + end-to-end dogfood runner | **Merged**, commit `fe951af33f87c359b94e0d08ac2945f25dd83b9f`; live run persisted 38 episodes, 6 task types, and 6 classifications |
+| Everything else (repair-loop generalization, economics, reporting, re-investigation, review console) | Not started |
 
 Every `build_jobs/waveN*/` directory launches with its own script
 (`launch_*.sh <BASE_COMMIT_SHA>`) once its prerequisites are merged — see the
@@ -140,8 +141,9 @@ a human here would cost the closed-loop property for no real safety benefit.
   of business task types is unknown upfront and grows over time. Requires
   adding `hdbscan` to whatever bootstraps the Python environment these
   Codex workers run in (same pattern as `bootstrap_appworld.sh`'s pinned
-  dependencies) — installed ahead of time, outside the network-disabled
-  sandbox, not pip-installed mid-job. For **ongoing** assignment (new traces
+  dependencies). It is installed ahead of time in the live EC2 runtime,
+  outside the network-disabled sandbox; codifying that install in bootstrap
+  remains follow-up work. For **ongoing** assignment (new traces
   arriving later, or component 8's re-investigation deciding "is this an
   existing task or a new one"), don't reload the fitted HDBSCAN model —
   keep it cheap and stateless: nearest-centroid-with-threshold against the
@@ -442,6 +444,19 @@ changes needed to the classifier or feature extraction — point stages 2/3 at
 it like any other vertical. Lowest priority; matches the expectation that this
 yields little since audit logic should be vertical-agnostic.
 
+**Implemented and live-tested:** `sosog_worker_trace.py` archives the raw
+trace first, then persists only aggregated/redacted worker actions (never raw
+commands, command output, agent prose, or EC2 paths). `sosog/dogfood.py` and
+`scripts/run_sosog_worker_trace_dogfood.py` connect ingestion, Titan
+embeddings, HDBSCAN, Haiku cluster labels, outcome handling, classification,
+and Postgres persistence. The first run processed 38 real airline-family
+worker attempts: 35 episodes linked into six task types, three remained
+HDBSCAN noise, and six classifications were persisted. The result correctly
+separated the 35 failed attempts into three `DROP` clusters and the three
+successful but under-covered attempts into three `RETAIN` clusters. Database
+readback confirmed TLS, no orphan classifications, and no persisted raw
+command/output/path fields; all 38 raw artifacts are mode `0600`.
+
 ---
 
 ## 10. Persistence / data model
@@ -608,11 +623,12 @@ Synthetic generation stays valuable *after* a real baseline exists, for
 adversarial stress-testing — exactly how it's already used for the airline
 locked test set — not as the first check.
 
-1. **Dogfood first, free and immediate:** point the pipeline at SOSOG's own
+1. **Dogfood first, free and immediate — completed 2026-08-24:** point the pipeline at SOSOG's own
    Codex worker traces (component 9) as soon as components 1/2/3 exist. Real,
    non-benchmark, already being generated, and directly checkable — you know
    this domain well enough to tell if the clustering/classification output is
-   sane.
+   sane. The initial 38-episode result is recorded in component 9 above and
+   passed database/redaction/artifact verification.
 2. **Then a real external non-benchmark source:** real coding-agent session
    datasets exist and are worth pulling in — SWE-chat (via Entire.io, 2.7M
    events across 200+ real GitHub repos, with human-vs-agent line attribution
