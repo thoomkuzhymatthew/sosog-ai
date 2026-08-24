@@ -1,0 +1,49 @@
+{
+  "action": "REPAIR",
+  "allowed_changed_paths": [
+    "crystallized/airline/flight_change.py",
+    "crystallized/airline/tests/test_flight_change.py",
+    "docs/experiments/airline_flight_change.md"
+  ],
+  "evaluation": {
+    "controller_owned": true,
+    "locked_evaluator_sha256": "38d04b7dcfdb8955eb323f11348275ff35c104c82c1f7d7ddd5c96e2c22e1d16",
+    "locked_final_visible_to_worker": false,
+    "repair_task_ids": [
+      "11",
+      "16"
+    ],
+    "repair_tasks_visible_to_worker": true
+  },
+  "family_id": "flight-change",
+  "inputs": {
+    "base_proposal": {
+      "source_job_id": "airline-flight-change-v1",
+      "flight_change_sha256": "c55c0a758060212d353f33db1238a08afe3d2e953397545a58158fba334201f9",
+      "test_sha256": "e9ef1c038b4d592fd4c9fe91f4e444e54d45a4a766fc7ed87cc5b401880fa876",
+      "evidence_sha256": "dada50eeb59b6407141ae14394a23807bd38e66504d45964ae6d9839eb82955d"
+    },
+    "tau2_dependency": {
+      "commit": "c3398666e6559e3a063da3fc04b5acf7f941464e",
+      "runtime_path": "/opt/sosog/tau-bench"
+    }
+  },
+  "job_id": "airline-flight-change-repair-v1",
+  "max_changed_files": 3,
+  "max_diff_bytes": 1000000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "required_review_stages": [
+    "VISIBLE_REPAIR_REGRESSION",
+    "LOCKED_FINAL_VARIATIONS",
+    "HUMAN_SAFETY_REVIEW"
+  ],
+  "schema_version": 2,
+  "vertical": "airline"
+}
