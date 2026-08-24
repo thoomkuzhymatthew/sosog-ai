@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodically validate and refresh SOSOG Codex OAuth authentication
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=12h
+Unit=sosog-codex-auth-refresh.service
+
+[Install]
+WantedBy=timers.target

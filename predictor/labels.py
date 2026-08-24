@@ -1,4 +1,10 @@
-"""Automatic route labels plus coverage-bounded human audit overrides."""
+"""LEGACY, research-only route labels and audit overrides.
+
+New code must use ``promotion_engine.classifier``, ``promotion_engine.taxonomy``,
+and ``promotion_engine.audit``. This module remains unchanged for the
+milestone-17 research paths in ``predictor/regret.py``,
+``scripts/run_m17_predictor.py``, and ``scripts/run_m17_research_snapshot.py``.
+"""
 
 from __future__ import annotations
 

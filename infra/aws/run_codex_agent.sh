@@ -230,6 +230,33 @@ for job_path in "$job_dir" "$job_dir/input" "$job_dir/traces"; do
   fi
 done
 status_file="${job_dir}/status"
+write_status() {
+  local status_value=$1
+  local status_tmp="${status_file}.tmp.$$"
+  printf '%s\n' "$status_value" >"$status_tmp"
+  mv -- "$status_tmp" "$status_file"
+}
+
+auth_status_file="${agent_root}/auth-status.json"
+auth_checked_epoch=''
+if [[ -f $auth_status_file && ! -L $auth_status_file ]] &&
+  jq -e '.status == "valid" and (.checked_at | type == "string")' \
+    "$auth_status_file" >/dev/null 2>&1; then
+  auth_checked_at=$(jq -r '.checked_at' "$auth_status_file")
+  auth_checked_epoch=$(date -u -d "$auth_checked_at" +%s 2>/dev/null || true)
+fi
+current_epoch=$(date -u +%s)
+if [[ -z $auth_checked_epoch ]] || (( auth_checked_epoch > current_epoch )) ||
+  (( current_epoch - auth_checked_epoch > 13 * 60 * 60 )); then
+  write_status 'blocked_auth'
+  printf 'Codex authentication is missing, invalid, or stale; job blocked: %s\n' \
+    "$job_id" >&2
+  # Restart=on-failure retries every nonzero exit and consumes StartLimitBurst.
+  # blocked_auth is a job-level failure but a successful service invocation;
+  # only the centralized auth recovery path should start this unit again.
+  exit 0
+fi
+
 queue_snapshot="${job_dir}/input/queue.job"
 prompt_snapshot="${job_dir}/input/prompt.md"
 manifest_snapshot="${job_dir}/input/manifest.json"
@@ -366,13 +393,6 @@ log() {
   local timestamp
   timestamp=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
   printf '%s %s\n' "$timestamp" "$message" | tee -a "$runner_log" >&2
-}
-
-write_status() {
-  local status_value=$1
-  local status_tmp="${status_file}.tmp.$$"
-  printf '%s\n' "$status_value" >"$status_tmp"
-  mv -- "$status_tmp" "$status_file"
 }
 
 append_codex_events() {

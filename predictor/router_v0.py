@@ -1,4 +1,10 @@
-"""Auditable, zero-LLM-call v0 route predictor."""
+"""LEGACY, research-only: auditable, zero-LLM-call v0 route predictor.
+
+New code must use ``promotion_engine.classifier`` and
+``promotion_engine.taxonomy``. This module remains unchanged for the milestone-17
+research paths in ``predictor/regret.py``, ``scripts/run_m17_predictor.py``, and
+``scripts/run_m17_research_snapshot.py``.
+"""
 
 from __future__ import annotations
 
