@@ -131,28 +131,49 @@ def run_repair_controller(
     repo = Path(repo_root).resolve(strict=True)
     if not repo.is_dir():
         raise ValueError("repo root must be a directory")
-    worktree_path = root / "worktrees" / job_id
-    if worktree_path.is_symlink():
-        raise ValueError("worker worktree root must not be a symlink")
-    worktree = worktree_path.resolve(strict=True)
-    if not _below(worktree, root):
-        raise ValueError("worker worktree escapes agent root")
-    job_path = root / "jobs" / job_id
-    if job_path.is_symlink():
-        raise ValueError("worker job directory must not be a symlink")
-    job_dir = job_path.resolve(strict=True)
-    if not _below(job_dir, root):
-        raise ValueError("worker job directory escapes agent root")
-    status_file = job_dir / "status"
     allowed = {_safe_relative(item).as_posix() for item in allowed_changed_paths}
     if not allowed:
         raise ValueError("at least one allowed changed path is required")
 
+    worktree_path = root / "worktrees" / job_id
+    job_path = root / "jobs" / job_id
+
+    def validate_creation_paths() -> None:
+        if worktree_path.is_symlink():
+            raise ValueError("worker worktree root must not be a symlink")
+        if job_path.is_symlink():
+            raise ValueError("worker job directory must not be a symlink")
+        if worktree_path.exists() and not worktree_path.is_dir():
+            raise ValueError("worker worktree root must be a directory")
+        if job_path.exists() and not job_path.is_dir():
+            raise ValueError("worker job path must be a directory")
+
+    # Reject an already-poisoned path before starting a service, then repeat
+    # the same checks while the service creates its job directories.
+    validate_creation_paths()
     ops = operations or LocalSupervisorOperations()
     unit = f"codex-agent@{job_id}.service"
     started = ops.monotonic()
     if start_worker:
         ops.start(unit)
+
+    while True:
+        validate_creation_paths()
+        if worktree_path.is_dir() and job_path.is_dir():
+            worktree = worktree_path.resolve(strict=True)
+            job_dir = job_path.resolve(strict=True)
+            if not _below(worktree, root):
+                raise ValueError("worker worktree escapes agent root")
+            if not _below(job_dir, root):
+                raise ValueError("worker job directory escapes agent root")
+            break
+        if ops.active_state(unit) == "failed":
+            return ControllerResult("WORKER_FAILED", detail="not_started")
+        if ops.monotonic() - started >= timeout_seconds:
+            return ControllerResult("TIME_LIMIT", detail="not_started")
+        ops.sleep(poll_seconds)
+
+    status_file = job_dir / "status"
     while True:
         if status_file.is_symlink():
             raise ValueError("worker status must not be a symlink")

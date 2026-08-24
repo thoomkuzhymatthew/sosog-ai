@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -75,6 +76,43 @@ class SupervisorTests(unittest.TestCase):
             run_repair_controller(
                 "job", self.root, self.repo, object(), ["proposal.py"], operations=Ops()
             )
+
+    def test_waits_for_worker_to_create_job_and_worktree(self):
+        shutil.rmtree(self.worktree)
+        shutil.rmtree(self.job)
+        outer = self
+
+        class DelayedOps:
+            def __init__(self):
+                self.now = 0
+                self.polls = 0
+            def start(self, unit):
+                raise AssertionError("dispatcher already started this worker")
+            def active_state(self, unit):
+                return "active"
+            def monotonic(self):
+                return self.now
+            def sleep(self, seconds):
+                self.now += seconds
+                self.polls += 1
+                outer.worktree.mkdir(parents=True)
+                source = outer.worktree / "proposal.py"
+                source.write_text("safe")
+                trace = outer.job / "traces" / "001"
+                trace.mkdir(parents=True)
+                (outer.job / "status").write_text("succeeded")
+                (trace / "circuit-breaker.json").write_text(
+                    json.dumps({"status": "passed"})
+                )
+                (trace / "changed-files.txt").write_text("proposal.py\n")
+
+        operations = DelayedOps()
+        result = run_repair_controller(
+            "job", self.root, self.repo, object(), ["proposal.py"],
+            operations=operations, start_worker=False, poll_seconds=0.1,
+        )
+        self.assertEqual(result.status, "FROZEN_PENDING_EVALUATION")
+        self.assertEqual(operations.polls, 1)
 
 
 if __name__ == "__main__": unittest.main()
