@@ -1,0 +1,12 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-codex-repair-worker",
+    "manifest_path": "build_jobs/wave4b/manifests/sosog-v1-codex-repair-worker.json",
+    "manifest_sha256": "f4da445b36801283d6f3e6e1c3936067ebd770dc46ab0fb76e0e8d957a407941",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave4b/prompts/sosog-v1-codex-repair-worker.md",
+    "prompt_sha256": "abb87d398e1b3334b865c8c5e14c2b03df8b77d3c2ea1bfb5f6f79fae324887c",
+    "requires_human_safety_review": true
+  }
+]

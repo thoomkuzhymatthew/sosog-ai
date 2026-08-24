@@ -1,0 +1,24 @@
+{
+  "action": "BUILD_PRODUCT_MODULE",
+  "allowed_changed_paths": [
+    "sosog/orchestration/dispatcher.py",
+    "sosog/orchestration/controller.py",
+    "sosog/orchestration/tests/test_dispatcher.py",
+    "sosog/orchestration/tests/test_controller.py",
+    "sosog/repair/__init__.py",
+    "sosog/repair/codex_worker.py",
+    "sosog/repair/tests/test_codex_worker.py"
+  ],
+  "job_id": "sosog-v1-codex-repair-worker",
+  "max_changed_files": 7,
+  "max_diff_bytes": 1000000,
+  "permissions": {
+    "may_commit": false,
+    "may_deploy": false,
+    "may_merge": false,
+    "may_push": false,
+    "network_access": false
+  },
+  "require_changes": true,
+  "schema_version": 2
+}
