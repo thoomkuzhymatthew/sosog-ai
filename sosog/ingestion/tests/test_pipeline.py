@@ -97,6 +97,12 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(episode[0].outcome.success_source, "unknown")
         self.assertIsNone(store.rows[0]["outcome_success"])
 
+    def test_missing_cost_is_persisted_as_zero_not_sql_null(self):
+        configured = mapping(cost_usd_path=None)
+        _, store, _, _ = self.ingest(record(), configured)
+
+        self.assertEqual(store.rows[0]["cost_usd"], 0.0)
+
     def test_sensitive_call_data_is_redacted_before_persistence(self):
         raw = record(actions=[{
             "tool": "lookup", "args": {"email": "person@example.com", "safe": "yes"},

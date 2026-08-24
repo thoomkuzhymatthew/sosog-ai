@@ -61,7 +61,7 @@ class NormalizedEpisode:
             "outcome_success": self.outcome.success,
             "outcome_success_source": self.outcome.success_source,
             "outcome_confidence": self.outcome.confidence,
-            "cost_usd": self.cost.usd,
+            "cost_usd": self.cost.usd if self.cost.usd is not None else 0.0,
             "raw_artifact_uri": self.raw_ref.get("uri"),
             "raw_artifact_sha256": self.raw_ref.get("sha256"),
             "metadata": metadata,

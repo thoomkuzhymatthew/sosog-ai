@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS sosog_v1.classifications (
     product_category text NOT NULL CHECK (
         product_category IN (
             'FULLY_CRYSTALLIZABLE', 'DECOMPOSABLE',
-            'FULLY_AGENTIC', 'FULLY_MANUAL'
+            'FULLY_AGENTIC', 'FULLY_MANUAL', 'INSUFFICIENT_EVIDENCE'
         )
     ),
     evidence jsonb NOT NULL DEFAULT '{}'::jsonb,

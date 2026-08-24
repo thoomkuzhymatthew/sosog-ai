@@ -44,6 +44,13 @@ def _put_immutable(source: Path, artifact_dir: Path) -> tuple[dict[str, str], by
     return {"uri": destination.resolve().as_uri(), "sha256": digest}, body
 
 
+def archive_raw_file(
+    source: str | Path, artifact_dir: str | Path
+) -> tuple[dict[str, str], bytes]:
+    """Archive a raw export by content hash before any parsing occurs."""
+    return _put_immutable(Path(source), Path(artifact_dir))
+
+
 def _records(source: Path, body: bytes, mapping: dict[str, Any]) -> Iterable[dict[str, Any]]:
     input_format = mapping.get("input_format") or source.suffix.lower().lstrip(".")
     text = body.decode(mapping.get("encoding", "utf-8"))

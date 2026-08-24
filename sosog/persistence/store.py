@@ -20,6 +20,7 @@ class StoreConfig:
     db_name: str | None = None
     db_user: str | None = None
     db_password: str | None = None
+    db_sslmode: str = "require"
     db_required: bool = False
 
     @classmethod
@@ -30,6 +31,7 @@ class StoreConfig:
             db_name=os.environ.get("SOSOG_DB_NAME"),
             db_user=os.environ.get("DB_USER"),
             db_password=os.environ.get("DB_PASSWORD"),
+            db_sslmode=os.environ.get("SOSOG_DB_SSLMODE", "require"),
             db_required=os.environ.get("SOSOG_DB_REQUIRED") == "1",
         )
 
@@ -76,6 +78,7 @@ class SosogStore:
                 dbname=self.config.db_name,
                 user=self.config.db_user,
                 password=self.config.db_password,
+                sslmode=self.config.db_sslmode,
                 connect_timeout=5,
             )
         except Exception as exc:
@@ -175,6 +178,46 @@ class SosogStore:
             (task_type_id,),
         )
 
+    def assign_episode_task_type(self, episode_id: str, task_type_id: str) -> bool:
+        """Link an ingested episode after automated task discovery."""
+        if not episode_id or not task_type_id:
+            raise ValueError("episode_id and task_type_id must be non-empty")
+        return self._write(
+            "UPDATE sosog_v1.episodes SET task_type_id = %s WHERE episode_id = %s",
+            (task_type_id, episode_id),
+        )
+
+    def update_episode_outcome(
+        self,
+        episode_id: str,
+        *,
+        success: bool | None,
+        success_source: str,
+        confidence: float | None,
+        rationale: str | None = None,
+    ) -> bool:
+        """Persist an outcome judgment without replacing stronger evidence in SQL."""
+        if not episode_id or not success_source:
+            raise ValueError("episode_id and success_source must be non-empty")
+        return self._write(
+            """UPDATE sosog_v1.episodes
+               SET outcome_success = %s,
+                   outcome_success_source = %s,
+                   outcome_confidence = %s,
+                   metadata = metadata || %s::jsonb
+               WHERE episode_id = %s
+                 AND outcome_success_source = 'unknown'""",
+            (
+                success,
+                success_source,
+                confidence,
+                self._json(
+                    {"outcome_judge_rationale": rationale} if rationale else {}, {}
+                ),
+                episode_id,
+            ),
+        )
+
     def record_task_type(self, value: Mapping[str, Any]) -> bool:
         self._require(value, {"task_type_id", "name", "description", "source"}, "task type")
         return self._write(
@@ -226,6 +269,12 @@ class SosogStore:
             """SELECT * FROM sosog_v1.classifications WHERE task_type_id = %s
                ORDER BY created_at DESC, classification_id DESC LIMIT 1""",
             (task_type_id,),
+        )
+
+    def get_classification(self, classification_id: str) -> dict[str, Any] | None:
+        return self._read_one(
+            "SELECT * FROM sosog_v1.classifications WHERE classification_id = %s",
+            (classification_id,),
         )
 
     def list_classification_history(self, task_type_id: str) -> list[dict[str, Any]]:

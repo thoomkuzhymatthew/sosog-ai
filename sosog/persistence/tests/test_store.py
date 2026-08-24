@@ -62,14 +62,18 @@ class StoreTests(unittest.TestCase):
         environment = {
             "DB_HOST": "db.internal", "DB_PORT": "5433",
             "SOSOG_DB_NAME": "sosog_v1", "DB_USER": "sosog",
-            "DB_PASSWORD": "secret",
+            "DB_PASSWORD": "secret", "SOSOG_DB_SSLMODE": "verify-full",
         }
         with patch.dict(os.environ, environment, clear=True):
             config = StoreConfig.from_env()
 
         self.assertEqual(config.db_name, "sosog_v1")
         self.assertEqual(config.db_port, 5433)
+        self.assertEqual(config.db_sslmode, "verify-full")
         self.assertTrue(config.database_configured)
+
+    def test_database_tls_is_required_by_default(self):
+        self.assertEqual(StoreConfig().db_sslmode, "require")
 
     def test_record_episode_serializes_json_and_uses_defaults(self):
         cursor = FakeCursor()
@@ -128,6 +132,35 @@ class StoreTests(unittest.TestCase):
                 self.assertIn(f"INSERT INTO sosog_v1.{table}", sql)
                 self.assertNotIn("ON CONFLICT", sql)
 
+    def test_episode_analysis_updates_are_scoped_and_guard_evidence(self):
+        cursor = FakeCursor()
+        store, _ = make_store(cursor)
+
+        self.assertTrue(store.assign_episode_task_type("ep-1", "tt-1"))
+        self.assertTrue(store.update_episode_outcome(
+            "ep-1", success=True, success_source="llm_judged",
+            confidence=0.8, rationale="The write completed.",
+        ))
+
+        assign_sql, assign_params = cursor.executions[0]
+        self.assertIn("SET task_type_id", assign_sql)
+        self.assertEqual(assign_params, ("tt-1", "ep-1"))
+        outcome_sql, outcome_params = cursor.executions[1]
+        self.assertIn("outcome_success_source = 'unknown'", outcome_sql)
+        self.assertEqual(outcome_params[0:3], (True, "llm_judged", 0.8))
+        self.assertEqual(json.loads(outcome_params[3]), {
+            "outcome_judge_rationale": "The write completed.",
+        })
+
+    def test_episode_analysis_updates_require_identifiers(self):
+        store = SosogStore(StoreConfig())
+        with self.assertRaises(ValueError):
+            store.assign_episode_task_type("", "tt-1")
+        with self.assertRaises(ValueError):
+            store.update_episode_outcome(
+                "ep-1", success=None, success_source="", confidence=None
+            )
+
     def test_tuple_read_uses_cursor_description(self):
         cursor = FakeCursor(
         rows=[("ep-1", "COMPLETE")],
@@ -152,6 +185,13 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(store.get_latest_classification("tt-1"), {"classification_id": "cl-2"})
         self.assertIn("ORDER BY created_at DESC", cursor.executions[0][0])
         self.assertIn("LIMIT 1", cursor.executions[0][0])
+
+    def test_get_classification_reads_by_primary_key(self):
+        cursor = FakeCursor(rows=[{"classification_id": "cl-1"}])
+        store, _ = make_store(cursor)
+
+        self.assertEqual(store.get_classification("cl-1"), {"classification_id": "cl-1"})
+        self.assertEqual(cursor.executions[0][1], ("cl-1",))
 
     def test_unconfigured_store_degrades_to_empty_results(self):
         store = SosogStore(StoreConfig())
