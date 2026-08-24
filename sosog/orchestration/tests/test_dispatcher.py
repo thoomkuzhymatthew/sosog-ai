@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from sosog.orchestration.dispatcher import enqueue_jobs
+from sosog.orchestration.dispatcher import enqueue_dynamic_job, enqueue_jobs
 
 
 class DispatcherValidationTests(unittest.TestCase):
@@ -45,6 +46,14 @@ class DispatcherValidationTests(unittest.TestCase):
         result = unittest.mock.Mock()
         result.stdout = self.base_commit + "\n"
         return result
+
+    def _manifest(self, job_id="dynamic"):
+        return {"schema_version": 2, "job_id": job_id,
+                "allowed_changed_paths": ["proposal.py"], "max_changed_files": 1,
+                "max_diff_bytes": 1000, "require_changes": True,
+                "permissions": {"may_commit": False, "may_merge": False,
+                                "may_push": False, "may_deploy": False,
+                                "network_access": False}}
 
     @patch("sosog.orchestration.dispatcher.tempfile.mkstemp")
     @patch("sosog.orchestration.dispatcher.shutil.copyfile")
@@ -112,6 +121,44 @@ class DispatcherValidationTests(unittest.TestCase):
             ["systemctl", "start", "codex-agent@safe-job.service"], check=True
         )
         self.assertTrue(chown.called)
+
+    @patch("sosog.orchestration.dispatcher.shutil.chown")
+    @patch("sosog.orchestration.dispatcher.subprocess.run")
+    def test_dynamic_job_freezes_canonical_evidence_without_start(self, run, chown):
+        run.return_value = self._git_result()
+        enqueue_dynamic_job("dynamic", "repair\n", self._manifest(), self.agent_root,
+                            self.repo, self.base_commit, start_worker=False)
+        prompt = self.agent_root / "prompts" / "dynamic.md"
+        manifest = self.agent_root / "manifests" / "dynamic.json"
+        queue = self.agent_root / "queue" / "dynamic.job"
+        self.assertEqual(prompt.read_bytes(), b"repair\n")
+        self.assertEqual(manifest.stat().st_mode & 0o777, 0o600)
+        frozen_manifest = json.loads(manifest.read_text())
+        self.assertEqual(frozen_manifest["job_id"], "dynamic")
+        self.assertEqual(hashlib.sha256(prompt.read_bytes()).hexdigest(),
+                         hashlib.sha256(b"repair\n").hexdigest())
+        self.assertIn("SANDBOX=workspace-write\n", queue.read_text())
+        self.assertEqual(run.call_count, 1)
+        self.assertEqual(len(list((self.agent_root / "queue").glob(".*"))), 0)
+
+    @patch("sosog.orchestration.dispatcher.subprocess.run")
+    def test_dynamic_denial_and_bad_manifest_write_nothing(self, run):
+        run.return_value = self._git_result()
+        bad = self._manifest(); bad["permissions"]["network_access"] = True
+        with self.assertRaises(PermissionError):
+            enqueue_dynamic_job("dynamic", "repair", bad, self.agent_root,
+                                self.repo, self.base_commit)
+        self.assertFalse(any(any((self.agent_root / name).iterdir())
+                             for name in ("prompts", "manifests", "queue")))
+
+    @patch("sosog.orchestration.dispatcher.subprocess.run")
+    def test_dynamic_manifest_job_id_and_bounds_validate_before_write(self, run):
+        run.return_value = self._git_result()
+        bad = self._manifest("wrong"); bad["max_diff_bytes"] = 0
+        with self.assertRaises(ValueError):
+            enqueue_dynamic_job("dynamic", "repair", bad, self.agent_root,
+                                self.repo, self.base_commit)
+        self.assertEqual(list((self.agent_root / "queue").iterdir()), [])
 
 
 if __name__ == "__main__":

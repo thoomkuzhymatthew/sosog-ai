@@ -120,6 +120,7 @@ def run_repair_controller(
     timeout_seconds: float = 21600.0,
     poll_seconds: float = 10.0,
     frozen_directory: str | Path | None = None,
+    start_worker: bool = True,
 ) -> ControllerResult:
     """Start, bound, validate, and freeze one worker's explicitly allowed files."""
     if not isinstance(job_id, str) or not _JOB_ID.fullmatch(job_id):
@@ -150,7 +151,8 @@ def run_repair_controller(
     ops = operations or LocalSupervisorOperations()
     unit = f"codex-agent@{job_id}.service"
     started = ops.monotonic()
-    ops.start(unit)
+    if start_worker:
+        ops.start(unit)
     while True:
         if status_file.is_symlink():
             raise ValueError("worker status must not be a symlink")
