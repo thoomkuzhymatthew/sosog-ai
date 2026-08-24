@@ -29,8 +29,11 @@ Three roles remain separate:
 3. A human approves AI-drafted adversarial cases before they become locked and
    later performs the final safety review.
 
-Every locked manifest and candidate is content-addressed. The controller
-persists the full evaluator result for audit but passes only a
+Every visible/locked manifest and candidate is content-addressed. The worker
+can receive the visible suite, while the locked manifest exposed outside its
+evaluator contains only a digest and case-class counts. The controller rejects
+reports whose digest or counts differ from those frozen manifests. It persists
+the full evaluator result for audit but passes only a
 `RepairFeedback` object to the worker: aggregate scores, invariant categories,
 opaque failure fingerprints, and remediation-safe observations. An explicit
 test must prove that locked payloads, case IDs, expected values, and raw
@@ -84,6 +87,8 @@ The loop stops with explicit evidence when any condition is met:
 - `ATTEMPT_LIMIT`, `COST_LIMIT`, or `TIME_LIMIT`;
 - `EVALUATOR_BLOCKED`: evaluator infrastructure fails repeatedly, distinct
   from a candidate failing tests;
+- `WORKER_BLOCKED`: proposal generation itself fails, distinct from a
+  candidate or evaluator failure;
 - `NO_SAFE_IMPROVEMENT`: repairs can increase ordinary pass rate only by
   weakening a safety invariant;
 - `PENDING_HUMAN_SAFETY_REVIEW`: all automated gates pass.
@@ -105,8 +110,9 @@ the content hash. The repair worker never authors or edits its own evaluator.
 ## Persistence contract
 
 The V1 operations migration adds append-only `proposals`, `repair_runs`,
-`artifacts`, `budget_events`, and `review_items`. Proposals point to immutable
-artifacts. Every repair attempt records candidate/feedback fingerprints,
+`artifacts`, and `budget_events`, plus guarded pending-to-terminal decisions in
+`review_items`. Proposals point to immutable artifacts. Every repair attempt
+records candidate/feedback fingerprints,
 structured score, terminal or attempt status, costs, and evidence. Automated
 success creates a pending `HUMAN_SAFETY_REVIEW` item; it does not update a
 deployment state.
@@ -117,8 +123,9 @@ Economics consumes client-supplied versioned volume, measured current-agent
 cost, classification, and repair evidence. It never substitutes benchmark
 trace counts for production volume. Savings are emitted only with explicit
 period, source, measured/estimated quality, fallback assumptions, and
-confidence. A failed, incomplete, or unreviewed repair can be shown as a
-scenario but cannot be presented as realized savings.
+confidence. Missing, failed, or rejected locked evidence makes automation
+savings unavailable. Unreviewed locked evidence can be shown only as a
+scenario and cannot be presented as realized savings.
 
 Reporting receives serialized economics projections, repair summaries, and
 implementation recommendations through additive keyword arguments. Existing

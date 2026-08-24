@@ -104,7 +104,9 @@ class SosogStore:
         names = [column.name if hasattr(column, "name") else column[0] for column in cursor.description]
         return dict(zip(names, row))
 
-    def _write(self, sql: str, parameters: tuple[Any, ...]) -> bool:
+    def _write(
+        self, sql: str, parameters: tuple[Any, ...], *, require_affected: bool = False
+    ) -> bool:
         connection = self._connect()
         if connection is None:
             return False
@@ -112,6 +114,8 @@ class SosogStore:
             with connection:
                 with connection.cursor() as cursor:
                     cursor.execute(sql, parameters)
+                    if require_affected and getattr(cursor, "rowcount", 1) == 0:
+                        return False
             return True
         except Exception as exc:
             self._handle_error(exc)
@@ -282,6 +286,148 @@ class SosogStore:
             """SELECT * FROM sosog_v1.classifications WHERE task_type_id = %s
                ORDER BY created_at ASC, classification_id ASC""",
             (task_type_id,),
+        )
+
+    def record_artifact(self, value: Mapping[str, Any]) -> bool:
+        self._require(value, {"artifact_id", "kind", "uri", "sha256"}, "artifact")
+        return self._write(
+            """INSERT INTO sosog_v1.artifacts
+               (artifact_id, engagement_id, kind, uri, sha256, size_bytes, metadata)
+               VALUES (%s, %s, %s, %s, %s, %s, %s::jsonb)""",
+            (value["artifact_id"], value.get("engagement_id", "default"),
+             value["kind"], value["uri"], value["sha256"], value.get("size_bytes"),
+             self._json(value.get("metadata"), {})),
+        )
+
+    def get_artifact(self, artifact_id: str) -> dict[str, Any] | None:
+        return self._read_one(
+            "SELECT * FROM sosog_v1.artifacts WHERE artifact_id = %s", (artifact_id,)
+        )
+
+    def list_artifacts(self, engagement_id: str = "default") -> list[dict[str, Any]]:
+        return self._read_all(
+            """SELECT * FROM sosog_v1.artifacts WHERE engagement_id = %s
+               ORDER BY created_at ASC, artifact_id ASC""", (engagement_id,)
+        )
+
+    def record_proposal(self, value: Mapping[str, Any]) -> bool:
+        self._require(
+            value, {"proposal_id", "task_type_id", "version", "status", "artifact_id"},
+            "proposal",
+        )
+        return self._write(
+            """INSERT INTO sosog_v1.proposals
+               (proposal_id, engagement_id, task_type_id, classification_id,
+                version, status, artifact_id, metadata, evidence)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s::jsonb)""",
+            (value["proposal_id"], value.get("engagement_id", "default"),
+             value["task_type_id"], value.get("classification_id"), value["version"],
+             value["status"], value["artifact_id"], self._json(value.get("metadata"), {}),
+             self._json(value.get("evidence"), {})),
+        )
+
+    def get_proposal(self, proposal_id: str) -> dict[str, Any] | None:
+        return self._read_one(
+            "SELECT * FROM sosog_v1.proposals WHERE proposal_id = %s", (proposal_id,)
+        )
+
+    def list_proposals(self, task_type_id: str) -> list[dict[str, Any]]:
+        return self._read_all(
+            """SELECT * FROM sosog_v1.proposals WHERE task_type_id = %s
+               ORDER BY created_at ASC, proposal_id ASC""", (task_type_id,)
+        )
+
+    def record_repair_run(self, value: Mapping[str, Any]) -> bool:
+        self._require(
+            value, {"repair_run_id", "proposal_id", "attempt_number", "status"},
+            "repair run",
+        )
+        return self._write(
+            """INSERT INTO sosog_v1.repair_runs
+               (repair_run_id, engagement_id, proposal_id, attempt_number, status,
+                stop_reason, candidate_fingerprint, feedback_fingerprint, score,
+                evidence, cost_usd, started_at, completed_at)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s::jsonb,
+                       %s, %s, %s)""",
+            (value["repair_run_id"], value.get("engagement_id", "default"),
+             value["proposal_id"], value["attempt_number"], value["status"],
+             value.get("stop_reason"), value.get("candidate_fingerprint"),
+             value.get("feedback_fingerprint"), self._json(value.get("score"), {}),
+             self._json(value.get("evidence"), {}), value.get("cost_usd", 0),
+             value.get("started_at"), value.get("completed_at")),
+        )
+
+    def list_repair_runs(self, proposal_id: str) -> list[dict[str, Any]]:
+        return self._read_all(
+            """SELECT * FROM sosog_v1.repair_runs WHERE proposal_id = %s
+               ORDER BY attempt_number ASC, created_at ASC, repair_run_id ASC""",
+            (proposal_id,),
+        )
+
+    def record_budget_event(self, value: Mapping[str, Any]) -> bool:
+        self._require(value, {"budget_event_id", "event_kind", "amount_usd"}, "budget event")
+        return self._write(
+            """INSERT INTO sosog_v1.budget_events
+               (budget_event_id, engagement_id, job_id, episode_id, repair_run_id,
+                event_kind, amount_usd, input_tokens, output_tokens, model, metadata)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb)""",
+            (value["budget_event_id"], value.get("engagement_id", "default"),
+             value.get("job_id"), value.get("episode_id"), value.get("repair_run_id"),
+             value["event_kind"], value["amount_usd"], value.get("input_tokens"),
+             value.get("output_tokens"), value.get("model"),
+             self._json(value.get("metadata"), {})),
+        )
+
+    def list_budget_events(self, engagement_id: str = "default") -> list[dict[str, Any]]:
+        return self._read_all(
+            """SELECT * FROM sosog_v1.budget_events WHERE engagement_id = %s
+               ORDER BY created_at ASC, budget_event_id ASC""", (engagement_id,)
+        )
+
+    def create_review_item(self, value: Mapping[str, Any]) -> bool:
+        self._require(
+            value, {"review_item_id", "review_type", "subject_type", "subject_id", "context"},
+            "review item",
+        )
+        return self._write(
+            """INSERT INTO sosog_v1.review_items
+               (review_item_id, engagement_id, review_type, subject_type, subject_id,
+                status, context)
+               VALUES (%s, %s, %s, %s, %s, 'PENDING', %s::jsonb)""",
+            (value["review_item_id"], value.get("engagement_id", "default"),
+             value["review_type"], value["subject_type"], value["subject_id"],
+             self._json(value["context"], {})),
+        )
+
+    def get_review_item(self, review_item_id: str) -> dict[str, Any] | None:
+        return self._read_one(
+            "SELECT * FROM sosog_v1.review_items WHERE review_item_id = %s",
+            (review_item_id,),
+        )
+
+    def list_review_items(
+        self, *, engagement_id: str = "default", status: str = "PENDING"
+    ) -> list[dict[str, Any]]:
+        return self._read_all(
+            """SELECT * FROM sosog_v1.review_items
+               WHERE engagement_id = %s AND status = %s
+               ORDER BY created_at ASC, review_item_id ASC""",
+            (engagement_id, status),
+        )
+
+    def decide_review_item(
+        self, review_item_id: str, *, status: str, decision: Mapping[str, Any], reviewer: str
+    ) -> bool:
+        if status not in {"APPROVED", "REJECTED"}:
+            raise ValueError("review status must be APPROVED or REJECTED")
+        if not review_item_id or not reviewer:
+            raise ValueError("review_item_id and reviewer must be non-empty")
+        return self._write(
+            """UPDATE sosog_v1.review_items
+               SET status = %s, decision = %s::jsonb, reviewer = %s, decided_at = now()
+               WHERE review_item_id = %s AND status = 'PENDING'""",
+            (status, self._json(decision, {}), reviewer, review_item_id),
+            require_affected=True,
         )
 
     @staticmethod
