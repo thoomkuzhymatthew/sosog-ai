@@ -10,6 +10,7 @@ import stat
 import threading
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,103 @@ from sosog.orchestration.controller import ControllerResult
 from sosog.repair.contracts import CandidateReference, RepairFeedback, RepairWorkerResult
 
 _PREFIX = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,31}$")
+
+
+def _rate(value: Any, name: str) -> Decimal:
+    if isinstance(value, bool):
+        raise ValueError(f"{name} must be a finite non-negative decimal")
+    try:
+        parsed = Decimal(str(value))
+    except (InvalidOperation, TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must be a finite non-negative decimal") from exc
+    if not parsed.is_finite() or parsed < 0:
+        raise ValueError(f"{name} must be a finite non-negative decimal")
+    return parsed
+
+
+@dataclass(frozen=True)
+class CodexTraceCostReader:
+    """Price measured trace duration/token usage using explicit supplied rates."""
+
+    infrastructure_usd_per_hour: Decimal
+    input_usd_per_million: Decimal = Decimal("0")
+    cached_input_usd_per_million: Decimal = Decimal("0")
+    output_usd_per_million: Decimal = Decimal("0")
+    source: str = "explicit configured rates"
+
+    def __post_init__(self) -> None:
+        for name in (
+            "infrastructure_usd_per_hour",
+            "input_usd_per_million",
+            "cached_input_usd_per_million",
+            "output_usd_per_million",
+        ):
+            object.__setattr__(self, name, _rate(getattr(self, name), name))
+        if not isinstance(self.source, str) or not self.source.strip():
+            raise ValueError("cost source must be non-empty")
+
+    @staticmethod
+    def _tokens(value: Any, name: str) -> int:
+        if type(value) is not int or value < 0:
+            raise ValueError(f"{name} must be a non-negative integer")
+        return value
+
+    def __call__(self, job_id: str, result: ControllerResult) -> float:
+        if (
+            not isinstance(job_id, str)
+            or not isinstance(result, ControllerResult)
+            or result.trace_directory is None
+        ):
+            raise ValueError("a completed controller trace is required")
+        trace = Path(result.trace_directory)
+        if trace.is_symlink() or not trace.is_dir():
+            raise ValueError("worker trace directory is invalid")
+        path = trace / "trace.jsonl"
+        if path.is_symlink():
+            raise ValueError("worker trace evidence must not be a symlink")
+        flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+        try:
+            descriptor = os.open(path, flags)
+        except OSError as exc:
+            raise ValueError("worker trace evidence is unavailable") from exc
+        try:
+            info = os.fstat(descriptor)
+            if not stat.S_ISREG(info.st_mode) or info.st_size > 16 * 1024 * 1024:
+                raise ValueError("worker trace evidence is invalid")
+            raw = b""
+            while chunk := os.read(descriptor, 1024 * 1024):
+                raw += chunk
+        finally:
+            os.close(descriptor)
+        try:
+            events = [json.loads(line) for line in raw.splitlines() if line.strip()]
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValueError("worker trace evidence is malformed") from exc
+        finished = [
+            event for event in events
+            if isinstance(event, dict)
+            and event.get("type") == "sosog.job.finished"
+            and event.get("job_id") == job_id
+            and event.get("status") == "succeeded"
+        ]
+        if len(finished) != 1:
+            raise ValueError("worker trace requires one successful terminal event")
+        event = finished[0]
+        duration = self._tokens(event.get("duration_seconds"), "duration_seconds")
+        usage = event.get("usage_events")
+        if not isinstance(usage, list) or any(not isinstance(row, dict) for row in usage):
+            raise ValueError("worker trace usage evidence is invalid")
+        input_tokens = sum(self._tokens(row.get("input_tokens", 0), "input_tokens") for row in usage)
+        cached_tokens = sum(self._tokens(row.get("cached_input_tokens", 0), "cached_input_tokens") for row in usage)
+        output_tokens = sum(self._tokens(row.get("output_tokens", 0), "output_tokens") for row in usage)
+        million = Decimal("1000000")
+        amount = (
+            Decimal(duration) * self.infrastructure_usd_per_hour / Decimal("3600")
+            + Decimal(input_tokens) * self.input_usd_per_million / million
+            + Decimal(cached_tokens) * self.cached_input_usd_per_million / million
+            + Decimal(output_tokens) * self.output_usd_per_million / million
+        )
+        return float(amount)
 
 def _relative(value: str) -> str:
     if not isinstance(value, str):

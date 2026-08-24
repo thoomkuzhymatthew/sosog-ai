@@ -7,13 +7,8 @@ digest and class counts cross the adapter boundary through ``SuiteManifest``.
 from __future__ import annotations
 
 import hashlib
-import inspect
 import json
-import os
-import stat
-import sys
 from collections import Counter
-from types import ModuleType
 from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
@@ -24,6 +19,13 @@ from crystallized.airline.contracts import ExecutionResult, ExecutionStatus
 from sosog.repair.contracts import (
     CandidateReference, CaseClass, CaseEvaluation, EvaluationReport,
     EvaluationTier, SuiteManifest,
+)
+from sosog.repair.sandbox import (
+    SandboxConfig,
+    VerifiedCandidate,
+    run_isolated_candidate,
+    sandbox_available,
+    verify_candidate,
 )
 
 TASK_FAMILY = "airline.flight_change"
@@ -236,10 +238,12 @@ class FlightChangeAdapter:
     """One bound, runtime-checkable ``VerticalAdapter`` implementation."""
     def __init__(self, *, tau_root: Path | None = None,
                  visible_runner: Callable[[Any, str], tuple[Any, Any, dict[str, Any]]] | None = None,
-                 locked_runner: Callable[[Any, Any, Any], tuple[Any, Any]] | None = None):
+                 locked_runner: Callable[[Any, Any, Any], tuple[Any, Any]] | None = None,
+                 sandbox_config: SandboxConfig | None = None):
         self._tau_root=Path(tau_root) if tau_root is not None else None
         self._visible_runner=visible_runner
         self._locked_runner=locked_runner
+        self._sandbox_config=sandbox_config
         self._manifests={EvaluationTier.VISIBLE: SuiteManifest(_digest(_VISIBLE),EvaluationTier.VISIBLE,{CaseClass.REGRESSION:2}),
                          EvaluationTier.LOCKED: SuiteManifest(_digest(_LOCKED),EvaluationTier.LOCKED,{CaseClass.NORMAL_MUST_COMPLETE:4,CaseClass.UNSAFE_MUST_DEFER:7})}
 
@@ -250,45 +254,42 @@ class FlightChangeAdapter:
         if task_family != TASK_FAMILY: raise ValueError("unsupported task family")
         return HISTORICAL_COST_USD
 
-    def _load(self, candidate: CandidateReference):
-        if candidate.location is None: raise ValueError("candidate location is required")
-        path=Path(candidate.location); flags=os.O_RDONLY | getattr(os,"O_NOFOLLOW",0)
-        try: fd=os.open(path,flags)
-        except OSError as exc: raise ValueError("candidate must be a regular non-symlink file") from exc
-        try:
-            info=os.fstat(fd)
-            if not stat.S_ISREG(info.st_mode): raise ValueError("candidate must be a regular non-symlink file")
-            raw=b""
-            while chunk:=os.read(fd,1024*1024): raw+=chunk
-        finally: os.close(fd)
-        if hashlib.sha256(raw).hexdigest()!=candidate.digest: raise ValueError("candidate digest mismatch")
-        name=f"crystallized.airline._flight_change_candidate_{candidate.digest}"
-        module=ModuleType(name); module.__file__=str(path); sys.modules[name]=module
-        exec(compile(raw,str(path),"exec"),module.__dict__)
-        execute=getattr(module,"execute",None)
-        if not callable(execute): raise ValueError("candidate lacks execute(intent, tools)")
-        try: inspect.signature(execute).bind(object(),object())
-        except TypeError as exc: raise ValueError("candidate execute must accept intent and tools") from exc
-        return module
+    @staticmethod
+    def sandbox_available(config: SandboxConfig | None = None) -> bool:
+        return sandbox_available(config)
+
+    @staticmethod
+    def _safe_infrastructure_error(exc: Exception) -> str:
+        # Candidate output, tool responses, fixture values, and exception text
+        # are deliberately excluded from durable/public evaluator evidence.
+        return f"{type(exc).__name__}: evaluator operation failed"
 
     def evaluate(self, candidate: CandidateReference, tier: EvaluationTier) -> EvaluationReport:
         try:
-            module=self._load(candidate); cases=_VISIBLE if tier is EvaluationTier.VISIBLE else _LOCKED; results=[]
+            if not isinstance(tier,EvaluationTier): raise ValueError("unsupported evaluation tier")
+            verified=verify_candidate(candidate); cases=_VISIBLE if tier is EvaluationTier.VISIBLE else _LOCKED; results=[]
             for case in cases:
                 if tier is EvaluationTier.VISIBLE:
                     runner=self._visible_runner or self._run_tau_case
-                    result,tools,extra=runner(module,case.payload["task_id"]); results.append(_evaluate_result(case,result,tools,extra,audit=True))
+                    result,tools,extra=runner(verified,case.payload["task_id"]); results.append(_evaluate_result(case,result,tools,extra,audit=True))
                 else:
                     tools=_SyntheticTools(case.payload["fixture"],case.payload["intent"])
-                    if self._locked_runner: result,tools=self._locked_runner(module,deepcopy(case.payload),tools)
-                    else: result=module.execute(deepcopy(case.payload["intent"]),tools)
+                    if self._locked_runner: result,tools=self._locked_runner(verified,deepcopy(case.payload),tools)
+                    else: result=run_isolated_candidate(
+                        verified,deepcopy(case.payload["intent"]),tools,
+                        config=self._sandbox_config,
+                    )
                     results.append(_evaluate_result(case,result,tools))
             return EvaluationReport(candidate,tier,tuple(results),evaluator_cost=0.0,suite_digest=self._manifests[tier].digest)
         except Exception as exc:
-            return EvaluationReport(candidate,tier,(),infrastructure_error=f"{type(exc).__name__}: {exc}",evaluator_cost=0.0)
+            return EvaluationReport(candidate,tier,(),infrastructure_error=self._safe_infrastructure_error(exc),evaluator_cost=0.0)
 
-    def _run_tau_case(self,module,task_id):
+    def _run_tau_case(self,candidate: VerifiedCandidate,task_id):
         if self._tau_root is None: raise RuntimeError("tau_root is required for visible evaluation")
+        # tau2 logs full tool responses at DEBUG. Disable its entire namespace
+        # before import so raw customer-shaped rows cannot reach stdout/stderr.
+        from loguru import logger
+        logger.disable("tau2")
         # Imports deliberately live here: locked evaluation has no tau2 dependency.
         from tau2.data_model.message import AssistantMessage, ToolCall
         from tau2.data_model.simulation import SimulationRun, TerminationReason
@@ -312,7 +313,9 @@ class FlightChangeAdapter:
         reservation=raw_db["reservations"][action["reservation_id"]]
         flights=[{"flight_number":x["flight_number"],"date":x["date"],"origin":raw_db["flights"][x["flight_number"]]["origin"],"destination":raw_db["flights"][x["flight_number"]]["destination"]} for x in action["flights"]]
         intent={"user_id":reservation["user_id"],"reservation_id":action["reservation_id"],"cabin":action["cabin"],"flights":flights,"payment_id":action["payment_id"],"confirmed":True}
-        tools=Tools(); start=get_now(); result=module.execute(intent,tools)
+        tools=Tools(); start=get_now(); result=run_isolated_candidate(
+            candidate,intent,tools,config=self._sandbox_config
+        )
         simulation=SimulationRun(id=f"flight_repair_{task_id}_{uuid4()}",task_id=task_id,start_time=start,end_time=get_now(),duration=0,termination_reason=TerminationReason.AGENT_STOP,agent_cost=0,user_cost=0,messages=tools.messages,trial=0,seed=0)
         reward=evaluate_simulation(simulation=simulation,task=Task.model_validate(task),evaluation_type=EvaluationType.ENV,solo_mode=False,domain="airline",strict_replay=True)
         return result,tools,{"db_match":reward.db_check.db_match if reward.db_check else None}

@@ -1,6 +1,7 @@
 from __future__ import annotations
-import hashlib, json, sys, tempfile, unittest
+import hashlib, json, os, socket, sys, tempfile, unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from crystallized.airline.contracts import ExecutionResult, ExecutionStatus
 from crystallized.airline.flight_change_adapter import (
@@ -10,6 +11,7 @@ from crystallized.airline.flight_change_adapter import (
 )
 from sosog.repair.contracts import CandidateReference, CaseClass, EvaluationTier
 from sosog.repair.evaluator import reports_to_feedback
+from sosog.repair.sandbox import run_isolated_candidate, verify_candidate
 from sosog.repair.vertical_adapter import VerticalAdapter
 
 
@@ -57,7 +59,10 @@ class AdapterTests(unittest.TestCase):
     def test_hash_and_symlink_rejected(self):
         bad=CandidateReference("0"*64,str(self.path)); self.assertFalse(FlightChangeAdapter().evaluate(bad,EvaluationTier.LOCKED).succeeded)
         link=Path(self.tmp.name)/"link.py"; link.symlink_to(self.path)
-        ref=CandidateReference(self.ref.digest,str(link)); self.assertIn("non-symlink",FlightChangeAdapter().evaluate(ref,EvaluationTier.LOCKED).infrastructure_error)
+        ref=CandidateReference(self.ref.digest,str(link)); self.assertEqual(
+            FlightChangeAdapter().evaluate(ref,EvaluationTier.LOCKED).infrastructure_error,
+            "ValueError: evaluator operation failed",
+        )
 
     def test_normal_completion_and_unsafe_deferral(self):
         report=FlightChangeAdapter(locked_runner=good_runner).evaluate(self.ref,EvaluationTier.LOCKED)
@@ -149,11 +154,87 @@ class AdapterTests(unittest.TestCase):
             for row in report.cases
         ))
 
+    def test_infrastructure_errors_never_echo_evaluator_or_candidate_text(self):
+        secret="PRIVATE-TOOL-RESPONSE-SYN001"
+        def leaking_runner(module,task):
+            raise RuntimeError(secret)
+        report=FlightChangeAdapter(visible_runner=leaking_runner).evaluate(
+            self.ref,EvaluationTier.VISIBLE
+        )
+        self.assertEqual(
+            report.infrastructure_error,
+            "RuntimeError: evaluator operation failed",
+        )
+        self.assertNotIn(secret,report.infrastructure_error)
+
     def test_locked_evaluation_does_not_import_tau(self):
         before={x for x in sys.modules if x=="tau2" or x.startswith("tau2.")}
         FlightChangeAdapter(locked_runner=good_runner).evaluate(self.ref,EvaluationTier.LOCKED)
         after={x for x in sys.modules if x=="tau2" or x.startswith("tau2.")}
         self.assertEqual(before,after)
+
+
+@unittest.skipUnless(
+    FlightChangeAdapter.sandbox_available(),
+    "trusted Bubblewrap boundary is unavailable on this host",
+)
+class ProcessIsolationTests(unittest.TestCase):
+    def test_candidate_cannot_read_host_import_adapter_use_network_or_retain_state(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            secret=root/"parent-secret.txt"; secret.write_text("LOCKED-SUITE-SECRET")
+            listener=socket.socket(); listener.bind(("127.0.0.1",0)); listener.listen(1)
+            port=listener.getsockname()[1]
+            source=f'''\
+from crystallized.airline.contracts import ExecutionResult, ExecutionStatus
+def execute(intent, tools):
+    import os, socket
+    evidence={{}}
+    try:
+        import crystallized.airline.flight_change_adapter
+        evidence["adapter_imported"] = True
+    except Exception:
+        evidence["adapter_imported"] = False
+    try:
+        open({str(secret)!r}).read()
+        evidence["secret_readable"] = True
+    except Exception:
+        evidence["secret_readable"] = False
+    evidence["environment_visible"] = os.environ.get("SOSOG_LOCKED_SECRET") is not None
+    marker="/tmp/cross-case-marker"
+    evidence["marker_seen"] = os.path.exists(marker)
+    open(marker,"w").write("candidate state")
+    connection=socket.socket(); connection.settimeout(.25)
+    try:
+        connection.connect(("127.0.0.1",{port}))
+        evidence["network_connected"] = True
+    except Exception:
+        evidence["network_connected"] = False
+    finally:
+        connection.close()
+    return ExecutionResult(ExecutionStatus.COMPLETED,"isolated",0,details=evidence)
+'''
+            candidate_path=root/"candidate.py"; candidate_path.write_text(source)
+            reference=CandidateReference.from_content(
+                candidate_path.read_bytes(),location=str(candidate_path)
+            )
+            verified=verify_candidate(reference)
+            class NoTools:
+                def call(self,name,arguments):
+                    raise AssertionError("candidate should not call tools")
+            with patch.dict(os.environ,{"SOSOG_LOCKED_SECRET":"DO-NOT-INHERIT"}):
+                first=run_isolated_candidate(verified,{"case":1},NoTools())
+                second=run_isolated_candidate(verified,{"case":2},NoTools())
+            listener.close()
+        expected={
+            "adapter_imported":False,
+            "secret_readable":False,
+            "environment_visible":False,
+            "marker_seen":False,
+            "network_connected":False,
+        }
+        self.assertEqual(first.details,expected)
+        self.assertEqual(second.details,expected)
 
 
 if __name__ == "__main__": unittest.main()

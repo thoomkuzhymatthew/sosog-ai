@@ -1,12 +1,17 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from sosog.orchestration.controller import ControllerResult
-from sosog.repair.codex_worker import CodexRepairWorker, CodexRepairWorkerConfig
+from sosog.repair.codex_worker import (
+    CodexRepairWorker,
+    CodexRepairWorkerConfig,
+    CodexTraceCostReader,
+)
 from sosog.repair.contracts import CandidateReference, RepairFeedback, StructuredScore
 
 def feedback():
@@ -76,5 +81,23 @@ class CodexWorkerTests(unittest.TestCase):
             with self.subTest(cost=cost):
                 child = self.root / str(cost); child.mkdir(); harness = Harness(child, cost=cost)
                 with self.assertRaises(ValueError): self.worker(harness).repair(self.candidate, feedback())
+
+    def test_trace_cost_reader_prices_measured_duration_and_usage(self):
+        trace=self.root/"trace"; trace.mkdir()
+        event={
+            "type":"sosog.job.finished", "job_id":"repair-001",
+            "status":"succeeded", "duration_seconds":3600,
+            "usage_events":[{
+                "input_tokens":1_000_000,
+                "cached_input_tokens":500_000,
+                "output_tokens":2_000_000,
+            }],
+        }
+        (trace/"trace.jsonl").write_text(json.dumps(event)+"\n")
+        reader=CodexTraceCostReader(3,1,"0.5",2,source="test rate card")
+        result=ControllerResult("FROZEN_PENDING_EVALUATION",trace_directory=trace)
+        self.assertEqual(reader("repair-001",result),8.25)
+        self.assertEqual(reader.source,"test rate card")
+        with self.assertRaises(ValueError): reader("wrong-job",result)
 
 if __name__ == "__main__": unittest.main()
