@@ -1,0 +1,22 @@
+[
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-reporting",
+    "manifest_path": "build_jobs/wave4/manifests/sosog-v1-reporting.json",
+    "manifest_sha256": "70258523a31c893d1ba609c4f132e1dc2ef01dbea23c6c4f92c998f1c7071d26",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave4/prompts/sosog-v1-reporting.md",
+    "prompt_sha256": "4cc3669260bc01775ca00018c5fdf0a91828327b3c8f15ed65c0e8edc75e752f",
+    "requires_human_safety_review": false
+  },
+  {
+    "action": "BUILD_PRODUCT_MODULE",
+    "job_id": "sosog-v1-airline-repair-adapter",
+    "manifest_path": "build_jobs/wave4/manifests/sosog-v1-airline-repair-adapter.json",
+    "manifest_sha256": "4ab53e1db02a1306d4c95515c67a0d0d2542d26e4acc85e27f4dd3352c6938eb",
+    "may_merge_or_deploy": false,
+    "prompt_path": "build_jobs/wave4/prompts/sosog-v1-airline-repair-adapter.md",
+    "prompt_sha256": "0df94cc5f13afc4de0b5cdb5211bbd3f9ebd4cae5eb3238dfea12c5bd0a042a6",
+    "requires_human_safety_review": true
+  }
+]
