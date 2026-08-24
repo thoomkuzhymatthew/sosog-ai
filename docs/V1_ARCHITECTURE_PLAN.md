@@ -22,11 +22,14 @@ Two separate tracks exist — don't conflate them:
 | Job 3 — orchestration substrate + Codex auth-refresh fix | **Merged**, same commit |
 | Follow-ups — classifier audit validation/source + auth-blocked resume | **Merged**, with Wave 2 ingestion in commit `0efd3df8b4bf57b0a3901611b90a4116c97640a1` |
 | Wave 2 — generic ingestion/redaction/artifact pipeline | **Merged**, same commit; independent review added structural-field redaction protection and atomic pre-persistence validation |
-| `sosog_v1` database | `002_sosog_v1.sql` and the `003` product-category constraint migration applied over TLS; secure runtime config is `/etc/sosog/v1.env`; ingestion and worker-dogfood readback checks passed |
-| EC2 Python runtime | `/opt/sosog/runtime-venv` has `psycopg[binary]==3.3.4`, `hdbscan==0.8.44`, and `boto3==1.43.78`; Titan and Haiku invoke successfully through the instance role (bootstrap codification remains follow-up work) |
+| `sosog_v1` database | Migrations `002`–`004` applied over TLS. Component 4/10 tables (`artifacts`, `proposals`, `repair_runs`, `budget_events`, `review_items`) and guarded review decisions were live-smoke-tested; secure runtime config is `/etc/sosog/v1.env` |
+| EC2 Python runtime | `/opt/sosog/runtime-venv` has the exact pinned V1 dependency set; rebuildable bootstrap landed in commit `a788a52d8de7466af7924bd53054af44e3a64888` |
 | Wave 2b — task clustering + outcome judge (`build_jobs/wave2b/`, 2 concurrent jobs) | **Merged**, commit `b3e655c0f1671011e4721e541031e8995d18c616`; independent review added input, model-selection, and persistence-failure validation |
 | Component 9 — worker-trace adapter + end-to-end dogfood runner | **Merged**, commit `fe951af33f87c359b94e0d08ac2945f25dd83b9f`; live run persisted 38 episodes, 6 task types, and 6 classifications |
-| Everything else (repair-loop generalization, economics, reporting, re-investigation, review console) | Not started |
+| Component 4 — bounded repair/self-healing core | **Merged**, commits `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6` and `7186e15b95734f95430d907c3ca25c0480269294`; includes locked/visible suite contracts, safety-first scoring, bounded stop reasons, case drafting, Codex worker bridge, and the airline adapter |
+| Component 6 — economics + cost-plus fee | **Merged**, commit `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6`; projections require client volume and reviewed locked evidence, distinguish measured/estimated/scenario-only, and never infer realized savings |
+| Component 7 — business/technical reporting | **Merged**, commit `7186e15b95734f95430d907c3ca25c0480269294`; renders economics/fee contracts, aggregate-only repair evidence, and human-authorized implementation options |
+| Remaining product components | Component 8 event-triggered re-investigation and Component 11's thin review console are not built. Real external repository validation can begin before those two components are complete |
 
 Every `build_jobs/waveN*/` directory launches with its own script
 (`launch_*.sh <BASE_COMMIT_SHA>`) once its prerequisites are merged — see the
@@ -142,8 +145,9 @@ a human here would cost the closed-loop property for no real safety benefit.
   adding `hdbscan` to whatever bootstraps the Python environment these
   Codex workers run in (same pattern as `bootstrap_appworld.sh`'s pinned
   dependencies). It is installed ahead of time in the live EC2 runtime,
-  outside the network-disabled sandbox; codifying that install in bootstrap
-  remains follow-up work. For **ongoing** assignment (new traces
+  outside the network-disabled sandbox; the exact set is now pinned in
+  `infra/aws/requirements-v1-runtime.txt` and installed by
+  `infra/aws/bootstrap_v1_runtime.sh`. For **ongoing** assignment (new traces
   arriving later, or component 8's re-investigation deciding "is this an
   existing task or a new one"), don't reload the fitted HDBSCAN model —
   keep it cheap and stateless: nearest-centroid-with-threshold against the
@@ -228,8 +232,8 @@ executor implements, not an airline-only artifact. Also keep
 (`INDEPENDENT_HELD_OUT → ADVERSARIAL_DEFERRAL → HUMAN_SAFETY_REVIEW →
 SHADOW_ECONOMICS`) and `outcomes.py`'s stage list — already generic.
 
-**The one working instance (airline flight-change repair) is a template, not a
-library** — hardcoded task IDs, hardcoded tau2 imports, a hand-built
+**Historical context:** the original airline flight-change repair was a
+template, not a library — hardcoded task IDs, hardcoded tau2 imports, a hand-built
 `synthetic_cases()` fixture generator, a hardcoded frozen-proposal path. Split
 into:
 - `sosog/repair/vertical_adapter.py` (Protocol) — `load_repair_cases()`,
@@ -255,6 +259,15 @@ into:
   approves the draft before anything is locked — drafting is automatable,
   confirming what "unsafe" actually means for this client's real rules is not,
   since it defines correctness for a write-action, not just a report line.
+
+**Implemented:** `sosog/repair/` now supplies the generic contracts, evaluator,
+bounded controller, case-drafting boundary, and Codex repair-worker bridge.
+`crystallized/airline/flight_change_adapter.py` is the first concrete adapter;
+the former evaluation script is now a compatibility CLI. The controller
+retains the best safe candidate and stops explicitly on stagnation, duplicate
+or oscillating proposals, safety regression, repeated unsafe trade-offs,
+evaluator/worker blockage, or attempt/cost/time limits. A perfect automated
+score advances only to `PENDING_HUMAN_SAFETY_REVIEW`, never to merge/deploy.
 
 **Open risks:**
 - Case-drafting quality depends entirely on how complete/clear the client's
@@ -371,10 +384,10 @@ refresh outside the sandbox:
 
 ## 6. Cost/savings estimation from client volume (NEW)
 
-**Gap:** `promotion_engine/reporting.py` has a literal `"Not calculated."`
-stub today.
+**Historical gap (implemented):** `promotion_engine/reporting.py` previously
+had only a literal `"Not calculated."` savings stub.
 
-**Build:**
+**Implemented:**
 - `sosog/economics/inputs.py` — client-provided volume as its own versioned
   artifact: `{task_type_id, frequency, unit_count, source, as_of_date}`.
   Explicitly *not* derived from benchmark trace counts — it's collected from
@@ -401,8 +414,8 @@ pilot exists — the report needs to clearly distinguish "measured" vs.
 **Keep:** `promotion_engine/reporting.py` — genuinely generic, deterministic,
 defensive about missing inputs. Extend, don't replace.
 
-**Build:**
-- Replace the "Not calculated" savings stub with real output from component 6.
+**Implemented:**
+- Replaced the "Not calculated" savings stub with validated output from component 6.
 - New "Recommended Implementation Path" section
   (`sosog/reporting/implementation_recommendation.py`) — derives API-service
   vs. merge-request vs. other from classification action + whether the client
@@ -577,8 +590,9 @@ wave actually shipped before queueing it.
 - `scripts/evaluate_airline_flight_change_repair.py`,
   `scripts/run_airline_flight_change_repair_controller.sh` — extraction source
   for `sosog/repair/`, then reduced to thin CLI entry points.
-- `infra/aws/run_codex_agent.sh` — keep entirely as-is, the execution
-  substrate for every job type.
+- `infra/aws/run_codex_agent.sh` — execution substrate for every Type A job;
+  its auth-status preflight is shared infrastructure, not vertical repair
+  logic.
 - `research_ops/persistence.py`, `infra/aws/sql/001_sosog_research.sql` —
   reference/superseded by `sosog/persistence/store.py` and `002_sosog_v1.sql`.
 
