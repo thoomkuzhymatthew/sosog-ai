@@ -15,6 +15,15 @@ from typing import Any
 
 
 _MAX_FRAME_BYTES = 1_048_576
+_FAILURE_CODES = frozenset(
+    {
+        "candidate_import_failed",
+        "candidate_entry_point_invalid",
+        "candidate_execution_failed",
+        "candidate_result_invalid",
+        "candidate_result_serialization_failed",
+    }
+)
 
 
 def _receive() -> dict[str, Any]:
@@ -38,6 +47,14 @@ def _send(value: dict[str, Any]) -> None:
         raise RuntimeError("evaluator protocol output is too large")
     _protocol_output.write(raw)
     _protocol_output.flush()
+
+
+def _fail(code: str) -> int:
+    """Return a stable failure category without serializing exception payloads."""
+    if code not in _FAILURE_CODES:
+        code = "candidate_execution_failed"
+    _send({"type": "failure", "code": code})
+    return 1
 
 
 class _ToolProxy:
@@ -76,31 +93,44 @@ def main() -> int:
     # Isolated mode deliberately omits the script directory from sys.path.
     # Add only the minimal read-only sandbox package, never the host repo.
     sys.path.insert(0, "/sandbox")
-    from crystallized.airline.contracts import ExecutionResult
+    try:
+        from crystallized.airline.contracts import ExecutionResult
+    except BaseException:
+        return _fail("candidate_import_failed")
 
     spec = importlib.util.spec_from_file_location(
-        "isolated_candidate", "/sandbox/candidate.py"
+        "crystallized.airline.flight_change", "/sandbox/candidate.py"
     )
     if spec is None or spec.loader is None:
-        raise RuntimeError("candidate loader is unavailable")
+        return _fail("candidate_import_failed")
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    sys.modules[spec.name] = module
+    try:
+        spec.loader.exec_module(module)
+    except BaseException:
+        return _fail("candidate_import_failed")
     execute = getattr(module, "execute", None)
     if not callable(execute):
-        raise RuntimeError("candidate entry point is unavailable")
-    result = execute(start["intent"], _ToolProxy())
+        return _fail("candidate_entry_point_invalid")
+    try:
+        result = execute(start["intent"], _ToolProxy())
+    except BaseException:
+        return _fail("candidate_execution_failed")
     if not isinstance(result, ExecutionResult):
-        raise RuntimeError("candidate returned an invalid result")
-    _send(
-        {
-            "type": "result",
-            "status": result.status.value,
-            "reason": result.reason,
-            "writes_executed": result.writes_executed,
-            "model_calls": result.model_calls,
-            "details": result.details,
-        }
-    )
+        return _fail("candidate_result_invalid")
+    try:
+        _send(
+            {
+                "type": "result",
+                "status": result.status.value,
+                "reason": result.reason,
+                "writes_executed": result.writes_executed,
+                "model_calls": result.model_calls,
+                "details": result.details,
+            }
+        )
+    except BaseException:
+        return _fail("candidate_result_serialization_failed")
     return 0
 
 

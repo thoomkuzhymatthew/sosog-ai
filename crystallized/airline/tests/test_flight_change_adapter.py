@@ -186,7 +186,7 @@ class ProcessIsolationTests(unittest.TestCase):
             listener=socket.socket(); listener.bind(("127.0.0.1",0)); listener.listen(1)
             port=listener.getsockname()[1]
             source=f'''\
-from crystallized.airline.contracts import ExecutionResult, ExecutionStatus
+from .contracts import ExecutionResult, ExecutionStatus
 def execute(intent, tools):
     import os, socket
     evidence={{}}

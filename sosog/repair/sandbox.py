@@ -28,6 +28,15 @@ _DIGEST = re.compile(r"^[0-9a-f]{64}$")
 _MAX_CANDIDATE_BYTES = 1_048_576
 _MAX_FRAME_BYTES = 1_048_576
 _MAX_PROTOCOL_BYTES = 2_097_152
+_FAILURE_CODES = frozenset(
+    {
+        "candidate_import_failed",
+        "candidate_entry_point_invalid",
+        "candidate_execution_failed",
+        "candidate_result_invalid",
+        "candidate_result_serialization_failed",
+    }
+)
 
 
 class ToolHandler(Protocol):
@@ -350,6 +359,17 @@ def run_isolated_candidate(
                             )
                     elif frame.get("type") == "result":
                         result = _result_from_frame(frame)
+                    elif frame.get("type") == "failure":
+                        if (
+                            set(frame) != {"type", "code"}
+                            or frame.get("code") not in _FAILURE_CODES
+                        ):
+                            raise CandidateSandboxError(
+                                "candidate failure frame is invalid"
+                            )
+                        raise CandidateSandboxError(
+                            f"candidate sandbox failure: {frame['code']}"
+                        )
                     else:
                         raise CandidateSandboxError("candidate protocol message is invalid")
             remaining = max(0.01, deadline - time.monotonic())
@@ -362,3 +382,6 @@ def run_isolated_candidate(
             raise CandidateSandboxError("candidate execution timed out") from exc
         finally:
             _terminate(process)
+            for stream in (process.stdin, process.stdout):
+                if stream is not None:
+                    stream.close()
