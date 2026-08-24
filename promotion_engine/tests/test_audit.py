@@ -15,9 +15,14 @@ def candidate(task_id: str, action: str) -> dict:
 
 
 class AuditTests(unittest.TestCase):
-    def test_missing_override_returns_automatic_candidate(self) -> None:
+    def test_audited_and_unaudited_candidates_have_sources(self) -> None:
         automatic = candidate("1", "RETAIN")
-        self.assertIs(apply_override(automatic, None), automatic)
+        unaudited = apply_override(automatic, None)
+        audited = apply_override(automatic, {"action": "DECOMPOSE"})
+
+        self.assertEqual(unaudited["source"], "AUTOMATIC")
+        self.assertEqual(audited["source"], "HUMAN_AUDITED")
+        self.assertNotIn("source", automatic)
 
     def test_override_changes_action_and_marks_human_audit(self) -> None:
         automatic = candidate("1", "RETAIN")
@@ -31,6 +36,16 @@ class AuditTests(unittest.TestCase):
         self.assertEqual(audited["evidence"]["reason"], "human found stable prefix")
         self.assertEqual(automatic["action"], "RETAIN")
         self.assertNotIn("source", automatic)
+
+    def test_unrecognized_override_action_is_rejected(self) -> None:
+        with self.assertRaisesRegex(ValueError, "unsupported promotion action"):
+            apply_override(candidate("1", "RETAIN"), {"action": "DECOMPOES"})
+
+        with self.assertRaisesRegex(ValueError, "unsupported promotion action"):
+            categorizer_audit(
+                [candidate("1", "RETAIN")],
+                {"1": {"action": "DECOMPOES"}},
+            )
 
     def test_override_without_action_confirms_automatic_action(self) -> None:
         audited = apply_override(candidate("1", "LIFT"), {"rationale": "confirmed"})

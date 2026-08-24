@@ -1,0 +1,36 @@
+{
+  "input_format": "jsonl",
+  "encoding": "utf-8",
+  "records_path": null,
+  "episode_id_path": "episode.id",
+  "source_trace_id_path": "trace_id",
+  "started_at_path": "timing.started_at",
+  "completed_at_path": "timing.completed_at",
+  "status_path": "status",
+  "calls_path": "actions",
+  "call_name_key": "tool",
+  "call_arguments_key": "input",
+  "call_is_write_key": "mutating",
+  "call_result_key": "output",
+  "write_tools": [
+    "create_order",
+    "refund_payment"
+  ],
+  "success_path": "verification.passed",
+  "success_source": "programmatic_verifier",
+  "success_true_values": [true, "passed"],
+  "success_false_values": [false, "failed"],
+  "confidence_path": "verification.confidence",
+  "cost_usd_path": "usage.cost_usd",
+  "tokens_in_path": "usage.input_tokens",
+  "tokens_out_path": "usage.output_tokens",
+  "model_path": "usage.model",
+  "annotations_path": "annotations",
+  "redaction": {
+    "use_defaults": true,
+    "mode": "tokenize",
+    "field_name_patterns": ["customer_id"],
+    "field_paths": ["actions.*.input.billing_address"],
+    "field_name_regexes": ["(?i).*account.*number.*"]
+  }
+}

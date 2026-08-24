@@ -10,6 +10,9 @@ Group=ubuntu
 WorkingDirectory=/opt/sosog/codex-agents
 EnvironmentFile=-/etc/sosog/codex-agents.env
 ExecStart=/usr/local/libexec/sosog/refresh_codex_auth.sh
+# Refresh uses ubuntu's OAuth cache; resuming system units requires root.
+# The '+' prefix elevates only this tightly scoped, root-owned post-step.
+ExecStartPost=+/usr/local/libexec/sosog/refresh_codex_auth.sh --resume-blocked
 
 UMask=0077
 NoNewPrivileges=true
