@@ -15,14 +15,17 @@ fi
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 service_source="${script_dir}/codex-agent@.service"
 runner_source="${script_dir}/run_codex_agent.sh"
+runtime_bootstrap="${script_dir}/bootstrap_v1_runtime.sh"
 config_file="/etc/sosog/codex-agents.env"
 
-for source_file in "$service_source" "$runner_source"; do
+for source_file in "$service_source" "$runner_source" "$runtime_bootstrap"; do
   if [[ ! -f $source_file ]]; then
     printf 'required source file does not exist: %s\n' "$source_file" >&2
     exit 2
   fi
 done
+
+"$runtime_bootstrap"
 
 if ! getent passwd "$agent_user" >/dev/null; then
   printf 'required service user does not exist: %s\n' "$agent_user" >&2
