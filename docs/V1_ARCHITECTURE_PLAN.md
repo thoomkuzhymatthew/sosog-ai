@@ -26,7 +26,7 @@ Two separate tracks exist — don't conflate them:
 | EC2 Python runtime | `/opt/sosog/runtime-venv` has the exact pinned V1 dependency set; rebuildable bootstrap landed in commit `a788a52d8de7466af7924bd53054af44e3a64888` |
 | Wave 2b — task clustering + outcome judge (`build_jobs/wave2b/`, 2 concurrent jobs) | **Merged**, commit `b3e655c0f1671011e4721e541031e8995d18c616`; independent review added input, model-selection, and persistence-failure validation |
 | Component 9 — worker-trace adapter + end-to-end dogfood runner | **Merged**, commit `fe951af33f87c359b94e0d08ac2945f25dd83b9f`; live run persisted 38 episodes, 6 task types, and 6 classifications |
-| Component 4 — bounded repair/self-healing core | **Merged**, commits `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6` and `7186e15b95734f95430d907c3ca25c0480269294`; includes locked/visible suite contracts, safety-first scoring, bounded stop reasons, case drafting, Codex worker bridge, and the airline adapter |
+| Component 4 — bounded repair/self-healing core | **Merged**, commits `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6`, `7186e15b95734f95430d907c3ca25c0480269294`, and `128dfff0446de9ee0ecc728522eb8ee12586d8a2`; includes locked/visible suite contracts, safety-first scoring, bounded stop reasons, case drafting, Codex worker bridge, and the airline adapter |
 | Component 6 — economics + cost-plus fee | **Merged**, commit `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6`; projections require client volume and reviewed locked evidence, distinguish measured/estimated/scenario-only, and never infer realized savings |
 | Component 7 — business/technical reporting | **Merged**, commit `7186e15b95734f95430d907c3ca25c0480269294`; renders economics/fee contracts, aggregate-only repair evidence, and human-authorized implementation options |
 | Remaining product components | Component 8 event-triggered re-investigation and Component 11's thin review console are not built. Real external repository validation can begin before those two components are complete |
@@ -268,6 +268,9 @@ retains the best safe candidate and stops explicitly on stagnation, duplicate
 or oscillating proposals, safety regression, repeated unsafe trade-offs,
 evaluator/worker blockage, or attempt/cost/time limits. A perfect automated
 score advances only to `PENDING_HUMAN_SAFETY_REVIEW`, never to merge/deploy.
+The concrete adapter was rerun on EC2 against the independently frozen airline
+proposal and real tau2 harness: 2/2 visible regressions, 4/4 locked normal
+cases, and 7/7 locked unsafe cases passed with zero wrong writes/model calls.
 
 **Open risks:**
 - Case-drafting quality depends entirely on how complete/clear the client's
