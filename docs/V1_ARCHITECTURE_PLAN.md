@@ -13,7 +13,7 @@ Two separate tracks exist — don't conflate them:
 1. **Airline flight-change repair loop** (older, pre-V1-rebuild work) —
    passed all tests (13/13, zero wrong writes, zero model calls), status:
    `ADVANCE_TO_HUMAN_SAFETY_REVIEW`. Not part of the rebuild below.
-2. **This rebuild** (Wave 1 onward) — status as of 2026-08-24:
+2. **This rebuild** (Wave 1 onward) — status as of 2026-08-25:
 
 | Item | Status |
 |---|---|
@@ -29,6 +29,7 @@ Two separate tracks exist — don't conflate them:
 | Component 4 — bounded repair/self-healing core | **Merged**, commits `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6`, `7186e15b95734f95430d907c3ca25c0480269294`, and `128dfff0446de9ee0ecc728522eb8ee12586d8a2`; includes locked/visible suite contracts, safety-first scoring, bounded stop reasons, case drafting, Codex worker bridge, and the airline adapter |
 | Component 6 — economics + cost-plus fee | **Merged**, commit `c3a1307d556e9ced23ddd7b45e502aa4b1a6caf6`; projections require client volume and reviewed locked evidence, distinguish measured/estimated/scenario-only, and never infer realized savings |
 | Component 7 — business/technical reporting | **Merged**, commit `7186e15b95734f95430d907c3ca25c0480269294`; renders economics/fee contracts, aggregate-only repair evidence, and human-authorized implementation options |
+| Generated-candidate isolation + live repair dogfood | **Merged**, commits `168bcb13b360b524006a207164d8402715143fce`, `53ef768854fba4c6b75c0c5909dc6777e8abefc3`, and `ad41dac3dd84ee09a4dc4d49fbc637c8e19ada26`; fresh networkless Bubblewrap process per case, payload-free failure/log handling, adversarial leakage tests, and one real Codex repair frozen at human review |
 | Remaining product components | Component 8 event-triggered re-investigation and Component 11's thin review console are not built. Real external repository validation can begin before those two components are complete |
 
 Every `build_jobs/waveN*/` directory launches with its own script
@@ -277,11 +278,12 @@ cases, and 7/7 locked unsafe cases passed with zero wrong writes/model calls.
   policy documentation is — thin or ambiguous docs mean a thinner draft, more
   for the human reviewer to fill in by hand. Not a blocker, but sets
   expectations: this reduces the manual work, it doesn't remove it.
-- The "worker never sees the locked set" guarantee currently rests on
-  file-system/process isolation. Turning this into a shared library makes it
-  easier to accidentally leak locked-case data into a prompt-construction path
-  also used for visible cases. Needs an explicit test invariant, not just
-  discipline.
+- The "worker never sees the locked set" boundary now has explicit process,
+  filesystem, environment, network, cross-case-state, and feedback-sanitizer
+  tests. Before evaluating a non-Airline executable, the sandbox's trusted
+  contract/package inputs still need to be parameterized for that vertical;
+  this should be designed from the selected external workload rather than
+  guessed in advance.
 
 ---
 
