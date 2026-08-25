@@ -16,9 +16,20 @@ script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 service_source="${script_dir}/codex-agent@.service"
 runner_source="${script_dir}/run_codex_agent.sh"
 runtime_bootstrap="${script_dir}/bootstrap_v1_runtime.sh"
+auth_refresh_source="${script_dir}/refresh_codex_auth.sh"
+auth_login_source="${script_dir}/codex_login_and_resume.sh"
+auth_service_source="${script_dir}/sosog-codex-auth-refresh.service"
+auth_timer_source="${script_dir}/sosog-codex-auth-refresh.timer"
 config_file="/etc/sosog/codex-agents.env"
 
-for source_file in "$service_source" "$runner_source" "$runtime_bootstrap"; do
+for source_file in \
+  "$service_source" \
+  "$runner_source" \
+  "$runtime_bootstrap" \
+  "$auth_refresh_source" \
+  "$auth_login_source" \
+  "$auth_service_source" \
+  "$auth_timer_source"; do
   if [[ ! -f $source_file ]]; then
     printf 'required source file does not exist: %s\n' "$source_file" >&2
     exit 2
@@ -63,6 +74,7 @@ install -d -m 0755 /etc/sosog /usr/local/libexec/sosog
 install -d -m 0700 -o "$agent_user" -g "$agent_group" \
   "$agent_root" \
   "$agent_root/jobs" \
+  "$agent_root/frozen" \
   "$agent_root/locks" \
   "$agent_root/manifests" \
   "$agent_root/outcomes" \
@@ -72,8 +84,15 @@ install -d -m 0700 -o "$agent_user" -g "$agent_group" \
 
 install -m 0755 -o root -g root "$runner_source" \
   /usr/local/libexec/sosog/run_codex_agent.sh
-install -m 0644 -o root -g root "$service_source" \
-  /etc/systemd/system/codex-agent@.service
+install -m 0755 -o root -g root "$auth_refresh_source" \
+  /usr/local/libexec/sosog/refresh_codex_auth.sh
+install -m 0755 -o root -g root "$auth_login_source" \
+  /usr/local/libexec/sosog/codex_login_and_resume.sh
+install -m 0644 -o root -g root \
+  "$service_source" \
+  "$auth_service_source" \
+  "$auth_timer_source" \
+  /etc/systemd/system/
 
 if [[ ! -e $config_file ]]; then
   config_tmp=$(mktemp /etc/sosog/codex-agents.env.XXXXXX)
@@ -95,6 +114,10 @@ else
 fi
 
 systemctl daemon-reload
+# Enable centralized refresh for the next boot without making a model request
+# during bootstrap. After the ubuntu user has authenticated, an operator may
+# start the timer immediately as documented in docs/codex_workers.md.
+systemctl enable sosog-codex-auth-refresh.timer
 
 if [[ ! -x $codex_bin ]]; then
   printf 'warning: Codex CLI is not executable at %s; install it before starting a worker\n' \
@@ -118,6 +141,7 @@ if ! git -C "$repo" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     "$repo" >&2
 fi
 
-printf 'Codex worker infrastructure installed; no worker was enabled, started, or authenticated.\n'
+printf 'Codex worker infrastructure installed; no worker or auth refresh was started.\n'
+printf 'The centralized auth-refresh timer is enabled for the next boot.\n'
 printf 'Configuration: %s\n' "$config_file"
 printf 'Queue root: %s/queue\n' "$agent_root"

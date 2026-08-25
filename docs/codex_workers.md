@@ -5,8 +5,9 @@ trusted EC2 host. A controller writes one explicit queue manifest per worker
 and starts the matching systemd instance. Each job gets a detached Git
 worktree and immutable, per-attempt evidence.
 
-It deliberately does **not** authenticate, merge, push, deploy, enable a
-service, or grant unrestricted host access.
+It deliberately does **not** authenticate, merge, push, deploy, or grant
+unrestricted host access. Bootstrap enables the centralized auth-refresh
+timer for the next boot but does not start it or make a model request.
 
 ## Safety model
 
@@ -76,9 +77,11 @@ sudo env CODEX_AGENT_REPO=/opt/sosog/codex-repo \
   /opt/sosog/codex-repo/infra/aws/bootstrap_codex_agents.sh
 ```
 
-The bootstrap creates `/opt/sosog/codex-agents`, installs the runner and unit,
-and reloads systemd. It does not start or enable any worker. It also preserves
-an existing `/etc/sosog/codex-agents.env` instead of overwriting it.
+The bootstrap creates `/opt/sosog/codex-agents`, installs the worker and
+centralized auth-refresh scripts/units, enables the refresh timer for the next
+boot, and reloads systemd. It does not start any worker or refresh request. It
+also preserves an existing `/etc/sosog/codex-agents.env` instead of
+overwriting it.
 
 To use different absolute paths on the first installation:
 
@@ -104,6 +107,26 @@ added to a manifest or repository file. Confirm the account outside the worker:
 
 ```bash
 sudo -u ubuntu -H codex login status
+```
+
+After the first successful login, start the centralized refresh timer without
+waiting for a reboot:
+
+```bash
+sudo systemctl enable --now sosog-codex-auth-refresh.timer
+sudo systemctl start sosog-codex-auth-refresh.service
+```
+
+The service runs the trusted Codex CLI outside the workspace sandbox so OAuth
+refresh write-back can succeed. It records only centralized validity status in
+`/opt/sosog/codex-agents/auth-status.json`. Workers fail closed before model
+execution if that status is invalid or older than 13 hours. A `blocked_auth`
+preflight exits the service invocation successfully so systemd does not waste
+`StartLimitBurst` retries on a problem only login can resolve. To log in and
+immediately resume blocked jobs, run:
+
+```bash
+sudo -u ubuntu -H /usr/local/libexec/sosog/codex_login_and_resume.sh
 ```
 
 Treat `/home/ubuntu/.codex/auth.json`, when file-backed credential storage is
@@ -143,6 +166,36 @@ allowance.
 After changing the environment file, restart only the affected workers. To
 change per-worker memory or runtime limits, create a reviewed systemd drop-in
 and reduce concurrency correspondingly.
+
+## Update the EC2 checkout from a reviewed bundle
+
+Hosts without direct GitHub access may receive an incremental Git bundle over
+an approved administrative channel. Do not point `origin` at a temporary
+bundle and later use `git pull`: an old bundle can truthfully report “already
+up to date” while GitHub has moved forward.
+
+Create a bundle from a trusted checkout, using the EC2 host's current commit as
+the prerequisite:
+
+```bash
+base_commit=<current-ec2-commit>
+expected_commit=$(git rev-parse main)
+git bundle create /tmp/sosog-main.bundle main "^$base_commit"
+git bundle verify /tmp/sosog-main.bundle
+```
+
+After transferring that file read-only to the host, apply it with the expected
+commit pinned explicitly:
+
+```bash
+sudo env CODEX_AGENT_REPO=/opt/sosog/codex-repo \
+  /opt/sosog/codex-repo/infra/aws/update_codex_repo_from_bundle.sh \
+  /tmp/sosog-main.bundle "$expected_commit"
+```
+
+The updater refuses dirty repositories, symlink/non-canonical paths, bundle
+tips that do not equal the expected full commit, and non-fast-forward updates.
+It does not change `origin`, delete files, or reset the worktree.
 
 ## Queue and start a job
 
