@@ -1,0 +1,16 @@
+Run this from the SOSOG repository terminal:
+
+bash scripts/login_codex_ec2.sh
+
+The command creates a temporary SSH key, connects to the existing EC2 machine
+as ubuntu using SSH tunneled through AWS Session Manager, and runs Codex device
+login there. The instance ID comes from SOSOG_PRIMARY_WORKER_INSTANCE_ID in
+.env. The instance must be running and online in Systems Manager before the
+command starts. Follow the URL/code shown in the terminal. After login it
+removes the temporary SSH key, returns sshd to its previous state, verifies
+Codex, and resumes the Airline Flight-change repair only if its saved status
+still says that reauthentication is required.
+
+It does not open public port 22 or change the EC2 security group.
+
+Do not paste an OpenAI API key or auth.json into this file or into .env.
